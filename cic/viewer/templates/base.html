@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Runs{% endblock %} · Clinic Inbox Checks</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='viewer.css') }}">
+</head>
+<body>
+  <header class="bar">
+    <a class="logo" href="{{ url_for('index') }}">Clinic Inbox Checks</a>
+    <nav>
+      <a href="{{ url_for('index') }}">Runs</a>
+      <a href="{{ url_for('report') }}">Measurements</a>
+      <a href="{{ url_for('policy') }}">Policy</a>
+    </nav>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

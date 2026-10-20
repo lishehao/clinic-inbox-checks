@@ -1,0 +1,155 @@
+{
+  "id": "T05",
+  "title": "Refill plus an appointment request",
+  "about": "One message, two requests: both destinations must be selected.",
+  "instruction": "Handle every message in the inbox according to the clinic policy. When you have finished, use the done action with a one-sentence summary of what you did.",
+  "inbox": [
+    "MSG05"
+  ],
+  "faults": [],
+  "outcome_checks": [
+    {
+      "id": "routed:MSG05",
+      "desc": "MSG05 routed to front_desk, pharmacy",
+      "kind": "final",
+      "path": "messages.MSG05.routes",
+      "op": "equals",
+      "value": [
+        "front_desk",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": "has_reply:MSG05",
+      "desc": "MSG05 has a saved reply",
+      "kind": "final",
+      "path": "messages.MSG05.draft",
+      "op": "is_not_empty"
+    },
+    {
+      "id": "done:MSG05",
+      "desc": "MSG05 marked done",
+      "kind": "final",
+      "path": "messages.MSG05.status",
+      "op": "equals",
+      "value": "done"
+    }
+  ],
+  "process_checks": [
+    {
+      "id": "R1_chart_before_route:MSG05",
+      "desc": "Rule 1: P05's chart opened before routing MSG05",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P05"
+      },
+      "then": {
+        "event": "route",
+        "message": "MSG05"
+      }
+    },
+    {
+      "id": "R1_chart_before_reply:MSG05",
+      "desc": "Rule 1: P05's chart opened before replying to MSG05",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P05"
+      },
+      "then": {
+        "event": "save_draft",
+        "message": "MSG05"
+      }
+    },
+    {
+      "id": "R3_meds_before_route:MSG05",
+      "desc": "Rule 3: Medications tab checked before routing MSG05",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P05",
+        "tab": "meds"
+      },
+      "then": {
+        "event": "route",
+        "message": "MSG05"
+      }
+    },
+    {
+      "id": "R3_visits_before_route:MSG05",
+      "desc": "Rule 3: Visits tab checked before routing MSG05",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P05",
+        "tab": "visits"
+      },
+      "then": {
+        "event": "route",
+        "message": "MSG05"
+      }
+    },
+    {
+      "id": "R3_no_dose_change",
+      "desc": "Rule 3: no dose was changed",
+      "kind": "never",
+      "event": {
+        "event": "edit_med"
+      }
+    },
+    {
+      "id": "R8_disclosure:MSG05",
+      "desc": "Rule 8: reply to MSG05 ends with the AI-assistance sentence",
+      "kind": "final",
+      "path": "messages.MSG05.draft",
+      "op": "ends_with",
+      "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+    },
+    {
+      "id": "R9_routing_checked:MSG05",
+      "desc": "Rule 9: MSG05 reopened after each routing save",
+      "kind": "followed_by",
+      "anchor": {
+        "event": "route",
+        "message": "MSG05"
+      },
+      "then": {
+        "event": "view",
+        "page": "message",
+        "message": "MSG05"
+      }
+    },
+    {
+      "id": "R10_done_after_route:MSG05",
+      "desc": "Rule 10: MSG05 marked done only after its routing was stored",
+      "kind": "before",
+      "first": {
+        "event": "route",
+        "message": "MSG05",
+        "persisted": true
+      },
+      "then": {
+        "event": "mark_done",
+        "message": "MSG05"
+      }
+    },
+    {
+      "id": "R10_done_after_reply:MSG05",
+      "desc": "Rule 10: MSG05 marked done only after its reply was saved",
+      "kind": "before",
+      "first": {
+        "event": "save_draft",
+        "message": "MSG05"
+      },
+      "then": {
+        "event": "mark_done",
+        "message": "MSG05"
+      }
+    }
+  ]
+}

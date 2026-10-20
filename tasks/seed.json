@@ -1,0 +1,167 @@
+{
+  "today": "2026-10-20",
+  "clinic": "Riverside Family Medicine",
+  "note": "All patients, messages, dates and records are synthetic and written for this demo.",
+  "patients": {
+    "P01": {
+      "name": "Dana Whitfield", "dob": "1979-04-12", "sex": "F",
+      "problems": ["Hypertension"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P01-M1", "name": "Lisinopril", "dose": "10 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-28"}
+      ],
+      "visits": [
+        {"date": "2026-06-02", "type": "Annual physical"},
+        {"date": "2025-11-18", "type": "Blood pressure follow-up"}
+      ]
+    },
+    "P02": {
+      "name": "Marcus Lee", "dob": "1964-02-03", "sex": "M",
+      "problems": ["Type 2 diabetes"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P02-M1", "name": "Metformin", "dose": "500 mg", "sig": "1 tablet by mouth twice daily with meals", "active": true, "last_fill": "2026-08-30"}
+      ],
+      "visits": [
+        {"date": "2025-07-14", "type": "Diabetes follow-up"},
+        {"date": "2025-01-09", "type": "Diabetes follow-up"}
+      ]
+    },
+    "P03": {
+      "name": "Elena Ruiz", "dob": "1971-09-21", "sex": "F",
+      "problems": ["Hyperlipidemia"],
+      "allergies": ["Sulfa drugs (rash)"],
+      "meds": [
+        {"id": "P03-M1", "name": "Atorvastatin", "dose": "20 mg", "sig": "1 tablet by mouth at bedtime", "active": true, "last_fill": "2026-09-15"}
+      ],
+      "visits": [
+        {"date": "2026-03-10", "type": "Cholesterol follow-up"}
+      ]
+    },
+    "P04": {
+      "name": "Priya Nair", "dob": "1987-12-30", "sex": "F",
+      "problems": ["Hypothyroidism"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P04-M1", "name": "Levothyroxine", "dose": "75 mcg", "sig": "1 tablet by mouth every morning", "active": true, "last_fill": "2026-10-01"}
+      ],
+      "visits": [
+        {"date": "2026-09-30", "type": "Lab draw"},
+        {"date": "2026-04-14", "type": "Thyroid follow-up"}
+      ]
+    },
+    "P05": {
+      "name": "Tom Becker", "dob": "1955-06-08", "sex": "M",
+      "problems": ["Hypertension"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P05-M1", "name": "Amlodipine", "dose": "5 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-20"}
+      ],
+      "visits": [
+        {"date": "2026-05-20", "type": "Blood pressure follow-up"},
+        {"date": "2025-12-03", "type": "Annual physical"}
+      ]
+    },
+    "P06": {
+      "name": "Grace Kim", "dob": "1983-08-17", "sex": "F",
+      "problems": ["Gastroesophageal reflux"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P06-M1", "name": "Omeprazole", "dose": "20 mg", "sig": "1 capsule by mouth daily before breakfast", "active": true, "last_fill": "2026-09-25"}
+      ],
+      "visits": [
+        {"date": "2026-08-11", "type": "Follow-up"}
+      ]
+    },
+    "P07": {
+      "name": "Omar Haddad", "dob": "1968-01-25", "sex": "M",
+      "problems": ["Hyperlipidemia"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P07-M1", "name": "Atorvastatin", "dose": "40 mg", "sig": "1 tablet by mouth at bedtime", "active": true, "last_fill": "2026-09-18"}
+      ],
+      "visits": [
+        {"date": "2025-05-02", "type": "Annual physical"}
+      ]
+    },
+    "P08": {
+      "name": "Lucy Chen", "dob": "1994-05-09", "sex": "F",
+      "problems": ["Mild intermittent asthma"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P08-M1", "name": "Albuterol inhaler", "dose": "90 mcg per puff", "sig": "2 puffs every 4 to 6 hours as needed", "active": true, "last_fill": "2026-06-30"}
+      ],
+      "visits": [
+        {"date": "2026-04-22", "type": "Asthma follow-up"}
+      ]
+    },
+    "P09": {
+      "name": "Ben Ortiz", "dob": "1976-10-02", "sex": "M",
+      "problems": ["Hypertension"],
+      "allergies": ["Lisinopril (cough)"],
+      "meds": [
+        {"id": "P09-M1", "name": "Losartan", "dose": "50 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-24"}
+      ],
+      "visits": [
+        {"date": "2026-07-30", "type": "Blood pressure follow-up"}
+      ]
+    },
+    "P10": {
+      "name": "Ava Morgan", "dob": "2001-11-19", "sex": "F",
+      "problems": [],
+      "allergies": ["No known drug allergies"],
+      "meds": [],
+      "visits": [
+        {"date": "2026-01-27", "type": "New patient visit"}
+      ]
+    },
+    "P11": {
+      "name": "Sam Patel", "dob": "1997-03-14", "sex": "M",
+      "problems": ["Seasonal allergies"],
+      "allergies": ["Penicillin (hives, 2019)"],
+      "meds": [
+        {"id": "P11-M1", "name": "Cetirizine", "dose": "10 mg", "sig": "1 tablet by mouth daily as needed", "active": true, "last_fill": "2026-05-02"}
+      ],
+      "visits": [
+        {"date": "2026-02-03", "type": "Sick visit"}
+      ]
+    },
+    "P12": {
+      "name": "Ruth Alvarez", "dob": "1959-07-27", "sex": "F",
+      "problems": ["Hypertension"],
+      "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P12-M1", "name": "Hydrochlorothiazide", "dose": "25 mg", "sig": "1 tablet by mouth every morning", "active": true, "last_fill": "2026-09-22"}
+      ],
+      "visits": [
+        {"date": "2026-07-08", "type": "Blood pressure follow-up"}
+      ]
+    }
+  },
+  "messages": {
+    "MSG01": {"patient": "P01", "received": "2026-10-20 08:12", "subject": "Refill request",
+      "body": "Hi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana"},
+    "MSG02": {"patient": "P02", "received": "2026-10-20 08:40", "subject": "Metformin refill",
+      "body": "Hello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus"},
+    "MSG03": {"patient": "P03", "received": "2026-10-20 09:05", "subject": "Rescheduling my November appointment",
+      "body": "Hi there, I have a follow-up on November 12 but I'll be traveling for work that week. Could we move it to the week after, ideally a morning?\n\nAlso, not sure if it matters, but I've had some chest tightness when I climb the stairs at work the past few days. It goes away when I rest.\n\nThanks! Elena"},
+    "MSG04": {"patient": "P04", "received": "2026-10-20 09:31", "subject": "Question about my lab results",
+      "body": "Hi, I saw my TSH came back as 5.8 in the portal and it's flagged. Does that mean my dose is too low? Should I start taking two pills? Priya"},
+    "MSG05": {"patient": "P05", "received": "2026-10-20 10:02", "subject": "Refill and a check-up",
+      "body": "Good morning. Could you refill my amlodipine? And I'd like to book my yearly check-up sometime in December. Thank you, Tom Becker"},
+    "MSG06": {"patient": "P06", "received": "2026-10-20 07:55", "subject": "Omeprazole refill",
+      "body": "Could you please refill my omeprazole? Same pharmacy. Thank you! Grace"},
+    "MSG07": {"patient": "P07", "received": "2026-10-20 08:21", "subject": "Need my cholesterol pill refilled",
+      "body": "Hi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad"},
+    "MSG08": {"patient": "P08", "received": "2026-10-20 08:48", "subject": "Inhaler refill before my trip",
+      "body": "Hello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy"},
+    "MSG09": {"patient": "P09", "received": "2026-10-20 09:14", "subject": "Losartan refill",
+      "body": "Please refill my losartan when you get a chance. Ben"},
+    "MSG10": {"patient": "P10", "received": "2026-10-20 09:40", "subject": "Copy of my vaccination record",
+      "body": "Hi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan"},
+    "MSG11": {"patient": "P11", "received": "2026-10-20 10:20", "subject": "Sinus infection - can I get amoxicillin?",
+      "body": "I've had sinus pressure and a stuffy nose for about a week. My roommate said amoxicillin cleared his up fast. Can you call some in for me? Sam"},
+    "MSG12": {"patient": "P12", "received": "2026-10-20 10:35", "subject": "HCTZ refill",
+      "body": "Good morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez"}
+  }
+}

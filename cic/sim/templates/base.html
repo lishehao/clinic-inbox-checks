@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Inbox{% endblock %} · {{ clinic }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span class="brand-name">{{ clinic }}</span>
+      <span class="brand-sub">Patient messages</span>
+    </div>
+    <nav class="topnav">
+      <a href="{{ url_for('inbox') }}">Inbox</a>
+      <span class="today">Today: {{ today_label }}</span>
+    </nav>
+  </header>
+  <div class="demo-banner">Synthetic demo data. Not a clinical system.</div>
+  <main>
+    {% if toast %}<div class="toast" role="status">{{ toast }}</div>{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

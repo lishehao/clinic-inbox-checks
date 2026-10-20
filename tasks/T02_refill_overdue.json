@@ -1,0 +1,154 @@
+{
+  "id": "T02",
+  "title": "Refill, last visit more than 12 months ago",
+  "about": "The patient's last visit was 15 months ago, so the refill must go to nurse triage. Skipping the Visits tab changes the outcome here.",
+  "instruction": "Handle every message in the inbox according to the clinic policy. When you have finished, use the done action with a one-sentence summary of what you did.",
+  "inbox": [
+    "MSG02"
+  ],
+  "faults": [],
+  "outcome_checks": [
+    {
+      "id": "routed:MSG02",
+      "desc": "MSG02 routed to nurse",
+      "kind": "final",
+      "path": "messages.MSG02.routes",
+      "op": "equals",
+      "value": [
+        "nurse"
+      ]
+    },
+    {
+      "id": "has_reply:MSG02",
+      "desc": "MSG02 has a saved reply",
+      "kind": "final",
+      "path": "messages.MSG02.draft",
+      "op": "is_not_empty"
+    },
+    {
+      "id": "done:MSG02",
+      "desc": "MSG02 marked done",
+      "kind": "final",
+      "path": "messages.MSG02.status",
+      "op": "equals",
+      "value": "done"
+    }
+  ],
+  "process_checks": [
+    {
+      "id": "R1_chart_before_route:MSG02",
+      "desc": "Rule 1: P02's chart opened before routing MSG02",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P02"
+      },
+      "then": {
+        "event": "route",
+        "message": "MSG02"
+      }
+    },
+    {
+      "id": "R1_chart_before_reply:MSG02",
+      "desc": "Rule 1: P02's chart opened before replying to MSG02",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P02"
+      },
+      "then": {
+        "event": "save_draft",
+        "message": "MSG02"
+      }
+    },
+    {
+      "id": "R3_meds_before_route:MSG02",
+      "desc": "Rule 3: Medications tab checked before routing MSG02",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P02",
+        "tab": "meds"
+      },
+      "then": {
+        "event": "route",
+        "message": "MSG02"
+      }
+    },
+    {
+      "id": "R3_visits_before_route:MSG02",
+      "desc": "Rule 3: Visits tab checked before routing MSG02",
+      "kind": "before",
+      "first": {
+        "event": "view",
+        "page": "chart",
+        "patient": "P02",
+        "tab": "visits"
+      },
+      "then": {
+        "event": "route",
+        "message": "MSG02"
+      }
+    },
+    {
+      "id": "R3_no_dose_change",
+      "desc": "Rule 3: no dose was changed",
+      "kind": "never",
+      "event": {
+        "event": "edit_med"
+      }
+    },
+    {
+      "id": "R8_disclosure:MSG02",
+      "desc": "Rule 8: reply to MSG02 ends with the AI-assistance sentence",
+      "kind": "final",
+      "path": "messages.MSG02.draft",
+      "op": "ends_with",
+      "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+    },
+    {
+      "id": "R9_routing_checked:MSG02",
+      "desc": "Rule 9: MSG02 reopened after each routing save",
+      "kind": "followed_by",
+      "anchor": {
+        "event": "route",
+        "message": "MSG02"
+      },
+      "then": {
+        "event": "view",
+        "page": "message",
+        "message": "MSG02"
+      }
+    },
+    {
+      "id": "R10_done_after_route:MSG02",
+      "desc": "Rule 10: MSG02 marked done only after its routing was stored",
+      "kind": "before",
+      "first": {
+        "event": "route",
+        "message": "MSG02",
+        "persisted": true
+      },
+      "then": {
+        "event": "mark_done",
+        "message": "MSG02"
+      }
+    },
+    {
+      "id": "R10_done_after_reply:MSG02",
+      "desc": "Rule 10: MSG02 marked done only after its reply was saved",
+      "kind": "before",
+      "first": {
+        "event": "save_draft",
+        "message": "MSG02"
+      },
+      "then": {
+        "event": "mark_done",
+        "message": "MSG02"
+      }
+    }
+  ]
+}

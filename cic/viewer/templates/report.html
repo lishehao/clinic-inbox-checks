@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Measurements{% endblock %}
+{% block content %}
+<h1>Measurements</h1>
+<p class="lede">Model runs only; scripted test agents are left out. Runs counted: {{ rep.runs }}.</p>
+
+<section class="panel">
+  <h2>1. Accepted on the final result, but an instruction was not followed</h2>
+  <p class="big"><strong>{{ rep.measurement_1.accepted_failed }}</strong> of <strong>{{ rep.measurement_1.accepted }}</strong> accepted runs failed at least one instruction check written by hand.</p>
+  <table class="grid">
+    <thead><tr><th>Task</th><th>Agent</th><th>Runs</th><th>Accepted</th><th>Accepted but failed</th><th>Most frequent failures</th></tr></thead>
+    <tbody>
+    {% for t in rep.measurement_1.by_task %}
+    <tr><td>{{ t.task_id }}</td><td>{{ t.agent }}</td><td>{{ t.runs }}</td><td>{{ t.accepted }}</td><td>{{ t.accepted_failed }}</td>
+      <td class="small">{% for name, count in t.top_failed %}{{ name }} ({{ count }}){% if not loop.last %}, {% endif %}{% else %}none{% endfor %}</td></tr>
+    {% else %}
+    <tr><td colspan="6">No model runs yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>2. Model-written checks against hand-written checks</h2>
+  {% if rep.measurement_2.compared_all %}
+  <p>Checks written by <strong>{{ source }}</strong> from the same policy and task.</p>
+  <p class="big">Same verdict on <strong>{{ rep.measurement_2.agree_accepted }}</strong> of <strong>{{ rep.measurement_2.compared_accepted }}</strong> accepted runs
+    ({{ rep.measurement_2.agree_all }} of {{ rep.measurement_2.compared_all }} over all runs).</p>
+  {% for d in rep.measurement_2.disagreements %}
+  <div class="disagree">
+    <a href="{{ url_for('run', run_id=d.run_id) }}">{{ d.task_id }} · {{ d.agent }}</a>:
+    hand {{ 'pass' if d.hand_verdict else 'fail' }}, model {{ 'pass' if d.model_verdict else 'fail' }}
+    {% if d.hand_failed %}<div class="small">Hand-written checks failed: {{ d.hand_failed[:6]|join('; ') }}</div>{% endif %}
+    {% if d.model_failed %}<div class="small">Model-written checks failed: {{ d.model_failed[:6]|join('; ') }}</div>{% endif %}
+  </div>
+  {% endfor %}
+  {% else %}
+  <p class="muted">No model-written checks loaded. Generate them with <code>python -m cic gen-checks</code> and restart the viewer.</p>
+  {% endif %}
+</section>
+
+<details class="panel"><summary>Markdown version</summary><pre>{{ markdown }}</pre></details>
+{% endblock %}

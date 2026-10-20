@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}{{ record.task_id }} run{% endblock %}
+{% macro results_table(results, title) %}
+<h3>{{ title }}</h3>
+<table class="grid checks">
+  <tbody>
+  {% for r in results %}
+  <tr class="{{ 'pass' if r.passed else 'fail' }}">
+    <td class="mark">{{ '✓' if r.passed else '✗' }}</td>
+    <td>{{ r.desc or r.id }}</td>
+    <td class="muted small">{{ r.detail }}</td>
+    <td class="nowrap">{% if not r.passed and r.step %}<a href="#step-{{ r.step }}">step {{ r.step }}</a>{% elif not r.passed %}<span class="muted small">end of run</span>{% endif %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}
+{% block content %}
+<p class="crumbs"><a href="{{ url_for('index') }}">&larr; All runs</a></p>
+<h1>{{ record.task_id }} · {{ task.title }}</h1>
+<p class="lede">{{ task.about }}</p>
+<div class="facts">
+  <div><span class="k">Agent</span> {% if record.agent.kind == 'scripted' %}scripted: {{ record.agent.variant }} (test agent, no model){% else %}{{ record.agent.model }}{% endif %}</div>
+  <div><span class="k">Steps</span> {{ record.steps|length }} of {{ record.max_steps }} · ended by {{ record.ended_by }}</div>
+  <div><span class="k">Final result</span> {% if ev.accepted %}<span class="ok">accepted</span>{% else %}<span class="bad">not accepted</span>{% endif %}</div>
+  <div><span class="k">Instructions</span> {% set nf = ev.process.results|rejectattr('passed')|list|length %}{% if nf %}<span class="bad">{{ nf }} check(s) failed</span>{% else %}<span class="ok">all passed</span>{% endif %}</div>
+  {% if record.summary %}<div class="wide"><span class="k">Agent's own summary</span> “{{ record.summary }}”</div>{% endif %}
+  {% if record.fatal_error %}<div class="wide bad">Error: {{ record.fatal_error }}</div>{% endif %}
+</div>
+
+<section class="panel">
+  {{ results_table(ev.outcome.results, 'Outcome checks (what a look at the final result would accept)') }}
+  {{ results_table(ev.process.results, 'Instruction checks, written by hand from the policy') }}
+  {% if ev.model %}{{ results_table(ev.model.results, 'Checks written by ' ~ ev.model_source) }}{% endif %}
+</section>
+
+<h2>Steps</h2>
+{% for step in record.steps %}
+<section class="step{% if annotations.get(step.n) %} step-flag{% endif %}" id="step-{{ step.n }}">
+  <div class="step-head">
+    <span class="num">{{ step.n }}</span>
+    {% set d = step.decision %}
+    {% if d %}
+      <span class="act">{{ d.action }}</span>
+      {% if step.target_label %}<span class="target">“{{ step.target_label }}”</span>{% endif %}
+      {% if d.action == 'fill' %}<span class="filltext">{{ d.text }}</span>{% endif %}
+    {% else %}
+      <span class="act bad">no valid action</span>
+    {% endif %}
+    <span class="url muted">{{ step.url_before.split('?')[0] }} → {{ step.url_after.split('?')[0] }}</span>
+  </div>
+  {% if d and d.thought %}<p class="thought">{{ d.thought }}</p>{% endif %}
+  {% if step.error %}<p class="bad small">{{ step.error }}</p>{% endif %}
+  {% for group, r in annotations.get(step.n, []) %}
+  <p class="flagline">✗ {{ 'Model-written' if group == 'model' else ('Outcome' if group == 'outcome' else 'Instruction') }} check failed here: {{ r.desc or r.id }}</p>
+  {% endfor %}
+  {% if step.event_list %}
+  <ul class="events">
+    {% for e in step.event_list %}
+    <li><code>{{ e.seq }}</code> {{ e.event }}{% for k, v in e.items() if k not in ('seq', 'event', 'text') %} · {{ k }}={{ v }}{% endfor %}{% if e.text %} · text=“{{ e.text[:120] }}{% if e.text|length > 120 %}…{% endif %}”{% endif %}{% if e.persisted == false %} <span class="tag tag-warn">not stored</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <div class="shots">
+    <figure><figcaption>Before</figcaption><a href="{{ url_for('shot', run_id=record.run_id, name=step.shot_before.split('/')[-1]) }}" target="_blank"><img loading="lazy" src="{{ url_for('shot', run_id=record.run_id, name=step.shot_before.split('/')[-1]) }}" alt="Screen before step {{ step.n }}"></a></figure>
+    {% if step.shot_after %}<figure><figcaption>After</figcaption><a href="{{ url_for('shot', run_id=record.run_id, name=step.shot_after.split('/')[-1]) }}" target="_blank"><img loading="lazy" src="{{ url_for('shot', run_id=record.run_id, name=step.shot_after.split('/')[-1]) }}" alt="Screen after step {{ step.n }}"></a></figure>{% endif %}
+  </div>
+</section>
+{% endfor %}
+{% endblock %}

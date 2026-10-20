@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Inbox{% endblock %}
+{% block content %}
+<h1>Inbox</h1>
+{% if rows %}
+<table class="grid inbox">
+  <thead>
+    <tr><th>Status</th><th>From</th><th>Subject</th><th>Received</th><th></th></tr>
+  </thead>
+  <tbody>
+  {% for row in rows %}
+    <tr class="status-{{ row.msg.status }}">
+      <td><span class="pill pill-{{ row.msg.status }}">{{ row.msg.status|capitalize }}</span></td>
+      <td>{{ row.patient.name }}</td>
+      <td>{{ row.msg.subject }}</td>
+      <td>{{ row.msg.received }}</td>
+      <td class="row-actions">
+        <a class="btn btn-small" href="{{ url_for('message', mid=row.msg.id) }}" aria-label="Open message: {{ row.msg.subject }}">Open</a>
+        {% if row.msg.status != 'done' %}
+        <form method="post" action="{{ url_for('done', mid=row.msg.id) }}" class="inline">
+          <button type="submit" class="btn btn-small btn-done" aria-label="Mark done: {{ row.msg.subject }}">Mark done</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No messages.</p>
+{% endif %}
+{% endblock %}

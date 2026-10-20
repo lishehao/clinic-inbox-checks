@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Runs</h1>
+<p class="lede">Each run is one agent handling one task's inbox. <strong>Accepted</strong> means the final result passes the outcome checks. <strong>Instructions</strong> uses checks written by hand from the clinic policy and the server log.</p>
+<table class="grid">
+  <thead><tr>
+    <th>Started</th><th>Task</th><th>Agent</th><th>Steps</th><th>Accepted</th><th>Instructions</th>{% if has_model %}<th>Model-written checks</th>{% endif %}<th></th>
+  </tr></thead>
+  <tbody>
+  {% for row in rows %}
+  {% set r = row.record %}
+  <tr class="{% if row.ev.accepted and row.failed %}flag{% endif %}">
+    <td class="nowrap">{{ r.started.replace('T', ' ') }}</td>
+    <td><strong>{{ r.task_id }}</strong> {{ r.task_title }}</td>
+    <td>{% if r.agent.kind == 'scripted' %}<span class="tag tag-muted">scripted: {{ r.agent.variant }}</span>{% else %}{{ r.agent.model }}{% endif %}</td>
+    <td>{{ r.steps|length }}{% if r.ended_by != 'done' %} <span class="tag tag-warn">{{ r.ended_by }}</span>{% endif %}</td>
+    <td>{% if row.ev.accepted %}<span class="ok">accepted</span>{% else %}<span class="bad">not accepted</span>{% endif %}</td>
+    <td>{% if row.failed %}<span class="bad">{{ row.failed|length }} failed</span>{% else %}<span class="ok">all passed</span>{% endif %}</td>
+    {% if has_model %}<td>{% if row.ev.model %}{% if row.ev.model.passed %}<span class="ok">pass</span>{% else %}<span class="bad">fail</span>{% endif %}{% if row.ev.model.passed != row.ev.hand_verdict %} <span class="tag tag-warn">disagrees</span>{% endif %}{% else %}<span class="muted">none</span>{% endif %}</td>{% endif %}
+    <td><a href="{{ url_for('run', run_id=r.run_id) }}">Open</a></td>
+  </tr>
+  {% else %}
+  <tr><td colspan="8">No runs yet. Start one with <code>python -m cic run --tasks T01 --agent scripted:careful</code>.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+<p class="muted small">Highlighted rows were accepted on their final result but failed at least one instruction check.</p>
+{% endblock %}

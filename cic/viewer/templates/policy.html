@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Policy{% endblock %}
+{% block content %}
+<h1>The instructions the agent gets</h1>
+<p class="lede">Every check, hand-written or model-written, is written from this policy. The agent sees the same text.</p>
+<pre class="policy">{{ policy }}</pre>
+{% endblock %}

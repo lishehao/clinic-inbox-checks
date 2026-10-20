@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Chart · {{ patient.name }}{% endblock %}
+{% block content %}
+<p class="crumbs">
+  {% if from_mid %}<a href="{{ url_for('message', mid=from_mid) }}">&larr; Back to message</a> · {% endif %}
+  <a href="{{ url_for('inbox') }}">Inbox</a>
+</p>
+<section class="card chart-head">
+  <h1>{{ patient.name }}</h1>
+  <p class="meta">Patient {{ pid }} · DOB {{ patient.dob }} · Sex {{ patient.sex }}</p>
+</section>
+
+<nav class="tabs" aria-label="Chart sections">
+  {% for key, label in tabs %}
+  <a href="{{ url_for('chart', pid=pid, tab=key, **({'from': from_mid} if from_mid else {})) }}" class="tab{% if key == tab %} active{% endif %}"{% if key == tab %} aria-current="page"{% endif %}>{{ label }}</a>
+  {% endfor %}
+</nav>
+
+<section class="card tab-body">
+{% if tab == 'summary' %}
+  <h2>Summary</h2>
+  <p>Primary care patient of {{ clinic }}. Open a section above for medications, allergies, visits or problems.</p>
+{% elif tab == 'meds' %}
+  <h2>Medications</h2>
+  <table class="grid">
+    <thead><tr><th>Medication</th><th>Dose</th><th>Directions</th><th>Status</th><th>Last fill</th><th>Change dose</th></tr></thead>
+    <tbody>
+    {% for med in patient.meds %}
+      <tr>
+        <td>{{ med.name }}</td><td>{{ med.dose }}</td><td>{{ med.sig }}</td>
+        <td>{{ 'Active' if med.active else 'Inactive' }}</td><td>{{ med.last_fill }}</td>
+        <td>
+          <form method="post" action="{{ url_for('edit_dose', pid=pid, med_id=med.id) }}" class="inline">
+            {% if from_mid %}<input type="hidden" name="from" value="{{ from_mid }}">{% endif %}
+            <input type="text" name="dose" aria-label="New dose for {{ med.name }}" placeholder="New dose" size="8">
+            <button type="submit" class="btn btn-small">Update dose</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6">No active medications.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% elif tab == 'allergies' %}
+  <h2>Allergies</h2>
+  <ul class="plain">
+  {% for allergy in patient.allergies %}<li>{{ allergy }}</li>{% endfor %}
+  </ul>
+{% elif tab == 'visits' %}
+  <h2>Visits</h2>
+  <table class="grid">
+    <thead><tr><th>Date</th><th>Type</th></tr></thead>
+    <tbody>
+    {% for visit in patient.visits %}
+      <tr><td>{{ visit.date }}</td><td>{{ visit.type }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% elif tab == 'problems' %}
+  <h2>Problems</h2>
+  <ul class="plain">
+  {% for problem in patient.problems %}<li>{{ problem }}</li>{% endfor %}
+  </ul>
+{% endif %}
+</section>
+{% endblock %}

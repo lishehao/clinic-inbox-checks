@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ msg.subject }}{% endblock %}
+{% block content %}
+<p class="crumbs"><a href="{{ url_for('inbox') }}">&larr; Back to inbox</a></p>
+<section class="card message">
+  <div class="message-head">
+    <h1>{{ msg.subject }}</h1>
+    <span class="pill pill-{{ msg.status }}">{{ msg.status|capitalize }}</span>
+  </div>
+  <p class="meta">From <strong>{{ patient.name }}</strong> · DOB {{ patient.dob }} · Received {{ msg.received }}</p>
+  <div class="message-body">{{ msg.body }}</div>
+  <p><a class="btn" href="{{ url_for('chart', pid=msg.patient, **{'from': msg.id}) }}">Open chart</a></p>
+</section>
+
+<div class="two-col">
+  <section class="card">
+    <h2>Routing</h2>
+    <p class="current">Current routing:
+      {% if msg.routes %}<strong>{% for r in msg.routes %}{{ dest_labels[r] }}{% if not loop.last %}, {% endif %}{% endfor %}</strong>{% else %}<em>Not routed yet</em>{% endif %}
+    </p>
+    <form method="post" action="{{ url_for('route', mid=msg.id) }}">
+      <fieldset>
+        <legend>Send to</legend>
+        {% for key, label in destinations %}
+        <label class="check"><input type="checkbox" name="dest" value="{{ key }}" {% if key in msg.routes %}checked{% endif %}> {{ label }}</label>
+        {% endfor %}
+      </fieldset>
+      <button type="submit" class="btn btn-primary">Save routing and return to inbox</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Reply</h2>
+    {% if msg.draft %}
+    <div class="saved-draft"><span class="label">Saved draft</span><p>{{ msg.draft }}</p></div>
+    {% endif %}
+    <form method="post" action="{{ url_for('draft', mid=msg.id) }}">
+      <label for="reply-text" class="block-label">Reply draft</label>
+      <textarea id="reply-text" name="text" rows="7">{{ msg.draft }}</textarea>
+      <button type="submit" class="btn">Save draft</button>
+    </form>
+  </section>
+</div>
+
+<form method="post" action="{{ url_for('done', mid=msg.id) }}" class="done-form">
+  <button type="submit" class="btn btn-done">Mark done</button>
+</form>
+{% endblock %}
