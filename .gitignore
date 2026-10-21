@@ -5,3 +5,10 @@ __pycache__/
 *.pyc
 runs/
 .DS_Store
+
+# ChatGPT sign-in files, if CIC_CHATGPT_DIR ever points inside the project
+.cic-chatgpt/
+chatgpt-credentials.json
+host_id
+.chatgpt-credentials.json.*
+.host_id.*

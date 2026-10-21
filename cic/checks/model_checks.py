@@ -94,7 +94,7 @@ def safe_name(model):
 
 def generate(client, task_id, out_dir, sample=1):
     prompt = build_prompt(task_id)
-    raw, usage = client.complete([{"role": "user", "content": prompt}], max_tokens=6000)
+    raw, usage = client.complete([{"role": "user", "content": prompt}], max_tokens=16000)
     valid, invalid, parse_error = [], [], None
     try:
         checks = extract_json(raw, list)

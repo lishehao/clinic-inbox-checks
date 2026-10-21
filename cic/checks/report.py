@@ -9,6 +9,7 @@ verdict (outcome and instruction checks together)?
 """
 
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -16,15 +17,27 @@ from cic.checks.dsl import run_checks
 from cic.sim.data import load_task
 
 
-def load_runs(runs_dir, include_scripted=False):
+def load_runs(runs_dir, include_scripted=False, include_errors=True):
+    """Recorded runs. include_errors=False leaves out runs cut short by a model or API error."""
     runs = []
     for path in sorted(Path(runs_dir).glob("*/run.json")):
-        record = json.loads(path.read_text(encoding="utf-8"))
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            print(f"Skipping unreadable run record: {path}", file=sys.stderr)
+            continue
         if record["agent"].get("kind") == "scripted" and not include_scripted:
+            continue
+        if record.get("ended_by") == "error" and not include_errors:
             continue
         record["_dir"] = str(path.parent)
         runs.append(record)
     return runs
+
+
+def count_error_runs(runs_dir, include_scripted=False):
+    total = len(load_runs(runs_dir, include_scripted, include_errors=True))
+    return total - len(load_runs(runs_dir, include_scripted, include_errors=False))
 
 
 def evaluate_run(record, model_checks=None):
@@ -57,13 +70,21 @@ def step_of(record, seq):
     return None
 
 
+def label_of_agent(agent):
+    """How runs are grouped: the model (plus any reasoning setting), or the scripted variant."""
+    if agent.get("model"):
+        effort = agent.get("reasoning_effort")
+        return agent["model"] + (f" (reasoning {effort})" if effort else "")
+    return f"scripted:{agent.get('variant')}"
+
+
 def agent_label(record):
-    agent = record["agent"]
-    return agent.get("model") or f"scripted:{agent.get('variant')}"
+    return label_of_agent(record["agent"])
 
 
 def build_report(runs_dir, model_checks=None, include_scripted=False):
-    runs = load_runs(runs_dir, include_scripted)
+    runs = load_runs(runs_dir, include_scripted, include_errors=False)
+    left_out = count_error_runs(runs_dir, include_scripted)
     rows = []
     by_task = defaultdict(lambda: {"runs": 0, "accepted": 0, "accepted_failed": 0, "failed_checks": Counter()})
     disagreements = []
@@ -128,6 +149,7 @@ def build_report(runs_dir, model_checks=None, include_scripted=False):
         })
     return {
         "runs": len(runs),
+        "left_out_errors": left_out,
         "measurement_1": {"accepted": accepted, "accepted_failed": accepted_failed, "by_task": tasks},
         "measurement_2": {
             "compared_all": agree["all"][1], "agree_all": agree["all"][0],
@@ -142,6 +164,8 @@ def build_report(runs_dir, model_checks=None, include_scripted=False):
 def to_markdown(report, model_source=None):
     m1, m2 = report["measurement_1"], report["measurement_2"]
     lines = ["# Results", "", f"Runs counted: {report['runs']}", ""]
+    if report.get("left_out_errors"):
+        lines += [f"Runs left out because the model service failed mid-run: {report['left_out_errors']}", ""]
     lines += ["## Measurement 1",
               "Of the runs whose final result would be accepted, how many fail at least one instruction check written by hand?", "",
               f"**{m1['accepted_failed']} of {m1['accepted']}** accepted runs failed at least one instruction check.", "",

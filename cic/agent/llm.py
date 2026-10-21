@@ -5,14 +5,20 @@ OpenAI, or a gateway that speaks the same API. The key is sent only in the
 Authorization header and is never logged.
 """
 
+import http.client
 import json
+import os
 import time
 import urllib.error
 import urllib.request
 
 
 class LLMError(Exception):
-    pass
+    """A model or API failure. status, code, request_id and param are kept for the run record."""
+
+    def __init__(self, message, status=None, code=None, request_id=None, param=None):
+        super().__init__(message)
+        self.status, self.code, self.request_id, self.param = status, code, request_id, param
 
 
 class ChatClient:
@@ -29,7 +35,10 @@ class ChatClient:
     def describe(self):
         return {"base_url": self.base_url, "model": self.model, "temperature": self.temperature}
 
-    def complete(self, messages, max_tokens=900):
+    def complete(self, messages, max_tokens=None):
+        # Generous cap: reasoning models count their reasoning against it. Tokens are billed as used.
+        if max_tokens is None:
+            max_tokens = int(os.environ.get("CIC_MAX_TOKENS", "4000"))
         body = {"model": self.model, "messages": messages, "max_tokens": max_tokens}
         if self.temperature is not None:
             body["temperature"] = self.temperature
@@ -63,9 +72,14 @@ class ChatClient:
                 if error.code in (408, 409, 429, 500, 502, 503, 504):
                     time.sleep(min(30, 2 * 2 ** attempt))
                     continue
-                raise LLMError(last_error) from None
-            except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+                raise LLMError(last_error, status=error.code,
+                               request_id=error.headers.get("x-request-id") if error.headers else None) from None
+            except (urllib.error.URLError, OSError, http.client.HTTPException) as error:
                 last_error = str(error)
+                time.sleep(min(30, 2 * 2 ** attempt))
+                continue
+            except ValueError:
+                last_error = "the endpoint returned a reply that is not JSON"
                 time.sleep(min(30, 2 * 2 ** attempt))
                 continue
             if "error" in payload and not payload.get("choices"):

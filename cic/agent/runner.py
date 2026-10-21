@@ -22,6 +22,25 @@ def step_budget(task):
     return 20 + 15 * len(task["inbox"])
 
 
+def completed_counts(runs_dir, label, tag=""):
+    """Finished runs per task for one agent label and tag. Runs cut short by a model error do not count."""
+    from collections import Counter
+
+    from cic.checks.report import label_of_agent
+    counts = Counter()
+    for path in Path(runs_dir).glob("*/run.json"):
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if record.get("ended_by") == "error" or record.get("tag", "") != tag:
+            continue
+        if label_of_agent(record.get("agent") or {}) != label:
+            continue
+        counts[record["task_id"]] += 1
+    return counts
+
+
 def _execute(page, decision):
     """Carry out one action. Returns an error string or None."""
     action = decision["action"]
@@ -91,7 +110,7 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
 
     steps, history = [], []
     usage_total = {"prompt_tokens": 0, "completion_tokens": 0}
-    summary, ended_by, fatal = "", "max_steps", None
+    summary, ended_by, fatal, fatal_info = "", "max_steps", None, None
     started = time.time()
     try:
         with sync_playwright() as pw:
@@ -107,7 +126,9 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
                 try:
                     decision, raw, usage, error = agent.decide(task, obs, history, feedback, n, max_steps)
                 except Exception as exc:  # a model/API failure ends the run but keeps the record
-                    fatal = f"{type(exc).__name__}: {str(exc)[:300]}"
+                    fatal = f"{type(exc).__name__}: {str(exc)[:600]}"
+                    fatal_info = {k: getattr(exc, k) for k in ("status", "code", "request_id", "param")
+                                  if getattr(exc, k, None) is not None} or None
                     ended_by = "error"
                     break
                 for key in usage_total:
@@ -161,6 +182,7 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
         "seconds": round(time.time() - started, 1),
         "ended_by": ended_by,
         "fatal_error": fatal,
+        "fatal_info": fatal_info,
         "summary": summary,
         "usage": usage_total,
         "max_steps": max_steps,
@@ -169,5 +191,7 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
         "final_state": {"messages": state["messages"], "patients": state["patients"]},
         "faults_left": state["faults"],
     }
-    (out / "run.json").write_text(json.dumps(record, indent=1, ensure_ascii=False), encoding="utf-8")
+    tmp = out / "run.json.tmp"
+    tmp.write_text(json.dumps(record, indent=1, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(out / "run.json")  # a run.json is either complete or absent
     return out
