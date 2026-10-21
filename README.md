@@ -34,7 +34,7 @@ If the batch stops (an API error, or a usage limit), finished runs are kept; run
 
 ### Two ways to run the model
 
-**An API key.** Any OpenAI-compatible `/chat/completions` endpoint: OpenRouter, Alibaba Cloud Model Studio (Qwen) in compatible mode, or OpenAI. Put the base URL, model and key in `.env`, or point `CIC_API_KEY_FILE` at a file that holds the key (for example `OPENROUTER_API_KEY=...`), so the key stays in one place outside the project.
+**An API key.** Any OpenAI-compatible `/chat/completions` endpoint: OpenRouter, Alibaba Cloud Model Studio (Qwen) in compatible mode, or OpenAI. Put the base URL, model and key in `.env`, or point `CIC_API_KEY_FILE` at a file that holds the key (for example `OPENROUTER_API_KEY=...`), so the key stays in one place outside the project. With no key set, an OpenRouter endpoint uses `~/.secrets/openrouter/openrouter.env` if that file exists, so no `.env` is needed for the default model.
 
 **Your ChatGPT plan (Plus or Pro).** OpenAI's [Sign in with ChatGPT](https://developers.openai.com/siwc/token-sharing-open-source) lets a locally run app send Responses API requests that count against the signed-in user's plan. On the computer whose browser you use:
 

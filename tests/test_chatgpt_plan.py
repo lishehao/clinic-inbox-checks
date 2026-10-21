@@ -318,6 +318,16 @@ class KeyFileTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "does not exist"):
                 read_key_file(str(Path(tmp) / "missing.env"))
 
+    def test_default_key_file_only_for_its_host_and_only_if_present(self):
+        from cic import config
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "openrouter.env"
+            with mock.patch.dict(config.DEFAULT_KEY_FILES, {"openrouter.ai": str(path)}, clear=True):
+                self.assertEqual(config.default_key_file("https://openrouter.ai/api/v1"), "")
+                path.write_text("OPENROUTER_API_KEY=sk-or-x\n", encoding="utf-8")
+                self.assertEqual(config.default_key_file("https://openrouter.ai/api/v1"), str(path))
+                self.assertEqual(config.default_key_file("https://api.openai.com/v1"), "")
+
 
 class SignInTests(unittest.TestCase):
     @classmethod

@@ -44,12 +44,14 @@ def _client():
         raise SystemExit(f"Unknown CIC_BACKEND {s['backend']!r}: use api or chatgpt.")
     from cic.agent.llm import ChatClient, LLMError
     key = s["api_key"]
-    if not key and s["api_key_file"]:
-        from cic.config import read_key_file
-        try:
-            key = read_key_file(s["api_key_file"])
-        except ValueError as error:
-            raise SystemExit(str(error))
+    if not key:
+        from cic.config import default_key_file, read_key_file
+        key_file = s["api_key_file"] or default_key_file(s["base_url"])
+        if key_file:
+            try:
+                key = read_key_file(key_file)
+            except ValueError as error:
+                raise SystemExit(str(error))
     try:
         return ChatClient(s["base_url"], key, s["model"], s["temperature"], s["json_mode"])
     except LLMError as error:

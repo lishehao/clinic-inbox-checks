@@ -67,6 +67,17 @@ def read_key_file(path):
     raise ValueError(f"No API key found in {p} (expected a line like OPENROUTER_API_KEY=...).")
 
 
+DEFAULT_KEY_FILES = {"openrouter.ai": "~/.secrets/openrouter/openrouter.env"}
+
+
+def default_key_file(base_url):
+    """With no key configured, a known key file for the endpoint's host, if it exists ("" otherwise)."""
+    for host, path in DEFAULT_KEY_FILES.items():
+        if host in base_url and Path(os.path.expanduser(path)).is_file():
+            return path
+    return ""
+
+
 def model_settings():
     """Return the model settings from the environment.
 
