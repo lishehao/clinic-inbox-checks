@@ -42,8 +42,18 @@ def _client():
         return ResponsesClient(model)
     if s["backend"] != "api":
         raise SystemExit(f"Unknown CIC_BACKEND {s['backend']!r}: use api or chatgpt.")
-    from cic.agent.llm import ChatClient
-    return ChatClient(s["base_url"], s["api_key"], s["model"], s["temperature"], s["json_mode"])
+    from cic.agent.llm import ChatClient, LLMError
+    key = s["api_key"]
+    if not key and s["api_key_file"]:
+        from cic.config import read_key_file
+        try:
+            key = read_key_file(s["api_key_file"])
+        except ValueError as error:
+            raise SystemExit(str(error))
+    try:
+        return ChatClient(s["base_url"], key, s["model"], s["temperature"], s["json_mode"])
+    except LLMError as error:
+        raise SystemExit(str(error))
 
 
 def _model_checks(arg):

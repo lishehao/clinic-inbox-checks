@@ -35,6 +35,38 @@ def load_env(path=None):
         os.environ.setdefault(key, value)
 
 
+def read_key_file(path):
+    """Read an API key from a file of its own.
+
+    The file holds KEY=VALUE lines (CIC_API_KEY, OPENROUTER_API_KEY or API_KEY, or a single value)
+    or one bare key. Raises ValueError if the file is missing or holds no key. The key is never printed.
+    """
+    p = Path(os.path.expanduser(path))
+    if not p.is_file():
+        raise ValueError(f"CIC_API_KEY_FILE points to {p}, which does not exist.")
+    values, bare = {}, []
+    for raw in p.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export "):]
+        if "=" in line:
+            key, value = line.split("=", 1)
+            values[key.strip()] = value.strip().strip("'\"")
+        else:
+            bare.append(line)
+    for name in ("CIC_API_KEY", "OPENROUTER_API_KEY", "API_KEY"):
+        if values.get(name):
+            return values[name]
+    filled = [v for v in values.values() if v]
+    if len(filled) == 1:
+        return filled[0]
+    if not values and len(bare) == 1:
+        return bare[0]
+    raise ValueError(f"No API key found in {p} (expected a line like OPENROUTER_API_KEY=...).")
+
+
 def model_settings():
     """Return the model settings from the environment.
 
@@ -46,6 +78,7 @@ def model_settings():
         "backend": os.environ.get("CIC_BACKEND", "api").strip().lower() or "api",
         "base_url": os.environ.get("CIC_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/"),
         "api_key": os.environ.get("CIC_API_KEY", ""),
+        "api_key_file": os.environ.get("CIC_API_KEY_FILE", "").strip(),
         "model": os.environ.get("CIC_MODEL", "openai/gpt-6-luna"),
         "chatgpt_model": os.environ.get("CIC_CHATGPT_MODEL", "").strip(),
         "temperature": os.environ.get("CIC_TEMPERATURE", "0.7"),

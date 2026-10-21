@@ -24,7 +24,8 @@ class LLMError(Exception):
 class ChatClient:
     def __init__(self, base_url, api_key, model, temperature=0.7, json_mode=False, timeout=120):
         if not api_key:
-            raise LLMError("No API key: set CIC_API_KEY in .env (see .env.example).")
+            raise LLMError("No API key: set CIC_API_KEY, or CIC_API_KEY_FILE pointing to a key file, in .env "
+                           "(see .env.example).")
         self.base_url = base_url.rstrip("/")
         self._api_key = api_key
         self.model = model

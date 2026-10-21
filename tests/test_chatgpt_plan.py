@@ -301,6 +301,24 @@ class ConfigTests(unittest.TestCase):
                     os.environ[k] = v
 
 
+class KeyFileTests(unittest.TestCase):
+    def test_key_file_formats(self):
+        from cic.config import read_key_file
+        with tempfile.TemporaryDirectory() as tmp:
+            def key_from(text):
+                path = Path(tmp) / "k.env"
+                path.write_text(text, encoding="utf-8")
+                return read_key_file(str(path))
+            self.assertEqual(key_from("# note\nOPENROUTER_API_KEY=sk-or-1\n"), "sk-or-1")
+            self.assertEqual(key_from("OTHER=x\nCIC_API_KEY='sk-2'\n"), "sk-2")
+            self.assertEqual(key_from("export SOME_KEY=sk-3\n"), "sk-3")
+            self.assertEqual(key_from("sk-bare-4\n"), "sk-bare-4")
+            with self.assertRaisesRegex(ValueError, "No API key"):
+                key_from("A=1\nB=2\n")
+            with self.assertRaisesRegex(ValueError, "does not exist"):
+                read_key_file(str(Path(tmp) / "missing.env"))
+
+
 class SignInTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
