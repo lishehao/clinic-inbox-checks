@@ -99,10 +99,15 @@ def build_report(runs_dir, model_checks=None, include_scripted=False):
     by_task = defaultdict(lambda: {"runs": 0, "accepted": 0, "accepted_failed": 0, "failed_checks": Counter()})
     disagreements = []
     agree = {"accepted": [0, 0], "all": [0, 0]}  # [agree, compared]
+    by_set = defaultdict(lambda: {"runs": 0, "accepted": 0, "accepted_failed": 0, "agree": 0, "compared": 0})
     tokens = {"prompt_tokens": 0, "completion_tokens": 0}
     for record in runs:
         ev = evaluate_run(record, model_checks)
         failed_hand = [r for r in ev["process"]["results"] if not r["passed"]]
+        group = by_set[load_task(record["task_id"]).get("set", "base")]
+        group["runs"] += 1
+        group["accepted"] += int(ev["accepted"])
+        group["accepted_failed"] += int(bool(ev["accepted"] and failed_hand))
         label = agent_label(record)
         key = (record["task_id"], label)
         bucket = by_task[key]
@@ -118,6 +123,8 @@ def build_report(runs_dir, model_checks=None, include_scripted=False):
         model_verdict = ev["model"]["passed"] if ev["model"] else None
         if model_verdict is not None:
             same = model_verdict == ev["hand_verdict"]
+            group["compared"] += 1
+            group["agree"] += int(same)
             agree["all"][1] += 1
             agree["all"][0] += int(same)
             if ev["accepted"]:
@@ -161,6 +168,7 @@ def build_report(runs_dir, model_checks=None, include_scripted=False):
         "runs": len(runs),
         "left_out_errors": left_out,
         "left_out_old_harness": old_harness,
+        "by_set": {name: dict(values) for name, values in sorted(by_set.items())},
         "measurement_1": {"accepted": accepted, "accepted_failed": accepted_failed, "by_task": tasks},
         "measurement_2": {
             "compared_all": agree["all"][1], "agree_all": agree["all"][0],
@@ -180,6 +188,13 @@ def to_markdown(report, model_source=None):
     if report.get("left_out_old_harness"):
         lines += [f"Runs left out because they were recorded with an older version of the harness: "
                   f"{report['left_out_old_harness']}", ""]
+    if len(report.get("by_set", {})) > 1:
+        lines += ["| Set | Runs | Accepted | Accepted but failed an instruction check | Model checks agree with hand verdict |",
+                  "|---|---|---|---|---|"]
+        for name, g in report["by_set"].items():
+            agree_text = f"{g['agree']} of {g['compared']}" if g["compared"] else "not compared"
+            lines.append(f"| {name} | {g['runs']} | {g['accepted']} | {g['accepted_failed']} | {agree_text} |")
+        lines.append("")
     lines += ["## Measurement 1",
               "Of the runs whose final result would be accepted, how many fail at least one instruction check written by hand?", "",
               f"**{m1['accepted_failed']} of {m1['accepted']}** accepted runs failed at least one instruction check.", "",

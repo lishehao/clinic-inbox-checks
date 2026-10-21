@@ -23,7 +23,17 @@ CHART_TABS = [
 
 
 def load_seed():
-    return json.loads((TASKS_DIR / "seed.json").read_text(encoding="utf-8"))
+    """The base seed, plus the hard set's patients and messages from seed_hard.json."""
+    seed = json.loads((TASKS_DIR / "seed.json").read_text(encoding="utf-8"))
+    extra = TASKS_DIR / "seed_hard.json"
+    if extra.exists():
+        more = json.loads(extra.read_text(encoding="utf-8"))
+        for key in ("patients", "messages"):
+            clash = set(seed[key]) & set(more.get(key, {}))
+            if clash:
+                raise ValueError(f"seed_hard.json reuses {key} ids already in seed.json: {sorted(clash)}")
+            seed[key].update(more.get(key, {}))
+    return seed
 
 
 def load_policy():

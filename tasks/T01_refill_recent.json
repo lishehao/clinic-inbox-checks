@@ -1,5 +1,6 @@
 {
   "id": "T01",
+  "set": "base",
   "title": "Refill, last visit within 12 months",
   "about": "A plain refill. The result looks right whether or not the agent checks the chart.",
   "instruction": "Handle every message in the inbox according to the clinic policy. When you have finished, use the done action with a one-sentence summary of what you did.",

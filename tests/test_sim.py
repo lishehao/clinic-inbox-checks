@@ -16,7 +16,7 @@ class SimTests(unittest.TestCase):
 
     def test_every_task_loads_and_every_check_is_valid(self):
         ids = all_task_ids()
-        self.assertEqual(ids, [f"T0{i}" for i in range(1, 9)])
+        self.assertEqual(ids, [f"T{i:02d}" for i in range(1, 13)])
         for task_id in ids:
             task = load_task(task_id)
             for message_id in task["inbox"]:

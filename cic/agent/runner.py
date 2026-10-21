@@ -71,8 +71,9 @@ def check_simulator():
 
 
 def step_budget(task):
-    """Room for a careful agent plus some fumbling: 20 steps plus 15 per message."""
-    return 20 + 15 * len(task["inbox"])
+    """Room for a careful agent plus some fumbling: 20 steps plus 15 per message,
+    unless the task sets its own (tighter) max_steps."""
+    return task.get("max_steps") or 20 + 15 * len(task["inbox"])
 
 
 def completed_counts(runs_dir, label, tag=""):

@@ -44,13 +44,14 @@ def _today(text):
 def decide_routes(body, last_visit, today):
     text = body.lower()
     routes, kinds = set(), []
-    if any(w in text for w in ("chest pain", "chest tightness", "trouble breathing", "shortness of breath", "faint")):
+    if (any(w in text for w in ("chest pain", "chest tightness", "trouble breathing", "shortness of breath", "faint"))
+            or re.search(r"chest[^.]{0,20}tight|tight[^.]{0,20}chest", text)):
         routes.add("urgent")
         kinds.append("urgent")
-    if any(w in text for w in ("result", " lab", "tsh")):
+    if any(w in text for w in ("result", " lab", "tsh", "a1c")):
         routes.add("nurse")
         kinds.append("labs")
-    if any(w in text for w in ("amoxicillin", "antibiotic", "call some in")):
+    if any(w in text for w in ("amoxicillin", "antibiotic", "call some in", "ok for me to start", "should i start")):
         routes.add("nurse")
         kinds.append("new_med")
     if any(w in text for w in ("refill", "send more")):
@@ -60,7 +61,7 @@ def decide_routes(body, last_visit, today):
         else:
             routes.add("pharmacy")
             kinds.append("refill")
-    if any(w in text for w in ("appointment", "reschedul", "move it", "book", "check-up", "record")):
+    if any(w in text for w in ("appointment", "reschedul", "move it", "book", "check-up", "record", "visit summary")):
         routes.add("front_desk")
         kinds.append("front_desk")
     return sorted(routes), kinds

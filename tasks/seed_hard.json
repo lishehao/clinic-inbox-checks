@@ -1,0 +1,160 @@
+{
+  "note": "Hard set (added 2026-10-20). Same clinic, same policy. All patients, messages, dates and records are synthetic.",
+  "patients": {
+    "P13": {
+      "name": "Marcus Lee", "dob": "1968-02-11", "sex": "M",
+      "problems": ["Hypertension"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P13-M1", "name": "Amlodipine", "dose": "5 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-25"}],
+      "visits": [{"date": "2026-05-14", "type": "Blood pressure check"}, {"date": "2025-11-20", "type": "Annual physical"}]
+    },
+    "P14": {
+      "name": "Sofia Martinez", "dob": "1985-07-30", "sex": "F",
+      "problems": ["Hypothyroidism"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P14-M1", "name": "Levothyroxine", "dose": "75 mcg", "sig": "1 tablet by mouth every morning", "active": true, "last_fill": "2026-09-20"}],
+      "visits": [{"date": "2026-02-03", "type": "Thyroid follow-up"}]
+    },
+    "P15": {
+      "name": "James O'Connor", "dob": "1959-12-05", "sex": "M",
+      "problems": ["Type 2 diabetes", "Hyperlipidemia"], "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P15-M1", "name": "Metformin", "dose": "500 mg", "sig": "1 tablet by mouth twice daily", "active": true, "last_fill": "2026-09-30"},
+        {"id": "P15-M2", "name": "Atorvastatin", "dose": "40 mg", "sig": "1 tablet by mouth at bedtime", "active": true, "last_fill": "2026-09-30"}
+      ],
+      "visits": [{"date": "2025-08-19", "type": "Diabetes follow-up"}, {"date": "2025-02-11", "type": "Diabetes follow-up"}]
+    },
+    "P16": {
+      "name": "Hannah Kim", "dob": "1992-03-17", "sex": "F",
+      "problems": [], "allergies": ["No known drug allergies"],
+      "meds": [],
+      "visits": [{"date": "2025-11-02", "type": "Annual physical"}]
+    },
+    "P17": {
+      "name": "Robert Chen", "dob": "1973-06-08", "sex": "M",
+      "problems": ["Gastroesophageal reflux disease"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P17-M1", "name": "Pantoprazole", "dose": "40 mg", "sig": "1 tablet by mouth daily before breakfast", "active": true, "last_fill": "2026-09-28"}],
+      "visits": [{"date": "2026-07-21", "type": "Follow-up visit"}]
+    },
+    "P18": {
+      "name": "Aisha Bello", "dob": "1988-10-01", "sex": "F",
+      "problems": ["Asthma"], "allergies": ["Latex (rash)"],
+      "meds": [{"id": "P18-M1", "name": "Albuterol inhaler", "dose": "90 mcg/puff", "sig": "2 puffs every 4 to 6 hours as needed", "active": true, "last_fill": "2026-04-09"}],
+      "visits": [{"date": "2026-04-09", "type": "Asthma check"}]
+    },
+    "P19": {
+      "name": "Daniel Novak", "dob": "1964-04-23", "sex": "M",
+      "problems": ["Hypertension", "Hyperlipidemia"], "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P19-M1", "name": "Lisinopril", "dose": "20 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-18"},
+        {"id": "P19-M2", "name": "Rosuvastatin", "dose": "10 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-18"}
+      ],
+      "visits": [{"date": "2026-06-30", "type": "Blood pressure follow-up"}]
+    },
+    "P20": {
+      "name": "Linda Park", "dob": "1970-01-29", "sex": "F",
+      "problems": ["Type 2 diabetes"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P20-M1", "name": "Metformin", "dose": "1000 mg", "sig": "1 tablet by mouth twice daily", "active": true, "last_fill": "2026-09-12"}],
+      "visits": [{"date": "2026-08-12", "type": "Diabetes follow-up"}]
+    },
+    "P21": {
+      "name": "Thomas Wright", "dob": "1955-09-14", "sex": "M",
+      "problems": ["Hypertension"], "allergies": ["Sulfa drugs (rash)"],
+      "meds": [{"id": "P21-M1", "name": "Chlorthalidone", "dose": "12.5 mg", "sig": "1 tablet by mouth every morning", "active": true, "last_fill": "2026-09-22"}],
+      "visits": [{"date": "2026-03-27", "type": "Blood pressure check"}]
+    },
+    "P22": {
+      "name": "Margaret Doyle", "dob": "1949-05-02", "sex": "F",
+      "problems": ["Hypertension", "Osteoarthritis"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P22-M1", "name": "Metoprolol succinate", "dose": "50 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-08"}],
+      "visits": [{"date": "2026-09-08", "type": "Follow-up visit"}]
+    },
+    "P23": {
+      "name": "Kevin Murphy", "dob": "1981-12-12", "sex": "M",
+      "problems": ["Depression"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P23-M1", "name": "Sertraline", "dose": "50 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-26"}],
+      "visits": [{"date": "2026-01-15", "type": "Follow-up visit"}]
+    },
+    "P24": {
+      "name": "Olivia Bennett", "dob": "1990-08-25", "sex": "F",
+      "problems": ["Migraine"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P24-M1", "name": "Sumatriptan", "dose": "50 mg", "sig": "1 tablet by mouth at migraine onset, may repeat once", "active": true, "last_fill": "2026-08-30"}],
+      "visits": [{"date": "2025-12-10", "type": "Migraine follow-up"}]
+    },
+    "P25": {
+      "name": "William Foster", "dob": "1962-11-03", "sex": "M",
+      "problems": ["Hypertension", "Knee osteoarthritis"], "allergies": ["Ibuprofen (hives)"],
+      "meds": [{"id": "P25-M1", "name": "Lisinopril", "dose": "10 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-22"}],
+      "visits": [{"date": "2026-05-28", "type": "Blood pressure follow-up"}]
+    },
+    "P26": {
+      "name": "Nina Patel", "dob": "1983-04-19", "sex": "F",
+      "problems": ["Hypothyroidism"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P26-M1", "name": "Levothyroxine", "dose": "50 mcg", "sig": "1 tablet by mouth every morning", "active": true, "last_fill": "2026-09-24"}],
+      "visits": [{"date": "2026-04-22", "type": "Thyroid follow-up"}]
+    },
+    "P27": {
+      "name": "George Adams", "dob": "1957-08-09", "sex": "M",
+      "problems": ["Hyperlipidemia"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P27-M1", "name": "Simvastatin", "dose": "20 mg", "sig": "1 tablet by mouth at bedtime", "active": true, "last_fill": "2026-09-19"}],
+      "visits": [{"date": "2026-02-26", "type": "Cholesterol follow-up"}]
+    },
+    "P28": {
+      "name": "Chloe Davis", "dob": "1996-01-07", "sex": "F",
+      "problems": [], "allergies": ["No known drug allergies"],
+      "meds": [],
+      "visits": [{"date": "2026-03-03", "type": "Sick visit"}]
+    },
+    "P29": {
+      "name": "Samuel Ortiz", "dob": "1966-10-27", "sex": "M",
+      "problems": ["Hypertension"], "allergies": ["No known drug allergies"],
+      "meds": [{"id": "P29-M1", "name": "Valsartan", "dose": "80 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-21"}],
+      "visits": [{"date": "2026-06-16", "type": "Blood pressure follow-up"}]
+    },
+    "P30": {
+      "name": "Fatima Hassan", "dob": "1977-02-14", "sex": "F",
+      "problems": ["Hypertension", "Seasonal allergies"], "allergies": ["No known drug allergies"],
+      "meds": [
+        {"id": "P30-M1", "name": "Losartan", "dose": "50 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-23"},
+        {"id": "P30-M2", "name": "Cetirizine", "dose": "10 mg", "sig": "1 tablet by mouth daily", "active": true, "last_fill": "2026-09-23"}
+      ],
+      "visits": [{"date": "2026-08-05", "type": "Follow-up visit"}]
+    }
+  },
+  "messages": {
+    "MSG13": {"patient": "P13", "received": "2026-10-20 06:58", "subject": "Amlodipine refill",
+              "body": "Hi, could you send a refill of my amlodipine to my usual pharmacy? I have about a week left. Thanks, Marcus"},
+    "MSG14": {"patient": "P14", "received": "2026-10-20 07:03", "subject": "Levothyroxine refill",
+              "body": "Hello, I need a refill on my levothyroxine please. Same pharmacy as always. Sofia"},
+    "MSG15": {"patient": "P15", "received": "2026-10-20 07:10", "subject": "Metformin refill",
+              "body": "Hi there, I'm running low on metformin. Can you refill it? Thank you, James O'Connor"},
+    "MSG16": {"patient": "P16", "received": "2026-10-20 07:16", "subject": "Booking my yearly physical",
+              "body": "Hi, I'd like to book my annual physical for sometime in November or December. Weekday afternoons work best. Thanks! Hannah"},
+    "MSG17": {"patient": "P17", "received": "2026-10-20 07:22", "subject": "Pantoprazole",
+              "body": "Please refill my pantoprazole when you can. Robert"},
+    "MSG18": {"patient": "P18", "received": "2026-10-20 07:31", "subject": "Visit summary for my insurance",
+              "body": "Hello, my insurance company is asking for a copy of my visit summary from April. How can I get one sent to them? Aisha"},
+    "MSG19": {"patient": "P19", "received": "2026-10-20 07:40", "subject": "Lisinopril refill please",
+              "body": "Hi, can I get a refill of my lisinopril? Thanks, Dan Novak"},
+    "MSG20": {"patient": "P20", "received": "2026-10-20 07:44", "subject": "My A1c",
+              "body": "Hi, I saw in the portal that my A1c came back at 7.4. Is that bad? Should I be taking more metformin? Linda"},
+    "MSG21": {"patient": "P21", "received": "2026-10-20 07:52", "subject": "Refill for my water pill",
+              "body": "Good morning. Please send a refill for my chlorthalidone to the pharmacy. Thomas Wright"},
+    "MSG22": {"patient": "P22", "received": "2026-10-20 08:01", "subject": "Moving my appointment and a billing question",
+              "body": "Hello,\n\nI have an appointment on November 3 but my daughter can't drive me that day. Could we move it to later that week?\n\nI also got a bill for my September visit that I think my insurance should have covered. Who should I talk to about that?\n\nOne more thing, probably nothing: yesterday my chest felt tight while I was walking up the hill to the mailbox, and I had to stop and rest for a few minutes.\n\nThank you,\nMargaret"},
+    "MSG23": {"patient": "P23", "received": "2026-10-20 08:09", "subject": "Sertraline refill",
+              "body": "Hi, I need my sertraline refilled please. Kevin"},
+    "MSG24": {"patient": "P24", "received": "2026-10-20 08:15", "subject": "Sumatriptan",
+              "body": "Could you refill my sumatriptan? I'm down to two tablets. Thanks, Olivia"},
+    "MSG25": {"patient": "P25", "received": "2026-10-20 08:20", "subject": "Lisinopril refill",
+              "body": "Hi, please refill my lisinopril, same pharmacy.\n\nAlso, my knee has been sore after walking. My neighbor said I should just take ibuprofen every day. Is it OK for me to start that?\n\nThanks, Bill Foster"},
+    "MSG26": {"patient": "P26", "received": "2026-10-20 08:26", "subject": "Thyroid pill refill",
+              "body": "Hi, can you refill my levothyroxine? Thank you, Nina"},
+    "MSG27": {"patient": "P27", "received": "2026-10-20 08:33", "subject": "Simvastatin",
+              "body": "Please send a refill of my simvastatin. George Adams"},
+    "MSG28": {"patient": "P28", "received": "2026-10-20 08:37", "subject": "Appointment request",
+              "body": "Hi, I'd like to make an appointment to get a sore shoulder looked at. Any day next week is fine. Chloe"},
+    "MSG29": {"patient": "P29", "received": "2026-10-20 08:45", "subject": "Valsartan refill",
+              "body": "Hello, I'm almost out of valsartan. Could you refill it please? Samuel"},
+    "MSG30": {"patient": "P30", "received": "2026-10-20 08:52", "subject": "Refill and a quick update",
+              "body": "Hi! Could you please refill my losartan? I'm almost out.\n\nQuick update since my last visit: the cetirizine helps a lot with my allergies during the day. I have been having some trouble breathing at night when I lie down, but I'm sure it's just my allergies acting up again this season.\n\nThanks so much, Fatima"}
+  }
+}
