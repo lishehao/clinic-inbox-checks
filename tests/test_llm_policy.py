@@ -81,6 +81,9 @@ class ModelChecksTests(unittest.TestCase):
             loaded = load_model_checks(path.parent)
             self.assertIn("T01", loaded)
         self.assertIn("MSG01: from Dana Whitfield (patient P01)", writer.prompt)
+        self.assertIn("lisinopril tablets", writer.prompt)       # the message text
+        self.assertIn("visits: 2026-06-02", writer.prompt)        # the chart
+        self.assertEqual(record["prompt_version"], 2)
         self.assertIn("CLINIC POLICY", writer.prompt)
         self.assertNotIn("R3_visits_before_route", writer.prompt)  # hand-written checks are not shown
 

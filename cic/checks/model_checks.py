@@ -62,6 +62,9 @@ policy and the task below; you will not see any runs.
 Inbox for this task (message id, patient, subject):
 {inbox}
 
+=== WHAT THE AGENT CAN SEE IN THE APP: THE MESSAGES AND THE PATIENTS' CHARTS ===
+{materials}
+
 === EVENTS THE SERVER LOGS ===
 {events}
 
@@ -75,6 +78,32 @@ Cover every requirement in the policy that applies to these messages, including 
 Use the exact message and patient ids above. Return a JSON array of checks and nothing else."""
 
 
+PROMPT_VERSION = 2  # version 1 showed only each message's sender and subject, not its text or the chart
+
+
+def task_materials(seed, task):
+    """The message texts and charts the agent can open: the same data the hand-written checks were written from."""
+    blocks, patients = [], []
+    for mid in task["inbox"]:
+        msg = seed["messages"][mid]
+        patient = seed["patients"][msg["patient"]]
+        blocks.append(f'{mid} from {patient["name"]} (patient {msg["patient"]}), received {msg["received"]}, '
+                      f'subject "{msg["subject"]}":\n{msg["body"]}')
+        if msg["patient"] not in patients:
+            patients.append(msg["patient"])
+    for pid in patients:
+        patient = seed["patients"][pid]
+        meds = "; ".join(f'{m["id"]} {m["name"]} {m["dose"]}, {m["sig"]}, '
+                         f'{"active" if m.get("active") else "not active"}, last fill {m.get("last_fill", "unknown")}'
+                         for m in patient.get("meds", [])) or "none"
+        visits = "; ".join(f'{v["date"]} {v["type"]}' for v in patient.get("visits", [])) or "none"
+        blocks.append(f'Chart {pid} ({patient["name"]}, born {patient["dob"]}): '
+                      f'problems: {", ".join(patient.get("problems", [])) or "none"}. '
+                      f'allergies: {", ".join(patient.get("allergies", [])) or "none recorded"}. '
+                      f'medications: {meds}. visits: {visits}.')
+    return "\n\n".join(blocks)
+
+
 def build_prompt(task_id):
     seed = load_seed()
     task = load_task(task_id)
@@ -82,6 +111,7 @@ def build_prompt(task_id):
         policy=load_policy(),
         instruction=task["instruction"],
         inbox=inbox_summary(seed, task),
+        materials=task_materials(seed, task),
         events=EVENTS,
         state=STATE,
         language=LANGUAGE,
@@ -115,6 +145,7 @@ def generate(client, task_id, out_dir, sample=1):
     record = {
         "task_id": task_id,
         "model": client.model,
+        "prompt_version": PROMPT_VERSION,
         "sample": sample,
         "created": datetime.datetime.now().isoformat(timespec="seconds"),
         "parse_error": parse_error,
