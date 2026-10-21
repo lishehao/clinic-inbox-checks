@@ -17,6 +17,55 @@ from cic.sim.data import build_state, load_seed, load_task
 logging.getLogger("werkzeug").setLevel(logging.ERROR)
 
 
+class HarnessError(Exception):
+    """The browser or the simulated inbox could not start: not the agent's fault, and not a run."""
+
+
+def _setup_problem(error):
+    text = str(error).strip()
+    first = text.splitlines()[0][:300] if text else type(error).__name__
+    if "Executable doesn't exist" in text or "playwright install" in text:
+        return f"Chromium is not installed for this Python ({first}). Run: python -m playwright install chromium"
+    return f"Chromium or the simulated inbox could not start: {first}"
+
+
+def check_browser():
+    """Start Chromium once. Returns None if it works, else what is wrong and how to fix it."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return "Playwright is not installed in this Python. Run: pip install -r requirements.txt"
+    try:
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.set_content("<p>ok</p>")
+            browser.close()
+    except Exception as error:  # Playwright raises its own error types
+        return _setup_problem(error)
+    return None
+
+
+def check_simulator():
+    """Open the simulated inbox in Chromium. Returns None if it loads, else the problem."""
+    from playwright.sync_api import sync_playwright
+    state = build_state(load_seed(), load_task("T01"))
+    server = make_server("127.0.0.1", 0, create_app(state, secrets.token_hex(8)), threaded=True)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    try:
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto(f"http://127.0.0.1:{server.server_port}/inbox", timeout=20000)
+            heading = page.inner_text("h1")
+            browser.close()
+    except Exception as error:
+        return _setup_problem(error)
+    finally:
+        server.shutdown()
+    return None if heading.strip() == "Inbox" else f"The inbox page loaded, but its heading was {heading!r}."
+
+
 def step_budget(task):
     """Room for a careful agent plus some fumbling: 20 steps plus 15 per message."""
     return 20 + 15 * len(task["inbox"])
@@ -105,8 +154,7 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
     agent_label = agent.describe().get("model") or agent.describe().get("variant") or agent.name
     safe_label = "".join(ch if ch.isalnum() or ch in "-." else "-" for ch in str(agent_label))
     run_id = f"{stamp}_{task_id}_{safe_label}_{secrets.token_hex(2)}"
-    out = Path(out_root) / run_id
-    (out / "shots").mkdir(parents=True, exist_ok=True)
+    out = Path(out_root) / run_id  # created once the browser has the inbox open
 
     steps, history = [], []
     usage_total = {"prompt_tokens": 0, "completion_tokens": 0}
@@ -114,11 +162,15 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
     started = time.time()
     try:
         with sync_playwright() as pw:
-            browser = pw.chromium.launch(headless=not headed, slow_mo=slowmo)
-            page = browser.new_page(viewport={"width": 1280, "height": 900})
-            page.goto(base + "/inbox")
-            page.wait_for_load_state("load")
-            obs = observe(page)
+            try:
+                browser = pw.chromium.launch(headless=not headed, slow_mo=slowmo)
+                page = browser.new_page(viewport={"width": 1280, "height": 900})
+                page.goto(base + "/inbox", timeout=20000)
+                page.wait_for_load_state("load")
+                obs = observe(page)
+            except Exception as error:  # nothing has happened yet: no run folder, no record
+                raise HarnessError(_setup_problem(error)) from None
+            (out / "shots").mkdir(parents=True, exist_ok=True)
             page.screenshot(path=str(out / "shots" / "s000.jpg"), type="jpeg", quality=72, full_page=True)
             feedback = ""
             for n in range(1, max_steps + 1):

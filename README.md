@@ -22,7 +22,7 @@ pip install -r requirements.txt
 python -m playwright install chromium
 
 cp .env.example .env              # pick one way to run the model (see below)
-python -m cic ping                # one tiny request to check it
+python -m cic doctor              # checks packages, Chromium, the simulated inbox and the model
 
 python -m cic run --tasks all --repeats 5     # model runs, saved under runs/
 python -m cic gen-checks                      # the model writes checks from the policy

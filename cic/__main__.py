@@ -8,6 +8,7 @@
   login       sign in with ChatGPT to run on your ChatGPT plan (on the computer with the browser)
   models      list the models your ChatGPT sign-in can use
   logout      revoke the ChatGPT sign-in and remove the saved tokens
+  doctor      check this computer: Python packages, Chromium, the simulated inbox, the model
 """
 
 import argparse
@@ -75,8 +76,11 @@ def _model_checks(arg):
 
 
 def cmd_run(args):
-    from cic.agent.runner import completed_counts, run_task
+    from cic.agent.runner import HarnessError, check_browser, completed_counts, run_task
     from cic.checks.report import evaluate_run
+    problem = check_browser()
+    if problem:
+        raise SystemExit(f"{problem}\nNothing was run. Check everything with: python -m cic doctor")
     if args.agent.startswith("scripted"):
         from cic.agent.scripted import RuleAgent
         variant = args.agent.split(":", 1)[1] if ":" in args.agent else "careful"
@@ -96,8 +100,12 @@ def cmd_run(args):
         if args.resume:
             print(f"{task_id}: {already} finished run(s) with {label} already; running {todo} more", flush=True)
         for i in range(todo):
-            out = run_task(task_id, make_agent(), args.out, tag=args.tag, headed=args.headed, slowmo=args.slowmo,
-                           max_steps=args.max_steps)
+            try:
+                out = run_task(task_id, make_agent(), args.out, tag=args.tag, headed=args.headed,
+                               slowmo=args.slowmo, max_steps=args.max_steps)
+            except HarnessError as error:
+                raise SystemExit(f"{error}\nStopped before {task_id} started; finished runs are kept. "
+                                 f"Check everything with: python -m cic doctor")
             record = json.loads((out / "run.json").read_text(encoding="utf-8"))
             if record.get("fatal_error"):
                 print(f"{task_id} #{already + i + 1}: stopped by an error after {len(record['steps'])} steps -> "
@@ -157,6 +165,46 @@ def cmd_ping(args):
     backend = model_settings()["backend"]
     base = getattr(client, "base_url", None) or getattr(client, "api_base", "")
     print(f"backend={backend} model={client.model} endpoint={base} reply={reply.strip()[:40]!r} usage={usage}")
+
+
+def cmd_doctor(args):
+    import platform
+    ok = True
+
+    def line(passed, text):
+        nonlocal ok
+        ok = ok and passed
+        print(("[ok]   " if passed else "[FAIL] ") + text, flush=True)
+
+    print(f"Python {platform.python_version()} at {sys.executable}")
+    missing = []
+    for module in ("flask", "playwright"):
+        try:
+            __import__(module)
+        except ImportError:
+            missing.append(module)
+    line(not missing, "flask and playwright installed" if not missing else
+         f"missing: {', '.join(missing)}. Run: pip install -r requirements.txt")
+    if not missing:
+        from cic.agent.runner import check_browser, check_simulator
+        problem = check_browser()
+        line(problem is None, "Chromium starts" if problem is None else problem)
+        if problem is None:
+            problem = check_simulator()
+            line(problem is None, "the simulated inbox opens in Chromium" if problem is None else problem)
+    s = model_settings()
+    print(f"Model: backend={s['backend']} model={model_name(s) or '(chosen at run time)'}", flush=True)
+    try:
+        client = _client()
+        reply, usage = client.complete([{"role": "user", "content": "Reply with the single word OK."}],
+                                       max_tokens=400)
+        line(True, f"the model answered {reply.strip()[:20]!r}")
+    except SystemExit as error:
+        line(False, str(error))
+    except Exception as error:  # report any model failure as a failed check
+        line(False, f"model request failed: {error}")
+    print("All checks passed." if ok else "Fix the lines marked FAIL, then run python -m cic doctor again.")
+    raise SystemExit(0 if ok else 1)
 
 
 def cmd_login(args):
@@ -249,6 +297,9 @@ def main(argv=None):
 
     models = sub.add_parser("models", help="list models for your ChatGPT sign-in")
     models.set_defaults(func=cmd_models)
+
+    doctor = sub.add_parser("doctor", help="check packages, Chromium, the simulated inbox and the model")
+    doctor.set_defaults(func=cmd_doctor)
 
     logout = sub.add_parser("logout", help="revoke the ChatGPT sign-in and remove saved tokens")
     logout.add_argument("--forget-client", action="store_true", help="also forget the registered client id")
