@@ -17,8 +17,10 @@ from cic.checks.dsl import run_checks
 from cic.sim.data import load_task
 
 
-def load_runs(runs_dir, include_scripted=False, include_errors=True):
-    """Recorded runs. include_errors=False leaves out runs cut short by a model or API error."""
+def load_runs(runs_dir, include_scripted=False, include_errors=True, current_harness_only=False):
+    """Recorded runs. include_errors=False leaves out runs cut short by a model or API error;
+    current_harness_only=True leaves out runs recorded with an older version of the harness."""
+    from cic.agent.runner import HARNESS_VERSION
     runs = []
     for path in sorted(Path(runs_dir).glob("*/run.json")):
         try:
@@ -30,14 +32,21 @@ def load_runs(runs_dir, include_scripted=False, include_errors=True):
             continue
         if record.get("ended_by") == "error" and not include_errors:
             continue
+        if current_harness_only and record.get("harness_version", 1) != HARNESS_VERSION:
+            continue
         record["_dir"] = str(path.parent)
         runs.append(record)
     return runs
 
 
 def count_error_runs(runs_dir, include_scripted=False):
-    total = len(load_runs(runs_dir, include_scripted, include_errors=True))
-    return total - len(load_runs(runs_dir, include_scripted, include_errors=False))
+    total = len(load_runs(runs_dir, include_scripted, include_errors=True, current_harness_only=True))
+    return total - len(load_runs(runs_dir, include_scripted, include_errors=False, current_harness_only=True))
+
+
+def count_old_harness_runs(runs_dir, include_scripted=False):
+    total = len(load_runs(runs_dir, include_scripted))
+    return total - len(load_runs(runs_dir, include_scripted, current_harness_only=True))
 
 
 def evaluate_run(record, model_checks=None):
@@ -83,8 +92,9 @@ def agent_label(record):
 
 
 def build_report(runs_dir, model_checks=None, include_scripted=False):
-    runs = load_runs(runs_dir, include_scripted, include_errors=False)
+    runs = load_runs(runs_dir, include_scripted, include_errors=False, current_harness_only=True)
     left_out = count_error_runs(runs_dir, include_scripted)
+    old_harness = count_old_harness_runs(runs_dir, include_scripted)
     rows = []
     by_task = defaultdict(lambda: {"runs": 0, "accepted": 0, "accepted_failed": 0, "failed_checks": Counter()})
     disagreements = []
@@ -150,6 +160,7 @@ def build_report(runs_dir, model_checks=None, include_scripted=False):
     return {
         "runs": len(runs),
         "left_out_errors": left_out,
+        "left_out_old_harness": old_harness,
         "measurement_1": {"accepted": accepted, "accepted_failed": accepted_failed, "by_task": tasks},
         "measurement_2": {
             "compared_all": agree["all"][1], "agree_all": agree["all"][0],
@@ -166,6 +177,9 @@ def to_markdown(report, model_source=None):
     lines = ["# Results", "", f"Runs counted: {report['runs']}", ""]
     if report.get("left_out_errors"):
         lines += [f"Runs left out because the model service failed mid-run: {report['left_out_errors']}", ""]
+    if report.get("left_out_old_harness"):
+        lines += [f"Runs left out because they were recorded with an older version of the harness: "
+                  f"{report['left_out_old_harness']}", ""]
     lines += ["## Measurement 1",
               "Of the runs whose final result would be accepted, how many fail at least one instruction check written by hand?", "",
               f"**{m1['accepted_failed']} of {m1['accepted']}** accepted runs failed at least one instruction check.", "",

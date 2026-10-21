@@ -16,6 +16,10 @@ from cic.sim.data import build_state, load_seed, load_task
 
 logging.getLogger("werkzeug").setLevel(logging.ERROR)
 
+# Version 2 (2026-10-20): the agent's own notes ("thought") are kept in its action history.
+# Version 1 runs showed only past actions, so agents re-opened pages they had already read.
+HARNESS_VERSION = 2
+
 
 class HarnessError(Exception):
     """The browser or the simulated inbox could not start: not the agent's fault, and not a run."""
@@ -84,6 +88,8 @@ def completed_counts(runs_dir, label, tag=""):
             continue
         if record.get("ended_by") == "error" or record.get("tag", "") != tag:
             continue
+        if record.get("harness_version", 1) != HARNESS_VERSION:
+            continue
         if label_of_agent(record.get("agent") or {}) != label:
             continue
         counts[record["task_id"]] += 1
@@ -133,6 +139,9 @@ def _history_line(n, decision, label, url_after, error):
     line += f" -> now at {url_after}"
     if error:
         line += f" (FAILED: {error})"
+    note = " ".join(str(decision.get("thought", "")).split())
+    if note:
+        line += f' | note: "{note[:300]}"'
     return line
 
 
@@ -226,6 +235,7 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
 
     record = {
         "run_id": run_id,
+        "harness_version": HARNESS_VERSION,
         "task_id": task_id,
         "task_title": task["title"],
         "tag": tag,
