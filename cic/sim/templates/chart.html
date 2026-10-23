@@ -6,13 +6,13 @@
   <a href="{{ url_for('inbox') }}">Inbox</a>
 </p>
 <section class="card chart-head">
-  <h1>{{ patient.name }}</h1>
+  <h1{% if theme == 'nextgen' %} data-initials="{{ patient.name.split()|map('first')|join }}" data-tone="{{ pid[-1] }}"{% endif %}>{{ patient.name }}</h1>
   <p class="meta">Patient {{ pid }} · DOB {{ patient.dob }} · Sex {{ patient.sex }}</p>
 </section>
 
 <nav class="tabs" aria-label="Chart sections">
   {% for key, label in tabs %}
-  <a href="{{ url_for('chart', pid=pid, tab=key, **({'from': from_mid} if from_mid else {})) }}" class="tab{% if key == tab %} active{% endif %}"{% if key == tab %} aria-current="page"{% endif %}>{{ label }}</a>
+  <a href="{{ url_for('chart', pid=pid, tab=key, **({'from': from_mid} if from_mid else {})) }}" class="tab{% if key == tab %} active{% endif %}"{% if key == tab %} aria-current="page"{% endif %}>{{ label }}{% if key == tab and theme == 'nextgen' %}<span class="tab-ink" aria-hidden="true"></span>{% endif %}</a>
   {% endfor %}
 </nav>
 

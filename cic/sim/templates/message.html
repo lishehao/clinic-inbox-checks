@@ -7,7 +7,7 @@
     <h1>{{ msg.subject }}</h1>
     <span class="pill pill-{{ msg.status }}">{{ msg.status|capitalize }}</span>
   </div>
-  <p class="meta">From <strong>{{ patient.name }}</strong> · DOB {{ patient.dob }} · Received {{ msg.received }}</p>
+  <p class="meta">From <strong{% if theme == 'nextgen' %} data-initials="{{ patient.name.split()|map('first')|join }}" data-tone="{{ msg.patient[-1] }}"{% endif %}>{{ patient.name }}</strong> · DOB {{ patient.dob }} · Received {{ msg.received }}</p>
   <div class="message-body">{{ msg.body }}</div>
   <p><a class="btn" href="{{ url_for('chart', pid=msg.patient, **{'from': msg.id}) }}">Open chart</a></p>
 </section>

@@ -4,6 +4,7 @@
   gen-checks  have the model write checks from the instructions
   report      print the two measurements
   view        open the run viewer at http://127.0.0.1:8765
+  sim         open the simulated inbox for one task and click through it yourself
   ping        send one tiny request to check the model endpoint
   login       sign in with ChatGPT to run on your ChatGPT plan (on the computer with the browser)
   models      list the models your ChatGPT sign-in can use
@@ -154,6 +155,17 @@ def cmd_view(args):
     app.run(host="127.0.0.1", port=args.port, debug=False)
 
 
+def cmd_sim(args):
+    import secrets
+    from cic.sim.app import create_app
+    from cic.sim.data import build_state, load_seed, load_task
+    state = build_state(load_seed(), load_task(args.task))
+    app = create_app(state, secrets.token_hex(16), theme=args.theme)
+    print(f"Simulated inbox for {args.task} ({args.theme} theme): http://127.0.0.1:{args.port}  (Ctrl+C to stop)")
+    print("Fresh state each start. Faults in this task, if any, are live.")
+    app.run(host="127.0.0.1", port=args.port, debug=False)
+
+
 def cmd_ping(args):
     from cic.agent.llm import LLMError
     client = _client()
@@ -285,6 +297,12 @@ def main(argv=None):
     view.add_argument("--port", type=int, default=8765)
     view.add_argument("--hide-scripted", action="store_true")
     view.set_defaults(func=cmd_view)
+
+    sim = sub.add_parser("sim", help="open the simulated inbox for one task")
+    sim.add_argument("--task", default="T11", help="task id, like T01 or T11")
+    sim.add_argument("--theme", default="nextgen", choices=["classic", "nextgen"])
+    sim.add_argument("--port", type=int, default=5050)
+    sim.set_defaults(func=cmd_sim)
 
     ping = sub.add_parser("ping", help="check the model endpoint")
     ping.set_defaults(func=cmd_ping)

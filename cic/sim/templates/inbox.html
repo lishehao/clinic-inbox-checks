@@ -9,10 +9,10 @@
   </thead>
   <tbody>
   {% for row in rows %}
-    <tr class="status-{{ row.msg.status }}">
+    <tr class="status-{{ row.msg.status }}"{% if theme == 'nextgen' %} data-mid="{{ row.msg.id }}"{% endif %}>
       <td><span class="pill pill-{{ row.msg.status }}">{{ row.msg.status|capitalize }}</span></td>
-      <td>{{ row.patient.name }}</td>
-      <td>{{ row.msg.subject }}</td>
+      <td>{% if theme == 'nextgen' %}<span class="who" data-initials="{{ row.patient.name.split()|map('first')|join }}" data-tone="{{ row.msg.patient[-1] }}">{{ row.patient.name }}</span>{% else %}{{ row.patient.name }}{% endif %}</td>
+      <td>{% if theme == 'nextgen' %}<span class="subj">{{ row.msg.subject }}</span>{% else %}{{ row.msg.subject }}{% endif %}</td>
       <td>{{ row.msg.received }}</td>
       <td class="row-actions">
         <a class="btn btn-small" href="{{ url_for('message', mid=row.msg.id) }}" aria-label="Open message: {{ row.msg.subject }}">Open</a>

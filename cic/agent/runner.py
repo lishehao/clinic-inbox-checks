@@ -21,6 +21,17 @@ logging.getLogger("werkzeug").setLevel(logging.ERROR)
 HARNESS_VERSION = 2
 
 
+def sim_theme():
+    """How the simulated inbox looks during runs: CIC_SIM_THEME=classic (default) or nextgen.
+    The agent's observation is the same in both (tests/test_theme.py)."""
+    import os
+    from cic.sim.app import THEMES
+    theme = os.environ.get("CIC_SIM_THEME", "classic").strip().lower() or "classic"
+    if theme not in THEMES:
+        raise ValueError(f"CIC_SIM_THEME={theme!r}; use one of {', '.join(THEMES)}")
+    return theme
+
+
 class HarnessError(Exception):
     """The browser or the simulated inbox could not start: not the agent's fault, and not a run."""
 
@@ -154,7 +165,8 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
     max_steps = max_steps or step_budget(task)
     state = build_state(seed, task)
     token = secrets.token_hex(16)
-    app = create_app(state, token)
+    theme = sim_theme()
+    app = create_app(state, token, theme=theme)
     server = make_server("127.0.0.1", 0, app, threaded=True)
     base = f"http://127.0.0.1:{server.server_port}"
     thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -237,6 +249,7 @@ def run_task(task_id, agent, out_root, tag="", headed=False, slowmo=0, max_steps
     record = {
         "run_id": run_id,
         "harness_version": HARNESS_VERSION,
+        "sim_theme": theme,
         "task_id": task_id,
         "task_title": task["title"],
         "tag": tag,

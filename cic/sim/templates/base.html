@@ -5,6 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Inbox{% endblock %} · {{ clinic }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {%- if theme == 'nextgen' %}<link rel="stylesheet" href="{{ url_for('static', filename='nextgen.css') }}">
+  <script>
+    /* nextgen motion. Picks the kind of move between two pages (open, close, push, pop,
+       tab-next, tab-prev, same) and names the elements that carry over, so nextgen.css
+       can animate them. It changes styles and classes only, never text or controls. */
+    (function () {
+      var root = document.documentElement, TABS = ["summary", "meds", "allergies", "visits", "problems"], named = [];
+      function where(url) {
+        var u = new URL(url, location.href), part = u.pathname.split("/");
+        if (part[1] === "message") return {page: "message", mid: part[2]};
+        if (part[1] === "chart") return {page: "chart", mid: u.searchParams.get("from"), tab: u.searchParams.get("tab") || "summary"};
+        return {page: "inbox"};
+      }
+      function move(a, b) {
+        if (a.page === b.page) {
+          if (a.page === "chart" && a.tab !== b.tab) return TABS.indexOf(b.tab) > TABS.indexOf(a.tab) ? "tab-next" : "tab-prev";
+          return "same";
+        }
+        if (b.page === "inbox") return "close";
+        if (a.page === "inbox") return "open";
+        return b.page === "chart" ? "push" : "pop";
+      }
+      function name(el, n) {
+        if (!el) return;
+        el.style.viewTransitionName = n; el.classList.add("ng-anchor"); named.push(el);
+      }
+      function tag(page, kind, mid) {
+        var q = function (s) { return document.querySelector(s); };
+        var card = kind === "open" || kind === "close", side = kind === "push" || kind === "pop";
+        if (page === "inbox" && card && mid) {
+          var row = q('tr[data-mid="' + mid + '"]');
+          if (row) {
+            name(row, "ng-card"); name(row.querySelector(".subj"), "ng-subject");
+            name(row.querySelector(".who"), "ng-patient"); name(row.querySelector(".pill"), "ng-status");
+          }
+        } else if (page === "message") {
+          if (card) { name(q("section.message"), "ng-card"); name(q(".message-head h1"), "ng-subject"); name(q(".message-head .pill"), "ng-status"); }
+          if (side) name(q("section.message a.btn"), "ng-card");
+          if (card || side) name(q(".message .meta strong"), "ng-patient");
+        } else if (page === "chart" && (card || side)) {
+          name(q(".chart-head"), "ng-card"); name(q(".chart-head h1"), "ng-patient");
+        }
+      }
+      function clear() {
+        /* names only: the ng-anchor class stays, so no entrance animation starts afterwards */
+        named.forEach(function (el) { el.style.viewTransitionName = ""; });
+        named = [];
+      }
+      addEventListener("pageswap", function (e) {
+        if (!e.viewTransition || !e.activation || !e.activation.entry) return;
+        var a = where(location.href), b = where(e.activation.entry.url), kind = move(a, b);
+        tag(a.page, kind, a.mid || b.mid);
+        e.viewTransition.types.add(kind);
+      });
+      addEventListener("pagereveal", function (e) {
+        var act = window.navigation && navigation.activation, from = act && act.from;
+        if (!e.viewTransition) return;
+        root.classList.add("ng-vt");
+        if (!from || !from.url) return;
+        var a = where(from.url), b = where(location.href), kind = move(a, b);
+        root.dataset.move = kind;
+        tag(b.page, kind, b.mid || a.mid);
+        e.viewTransition.types.add(kind);
+        e.viewTransition.finished.then(clear, clear);
+      });
+      /* the control that was used becomes the confirmation on the next page */
+      addEventListener("submit", function (e) {
+        var old = document.querySelector(".toast");
+        if (old) old.style.viewTransitionName = "none";
+        if (e.submitter) name(e.submitter, "ng-confirm");
+        root.classList.add("ng-busy");
+      }, true);
+      addEventListener("click", function (e) {
+        var a = e.target.closest && e.target.closest("a[href]");
+        if (a && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) root.classList.add("ng-busy");
+      }, true);
+      addEventListener("pageshow", function (e) { if (e.persisted) root.classList.remove("ng-busy"); });
+    })();
+  </script>{% endif %}
 </head>
 <body>
   <header class="topbar">

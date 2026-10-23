@@ -22,7 +22,14 @@ def _today_label(iso_day):
     return day.strftime("%a %b %d, %Y").replace(" 0", " ")
 
 
-def create_app(state, harness_token):
+THEMES = ("classic", "nextgen")
+
+
+def create_app(state, harness_token, theme="classic"):
+    """theme changes only how pages look. The text and the controls are the same in every theme,
+    so the agent's observation does not depend on it (tests/test_theme.py)."""
+    if theme not in THEMES:
+        raise ValueError(f"unknown theme {theme!r}; use one of {', '.join(THEMES)}")
     app = Flask(
         __name__,
         template_folder=str(HERE / "templates"),
@@ -50,7 +57,7 @@ def create_app(state, harness_token):
 
     @app.context_processor
     def common():
-        return {"clinic": state["clinic"], "today_label": _today_label(state["today"])}
+        return {"clinic": state["clinic"], "today_label": _today_label(state["today"]), "theme": theme}
 
     @app.get("/")
     def root():
