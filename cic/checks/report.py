@@ -35,6 +35,7 @@ def load_runs(runs_dir, include_scripted=False, include_errors=True, current_har
         if current_harness_only and record.get("harness_version", 1) != HARNESS_VERSION:
             continue
         record["_dir"] = str(path.parent)
+        record["_has_shots"] = (path.parent / "shots").is_dir()   # published runs keep only run.json
         runs.append(record)
     return runs
 

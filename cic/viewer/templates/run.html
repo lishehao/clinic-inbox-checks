@@ -61,10 +61,10 @@
     {% endfor %}
   </ul>
   {% endif %}
-  <div class="shots">
+  {% if record['_has_shots'] %}<div class="shots">
     <figure><figcaption>Before</figcaption><a href="{{ url_for('shot', run_id=record.run_id, name=step.shot_before.split('/')[-1]) }}" target="_blank"><img loading="lazy" src="{{ url_for('shot', run_id=record.run_id, name=step.shot_before.split('/')[-1]) }}" alt="Screen before step {{ step.n }}"></a></figure>
     {% if step.shot_after %}<figure><figcaption>After</figcaption><a href="{{ url_for('shot', run_id=record.run_id, name=step.shot_after.split('/')[-1]) }}" target="_blank"><img loading="lazy" src="{{ url_for('shot', run_id=record.run_id, name=step.shot_after.split('/')[-1]) }}" alt="Screen after step {{ step.n }}"></a></figure>{% endif %}
-  </div>
+  </div>{% endif %}
 </section>
 {% endfor %}
 {% endblock %}
