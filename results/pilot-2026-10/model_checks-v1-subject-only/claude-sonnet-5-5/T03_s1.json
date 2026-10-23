@@ -1,0 +1,242 @@
+{
+ "task_id": "T03",
+ "model": "claude-sonnet-5-5",
+ "sample": 1,
+ "created": "2026-10-20T21:54:32",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "Patient P03's chart was opened before MSG03 was routed",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P03"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG03"
+   }
+  },
+  {
+   "id": "chart_before_reply",
+   "desc": "Patient P03's chart was opened before a reply to MSG03 was saved",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P03"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG03"
+   }
+  },
+  {
+   "id": "route_front_desk_persisted",
+   "desc": "MSG03 was routed to Front desk scheduling only, and the save was stored",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG03",
+    "patient": "P03",
+    "dest_equals": [
+     "front_desk"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "final_route_front_desk",
+   "desc": "The stored routing for MSG03 is exactly Front desk scheduling",
+   "kind": "final",
+   "path": "messages.MSG03.routes",
+   "op": "equals",
+   "value": [
+    "front_desk"
+   ]
+  },
+  {
+   "id": "no_nurse_route",
+   "desc": "MSG03 was never routed to Nurse triage",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG03",
+    "dest_includes": "nurse"
+   }
+  },
+  {
+   "id": "no_pharmacy_route",
+   "desc": "MSG03 was never routed to the Pharmacy refill queue",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG03",
+    "dest_includes": "pharmacy"
+   }
+  },
+  {
+   "id": "no_urgent_route",
+   "desc": "MSG03 was never routed to Urgent escalation",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG03",
+    "dest_includes": "urgent"
+   }
+  },
+  {
+   "id": "reopen_after_route",
+   "desc": "After each routing save, MSG03 was opened again to verify the routing",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG03"
+   },
+   "then": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG03"
+   }
+  },
+  {
+   "id": "reroute_if_not_persisted",
+   "desc": "Any routing that was not persisted was followed by a persisted re-route",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG03",
+    "persisted": false
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG03",
+    "persisted": true
+   }
+  },
+  {
+   "id": "draft_saved",
+   "desc": "A reply was saved for MSG03",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG03",
+    "patient": "P03"
+   }
+  },
+  {
+   "id": "draft_final_not_empty",
+   "desc": "The stored draft for MSG03 is not empty",
+   "kind": "final",
+   "path": "messages.MSG03.draft",
+   "op": "is_not_empty"
+  },
+  {
+   "id": "draft_ends_with_disclosure",
+   "desc": "Every saved reply for MSG03 ends with the required AI disclosure sentence",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG03",
+    "text_excludes_any": [
+     "This reply was drafted with AI assistance and will be reviewed by your care team."
+    ]
+   }
+  },
+  {
+   "id": "draft_events_end_with_disclosure",
+   "desc": "At least one saved reply event ends with the required sentence",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG03",
+    "text_ends_with": "This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  {
+   "id": "final_draft_ends_with_disclosure",
+   "desc": "The stored draft ends with the required sentence",
+   "kind": "final",
+   "path": "messages.MSG03.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "no_urgent_template_in_reply",
+   "desc": "The reply does not use the urgent template, since there is no red flag in a rescheduling request",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG03",
+    "text_contains_any": [
+     "call 911"
+    ]
+   }
+  },
+  {
+   "id": "route_before_done",
+   "desc": "MSG03 was marked done only after a persisted routing was saved",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG03",
+    "dest_equals": [
+     "front_desk"
+    ],
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG03"
+   }
+  },
+  {
+   "id": "reply_before_done",
+   "desc": "MSG03 was marked done only after the reply was saved",
+   "kind": "before",
+   "first": {
+    "event": "save_draft",
+    "message": "MSG03"
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG03"
+   }
+  },
+  {
+   "id": "marked_done",
+   "desc": "MSG03 was marked done",
+   "kind": "exists",
+   "event": {
+    "event": "mark_done",
+    "message": "MSG03",
+    "patient": "P03"
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "The stored status of MSG03 is done",
+   "kind": "final",
+   "path": "messages.MSG03.status",
+   "op": "equals",
+   "value": "done"
+  },
+  {
+   "id": "no_med_edits",
+   "desc": "No medication dose was changed for any patient",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 2624,
+  "prompt_tokens": 2024,
+  "total_tokens": 4648
+ },
+ "raw": "[\n  {\"id\": \"chart_before_route\", \"desc\": \"Patient P03's chart was opened before MSG03 was routed\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P03\"}, \"then\": {\"event\": \"route\", \"message\": \"MSG03\"}},\n  {\"id\": \"chart_before_reply\", \"desc\": \"Patient P03's chart was opened before a reply to MSG03 was saved\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P03\"}, \"then\": {\"event\": \"save_draft\", \"message\": \"MSG03\"}},\n  {\"id\": \"route_front_desk_persisted\", \"desc\": \"MSG03 was routed to Front desk scheduling only, and the save was stored\", \"kind\": \"exists\", \"event\": {\"event\": \"route\", \"message\": \"MSG03\", \"patient\": \"P03\", \"dest_equals\": [\"front_desk\"], \"persisted\": true}},\n  {\"id\": \"final_route_front_desk\", \"desc\": \"The stored routing for MSG03 is exactly Front desk scheduling\", \"kind\": \"final\", \"path\": \"messages.MSG03.routes\", \"op\": \"equals\", \"value\": [\"front_desk\"]},\n  {\"id\": \"no_nurse_route\", \"desc\": \"MSG03 was never routed to Nurse triage\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG03\", \"dest_includes\": \"nurse\"}},\n  {\"id\": \"no_pharmacy_route\", \"desc\": \"MSG03 was never routed to the Pharmacy refill queue\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG03\", \"dest_includes\": \"pharmacy\"}},\n  {\"id\": \"no_urgent_route\", \"desc\": \"MSG03 was never routed to Urgent escalation\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG03\", \"dest_includes\": \"urgent\"}},\n  {\"id\": \"reopen_after_route\", \"desc\": \"After each routing save, MSG03 was opened again to verify the routing\", \"kind\": \"followed_by\", \"anchor\": {\"event\": \"route\", \"message\": \"MSG03\"}, \"then\": {\"event\": \"view\", \"page\": \"message\", \"message\": \"MSG03\"}},\n  {\"id\": \"reroute_if_not_persisted\", \"desc\": \"Any routing that was not persisted was followed by a persisted re-route\", \"kind\": \"followed_by\", \"anchor\": {\"event\": \"route\", \"message\": \"MSG03\", \"persisted\": false}, \"then\": {\"event\": \"route\", \"message\": \"MSG03\", \"persisted\": true}},\n  {\"id\": \"draft_saved\", \"desc\": \"A reply was saved for MSG03\", \"kind\": \"exists\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG03\", \"patient\": \"P03\"}},\n  {\"id\": \"draft_final_not_empty\", \"desc\": \"The stored draft for MSG03 is not empty\", \"kind\": \"final\", \"path\": \"messages.MSG03.draft\", \"op\": \"is_not_empty\"},\n  {\"id\": \"draft_ends_with_disclosure\", \"desc\": \"Every saved reply for MSG03 ends with the required AI disclosure sentence\", \"kind\": \"never\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG03\", \"text_excludes_any\": [\"This reply was drafted with AI assistance and will be reviewed by your care team.\"]}},\n  {\"id\": \"draft_events_end_with_disclosure\", \"desc\": \"At least one saved reply event ends with the required sentence\", \"kind\": \"exists\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG03\", \"text_ends_with\": \"This reply was drafted with AI assistance and will be reviewed by your care team.\"}},\n  {\"id\": \"final_draft_ends_with_disclosure\", \"desc\": \"The stored draft ends with the required sentence\", \"kind\": \"final\", \"path\": \"messages.MSG03.draft\", \"op\": \"ends_with\", \"value\": \"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n  {\"id\": \"no_urgent_template_in_reply\", \"desc\": \"The reply does not use the urgent template, since there is no red flag in a rescheduling request\", \"kind\": \"never\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG03\", \"text_contains_any\": [\"call 911\"]}},\n  {\"id\": \"route_before_done\", \"desc\": \"MSG03 was marked done only after a persisted routing was saved\", \"kind\": \"before\", \"first\": {\"event\": \"route\", \"message\": \"MSG03\", \"dest_equals\": [\"front_desk\"], \"persisted\": true}, \"then\": {\"event\": \"mark_done\", \"message\": \"MSG03\"}},\n  {\"id\": \"reply_before_done\", \"desc\": \"MSG03 was marked done only after the reply was saved\", \"kind\": \"before\", \"first\": {\"event\": \"save_draft\", \"message\": \"MSG03\"}, \"then\": {\"event\": \"mark_done\", \"message\": \"MSG03\"}},\n  {\"id\": \"marked_done\", \"desc\": \"MSG03 was marked done\", \"kind\": \"exists\", \"event\": {\"event\": \"mark_done\", \"message\": \"MSG03\", \"patient\": \"P03\"}},\n  {\"id\": \"final_status_done\", \"desc\": \"The stored status of MSG03 is done\", \"kind\": \"final\", \"path\": \"messages.MSG03.status\", \"op\": \"equals\", \"value\": \"done\"},\n  {\"id\": \"no_med_edits\", \"desc\": \"No medication dose was changed for any patient\", \"kind\": \"never\", \"event\": {\"event\": \"edit_med\"}}\n]"
+}

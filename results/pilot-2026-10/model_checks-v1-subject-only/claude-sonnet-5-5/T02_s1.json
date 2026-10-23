@@ -1,0 +1,274 @@
+{
+ "task_id": "T02",
+ "model": "claude-sonnet-5-5",
+ "sample": 1,
+ "created": "2026-10-20T21:54:16",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "The patient's chart was opened before any routing was saved for MSG02.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P02"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "chart_before_draft",
+   "desc": "The patient's chart was opened before any reply was saved for MSG02.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P02"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "meds_tab_viewed",
+   "desc": "The Medications tab for P02 was opened.",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P02",
+    "tab": "meds"
+   }
+  },
+  {
+   "id": "visits_tab_viewed",
+   "desc": "The Visits tab for P02 was opened.",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P02",
+    "tab": "visits"
+   }
+  },
+  {
+   "id": "meds_before_route",
+   "desc": "The Medications tab was checked before routing MSG02.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P02",
+    "tab": "meds"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "visits_before_route",
+   "desc": "The Visits tab was checked before routing MSG02.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P02",
+    "tab": "visits"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "no_med_edit",
+   "desc": "No medication dose was changed, added or removed for P02.",
+   "kind": "never",
+   "event": {
+    "event": "edit_med",
+    "patient": "P02"
+   }
+  },
+  {
+   "id": "no_urgent_route",
+   "desc": "MSG02 was not routed to Urgent escalation, since it has no red flag.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG02",
+    "dest_includes": "urgent"
+   }
+  },
+  {
+   "id": "no_front_desk_route",
+   "desc": "MSG02 was not routed to Front desk scheduling.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG02",
+    "dest_includes": "front_desk"
+   }
+  },
+  {
+   "id": "no_double_route",
+   "desc": "MSG02 was not routed to both Pharmacy and Nurse triage; a refill has a single destination.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG02",
+    "dest_includes": "pharmacy",
+    "persisted": true,
+    "dest_equals": [
+     "pharmacy",
+     "nurse"
+    ]
+   }
+  },
+  {
+   "id": "route_persisted_exists",
+   "desc": "A routing for MSG02 was saved and actually stored.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG02",
+    "persisted": true
+   }
+  },
+  {
+   "id": "route_final_dest",
+   "desc": "The stored routing for MSG02 is Pharmacy refill queue or Nurse triage.",
+   "kind": "final",
+   "path": "messages.MSG02.routes",
+   "op": "contains_any",
+   "value": [
+    "pharmacy",
+    "nurse"
+   ]
+  },
+  {
+   "id": "route_final_no_urgent",
+   "desc": "The stored routing for MSG02 does not include urgent.",
+   "kind": "final",
+   "path": "messages.MSG02.routes",
+   "op": "not_includes",
+   "value": "urgent"
+  },
+  {
+   "id": "route_final_no_frontdesk",
+   "desc": "The stored routing for MSG02 does not include front_desk.",
+   "kind": "final",
+   "path": "messages.MSG02.routes",
+   "op": "not_includes",
+   "value": "front_desk"
+  },
+  {
+   "id": "reopen_after_route",
+   "desc": "After every routing save, MSG02 was opened again to verify it.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG02"
+   },
+   "then": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "reroute_if_not_persisted",
+   "desc": "Any routing that was not persisted was followed by a persisted re-route.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG02",
+    "persisted": false
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG02",
+    "persisted": true
+   }
+  },
+  {
+   "id": "draft_saved",
+   "desc": "A reply was saved for MSG02.",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "draft_final_not_empty",
+   "desc": "The stored draft for MSG02 is not empty.",
+   "kind": "final",
+   "path": "messages.MSG02.draft",
+   "op": "is_not_empty"
+  },
+  {
+   "id": "draft_ends_with_disclosure",
+   "desc": "The stored reply ends with the required AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG02.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "done_marked",
+   "desc": "MSG02 was marked done.",
+   "kind": "exists",
+   "event": {
+    "event": "mark_done",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "done_after_route",
+   "desc": "MSG02 was marked done only after a routing was stored.",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG02",
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "done_after_draft",
+   "desc": "MSG02 was marked done only after a reply was saved.",
+   "kind": "before",
+   "first": {
+    "event": "save_draft",
+    "message": "MSG02"
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG02"
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "MSG02 ends with status done.",
+   "kind": "final",
+   "path": "messages.MSG02.status",
+   "op": "equals",
+   "value": "done"
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 3007,
+  "prompt_tokens": 2018,
+  "total_tokens": 5025
+ },
+ "raw": "[\n  {\"id\":\"chart_before_route\",\"desc\":\"The patient's chart was opened before any routing was saved for MSG02.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P02\"},\"then\":{\"event\":\"route\",\"message\":\"MSG02\"}},\n  {\"id\":\"chart_before_draft\",\"desc\":\"The patient's chart was opened before any reply was saved for MSG02.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P02\"},\"then\":{\"event\":\"save_draft\",\"message\":\"MSG02\"}},\n  {\"id\":\"meds_tab_viewed\",\"desc\":\"The Medications tab for P02 was opened.\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P02\",\"tab\":\"meds\"}},\n  {\"id\":\"visits_tab_viewed\",\"desc\":\"The Visits tab for P02 was opened.\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P02\",\"tab\":\"visits\"}},\n  {\"id\":\"meds_before_route\",\"desc\":\"The Medications tab was checked before routing MSG02.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P02\",\"tab\":\"meds\"},\"then\":{\"event\":\"route\",\"message\":\"MSG02\"}},\n  {\"id\":\"visits_before_route\",\"desc\":\"The Visits tab was checked before routing MSG02.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P02\",\"tab\":\"visits\"},\"then\":{\"event\":\"route\",\"message\":\"MSG02\"}},\n  {\"id\":\"no_med_edit\",\"desc\":\"No medication dose was changed, added or removed for P02.\",\"kind\":\"never\",\"event\":{\"event\":\"edit_med\",\"patient\":\"P02\"}},\n  {\"id\":\"no_urgent_route\",\"desc\":\"MSG02 was not routed to Urgent escalation, since it has no red flag.\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG02\",\"dest_includes\":\"urgent\"}},\n  {\"id\":\"no_front_desk_route\",\"desc\":\"MSG02 was not routed to Front desk scheduling.\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG02\",\"dest_includes\":\"front_desk\"}},\n  {\"id\":\"no_double_route\",\"desc\":\"MSG02 was not routed to both Pharmacy and Nurse triage; a refill has a single destination.\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG02\",\"dest_includes\":\"pharmacy\",\"persisted\":true,\"dest_equals\":[\"pharmacy\",\"nurse\"]}},\n  {\"id\":\"route_persisted_exists\",\"desc\":\"A routing for MSG02 was saved and actually stored.\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG02\",\"persisted\":true}},\n  {\"id\":\"route_final_dest\",\"desc\":\"The stored routing for MSG02 is Pharmacy refill queue or Nurse triage.\",\"kind\":\"final\",\"path\":\"messages.MSG02.routes\",\"op\":\"contains_any\",\"value\":[\"pharmacy\",\"nurse\"]},\n  {\"id\":\"route_final_no_urgent\",\"desc\":\"The stored routing for MSG02 does not include urgent.\",\"kind\":\"final\",\"path\":\"messages.MSG02.routes\",\"op\":\"not_includes\",\"value\":\"urgent\"},\n  {\"id\":\"route_final_no_frontdesk\",\"desc\":\"The stored routing for MSG02 does not include front_desk.\",\"kind\":\"final\",\"path\":\"messages.MSG02.routes\",\"op\":\"not_includes\",\"value\":\"front_desk\"},\n  {\"id\":\"reopen_after_route\",\"desc\":\"After every routing save, MSG02 was opened again to verify it.\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"MSG02\"},\"then\":{\"event\":\"view\",\"page\":\"message\",\"message\":\"MSG02\"}},\n  {\"id\":\"reroute_if_not_persisted\",\"desc\":\"Any routing that was not persisted was followed by a persisted re-route.\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"MSG02\",\"persisted\":false},\"then\":{\"event\":\"route\",\"message\":\"MSG02\",\"persisted\":true}},\n  {\"id\":\"draft_saved\",\"desc\":\"A reply was saved for MSG02.\",\"kind\":\"exists\",\"event\":{\"event\":\"save_draft\",\"message\":\"MSG02\"}},\n  {\"id\":\"draft_final_not_empty\",\"desc\":\"The stored draft for MSG02 is not empty.\",\"kind\":\"final\",\"path\":\"messages.MSG02.draft\",\"op\":\"is_not_empty\"},\n  {\"id\":\"draft_ends_with_disclosure\",\"desc\":\"The stored reply ends with the required AI-assistance sentence.\",\"kind\":\"final\",\"path\":\"messages.MSG02.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n  {\"id\":\"done_marked\",\"desc\":\"MSG02 was marked done.\",\"kind\":\"exists\",\"event\":{\"event\":\"mark_done\",\"message\":\"MSG02\"}},\n  {\"id\":\"done_after_route\",\"desc\":\"MSG02 was marked done only after a routing was stored.\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"MSG02\",\"persisted\":true},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG02\"}},\n  {\"id\":\"done_after_draft\",\"desc\":\"MSG02 was marked done only after a reply was saved.\",\"kind\":\"before\",\"first\":{\"event\":\"save_draft\",\"message\":\"MSG02\"},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG02\"}},\n  {\"id\":\"final_status_done\",\"desc\":\"MSG02 ends with status done.\",\"kind\":\"final\",\"path\":\"messages.MSG02.status\",\"op\":\"equals\",\"value\":\"done\"}\n]"
+}

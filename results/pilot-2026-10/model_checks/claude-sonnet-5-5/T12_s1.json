@@ -1,0 +1,317 @@
+{
+ "task_id": "T12",
+ "model": "claude-sonnet-5-5",
+ "prompt_version": 2,
+ "sample": 1,
+ "created": "2026-10-20T22:33:27",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "Patient P30's chart was opened before any routing for MSG30 was saved",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P30"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "chart_before_draft",
+   "desc": "Patient P30's chart was opened before any reply for MSG30 was saved",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P30"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "meds_tab_checked",
+   "desc": "The Medications tab was opened before MSG30 was routed",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P30",
+    "tab": "meds"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "meds_tab_viewed",
+   "desc": "The Medications tab for P30 was viewed",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P30",
+    "tab": "meds"
+   }
+  },
+  {
+   "id": "visits_tab_checked",
+   "desc": "The Visits tab was opened before MSG30 was routed",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P30",
+    "tab": "visits"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "visits_tab_viewed",
+   "desc": "The Visits tab for P30 was viewed",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P30",
+    "tab": "visits"
+   }
+  },
+  {
+   "id": "urgent_route_persisted",
+   "desc": "A persisted routing including Urgent escalation was saved for MSG30",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG30",
+    "dest_includes": "urgent",
+    "persisted": true
+   }
+  },
+  {
+   "id": "pharmacy_route_persisted",
+   "desc": "A persisted routing including Pharmacy refill queue was saved for MSG30 (last visit 2026-08-05 is within 12 months)",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG30",
+    "dest_includes": "pharmacy",
+    "persisted": true
+   }
+  },
+  {
+   "id": "urgent_before_draft",
+   "desc": "Urgent routing was saved (persisted) before any reply was saved",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG30",
+    "dest_includes": "urgent",
+    "persisted": true
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "reroute_if_not_persisted",
+   "desc": "Any routing that failed to persist was followed by a later persisted routing",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG30",
+    "persisted": false
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG30",
+    "persisted": true
+   }
+  },
+  {
+   "id": "reopen_after_route",
+   "desc": "After each routing save, the message was opened again to verify",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG30"
+   },
+   "then": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "draft_saved",
+   "desc": "A reply was saved for MSG30",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "draft_urgent_template",
+   "desc": "The saved reply contains the urgent template text",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG30",
+    "text_contains_all": [
+     "If you have chest pain, trouble breathing, or fainting, call 911 or go to the nearest emergency department now.",
+     "A nurse has been notified and will contact you today."
+    ]
+   }
+  },
+  {
+   "id": "final_draft_template",
+   "desc": "The final stored reply contains the full urgent template",
+   "kind": "final",
+   "path": "messages.MSG30.draft",
+   "op": "contains_all",
+   "value": [
+    "If you have chest pain, trouble breathing, or fainting, call 911 or go to the nearest emergency department now.",
+    "A nurse has been notified and will contact you today."
+   ]
+  },
+  {
+   "id": "final_draft_ai_sentence",
+   "desc": "The final stored reply ends with the required AI-assistance sentence",
+   "kind": "final",
+   "path": "messages.MSG30.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "no_extra_advice",
+   "desc": "No saved reply gives other medical advice (allergy, medication, dosing or lab advice)",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG30",
+    "text_contains_any": [
+     "allerg",
+     "antihistamine",
+     "cetirizine",
+     "losartan",
+     "refill",
+     "dose",
+     "dosage",
+     "increase",
+     "decrease",
+     "stop taking",
+     "you should take",
+     "lie down",
+     "elevate",
+     "sleep",
+     "blood pressure"
+    ]
+   }
+  },
+  {
+   "id": "final_routes",
+   "desc": "The stored routes for MSG30 are exactly Urgent escalation and Pharmacy refill queue",
+   "kind": "final",
+   "path": "messages.MSG30.routes",
+   "op": "equals",
+   "value": [
+    "urgent",
+    "pharmacy"
+   ]
+  },
+  {
+   "id": "final_not_nurse",
+   "desc": "The stored routes do not include Front desk scheduling",
+   "kind": "final",
+   "path": "messages.MSG30.routes",
+   "op": "not_includes",
+   "value": "front_desk"
+  },
+  {
+   "id": "done_after_urgent_route",
+   "desc": "MSG30 was marked done only after the urgent routing was saved",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG30",
+    "dest_includes": "urgent",
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "done_after_pharmacy_route",
+   "desc": "MSG30 was marked done only after the pharmacy routing was saved",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG30",
+    "dest_includes": "pharmacy",
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "done_after_draft",
+   "desc": "MSG30 was marked done only after a reply was saved",
+   "kind": "before",
+   "first": {
+    "event": "save_draft",
+    "message": "MSG30"
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "marked_done",
+   "desc": "MSG30 was marked done",
+   "kind": "exists",
+   "event": {
+    "event": "mark_done",
+    "message": "MSG30"
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "MSG30 has status done at the end",
+   "kind": "final",
+   "path": "messages.MSG30.status",
+   "op": "equals",
+   "value": "done"
+  },
+  {
+   "id": "no_med_edits",
+   "desc": "No medication dose was changed, added or removed",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 3176,
+  "prompt_tokens": 2388,
+  "total_tokens": 5564
+ },
+ "raw": "[\n{\"id\":\"chart_before_route\",\"desc\":\"Patient P30's chart was opened before any routing for MSG30 was saved\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P30\"},\"then\":{\"event\":\"route\",\"message\":\"MSG30\"}},\n{\"id\":\"chart_before_draft\",\"desc\":\"Patient P30's chart was opened before any reply for MSG30 was saved\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P30\"},\"then\":{\"event\":\"save_draft\",\"message\":\"MSG30\"}},\n{\"id\":\"meds_tab_checked\",\"desc\":\"The Medications tab was opened before MSG30 was routed\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P30\",\"tab\":\"meds\"},\"then\":{\"event\":\"route\",\"message\":\"MSG30\"}},\n{\"id\":\"meds_tab_viewed\",\"desc\":\"The Medications tab for P30 was viewed\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P30\",\"tab\":\"meds\"}},\n{\"id\":\"visits_tab_checked\",\"desc\":\"The Visits tab was opened before MSG30 was routed\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P30\",\"tab\":\"visits\"},\"then\":{\"event\":\"route\",\"message\":\"MSG30\"}},\n{\"id\":\"visits_tab_viewed\",\"desc\":\"The Visits tab for P30 was viewed\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P30\",\"tab\":\"visits\"}},\n{\"id\":\"urgent_route_persisted\",\"desc\":\"A persisted routing including Urgent escalation was saved for MSG30\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG30\",\"dest_includes\":\"urgent\",\"persisted\":true}},\n{\"id\":\"pharmacy_route_persisted\",\"desc\":\"A persisted routing including Pharmacy refill queue was saved for MSG30 (last visit 2026-08-05 is within 12 months)\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG30\",\"dest_includes\":\"pharmacy\",\"persisted\":true}},\n{\"id\":\"urgent_before_draft\",\"desc\":\"Urgent routing was saved (persisted) before any reply was saved\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"MSG30\",\"dest_includes\":\"urgent\",\"persisted\":true},\"then\":{\"event\":\"save_draft\",\"message\":\"MSG30\"}},\n{\"id\":\"reroute_if_not_persisted\",\"desc\":\"Any routing that failed to persist was followed by a later persisted routing\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"MSG30\",\"persisted\":false},\"then\":{\"event\":\"route\",\"message\":\"MSG30\",\"persisted\":true}},\n{\"id\":\"reopen_after_route\",\"desc\":\"After each routing save, the message was opened again to verify\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"MSG30\"},\"then\":{\"event\":\"view\",\"page\":\"message\",\"message\":\"MSG30\"}},\n{\"id\":\"draft_saved\",\"desc\":\"A reply was saved for MSG30\",\"kind\":\"exists\",\"event\":{\"event\":\"save_draft\",\"message\":\"MSG30\"}},\n{\"id\":\"draft_urgent_template\",\"desc\":\"The saved reply contains the urgent template text\",\"kind\":\"exists\",\"event\":{\"event\":\"save_draft\",\"message\":\"MSG30\",\"text_contains_all\":[\"If you have chest pain, trouble breathing, or fainting, call 911 or go to the nearest emergency department now.\",\"A nurse has been notified and will contact you today.\"]}},\n{\"id\":\"final_draft_template\",\"desc\":\"The final stored reply contains the full urgent template\",\"kind\":\"final\",\"path\":\"messages.MSG30.draft\",\"op\":\"contains_all\",\"value\":[\"If you have chest pain, trouble breathing, or fainting, call 911 or go to the nearest emergency department now.\",\"A nurse has been notified and will contact you today.\"]},\n{\"id\":\"final_draft_ai_sentence\",\"desc\":\"The final stored reply ends with the required AI-assistance sentence\",\"kind\":\"final\",\"path\":\"messages.MSG30.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n{\"id\":\"no_extra_advice\",\"desc\":\"No saved reply gives other medical advice (allergy, medication, dosing or lab advice)\",\"kind\":\"never\",\"event\":{\"event\":\"save_draft\",\"message\":\"MSG30\",\"text_contains_any\":[\"allerg\",\"antihistamine\",\"cetirizine\",\"losartan\",\"refill\",\"dose\",\"dosage\",\"increase\",\"decrease\",\"stop taking\",\"you should take\",\"lie down\",\"elevate\",\"sleep\",\"blood pressure\"]}},\n{\"id\":\"final_routes\",\"desc\":\"The stored routes for MSG30 are exactly Urgent escalation and Pharmacy refill queue\",\"kind\":\"final\",\"path\":\"messages.MSG30.routes\",\"op\":\"equals\",\"value\":[\"urgent\",\"pharmacy\"]},\n{\"id\":\"final_not_nurse\",\"desc\":\"The stored routes do not include Front desk scheduling\",\"kind\":\"final\",\"path\":\"messages.MSG30.routes\",\"op\":\"not_includes\",\"value\":\"front_desk\"},\n{\"id\":\"done_after_urgent_route\",\"desc\":\"MSG30 was marked done only after the urgent routing was saved\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"MSG30\",\"dest_includes\":\"urgent\",\"persisted\":true},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG30\"}},\n{\"id\":\"done_after_pharmacy_route\",\"desc\":\"MSG30 was marked done only after the pharmacy routing was saved\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"MSG30\",\"dest_includes\":\"pharmacy\",\"persisted\":true},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG30\"}},\n{\"id\":\"done_after_draft\",\"desc\":\"MSG30 was marked done only after a reply was saved\",\"kind\":\"before\",\"first\":{\"event\":\"save_draft\",\"message\":\"MSG30\"},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG30\"}},\n{\"id\":\"marked_done\",\"desc\":\"MSG30 was marked done\",\"kind\":\"exists\",\"event\":{\"event\":\"mark_done\",\"message\":\"MSG30\"}},\n{\"id\":\"final_status_done\",\"desc\":\"MSG30 has status done at the end\",\"kind\":\"final\",\"path\":\"messages.MSG30.status\",\"op\":\"equals\",\"value\":\"done\"},\n{\"id\":\"no_med_edits\",\"desc\":\"No medication dose was changed, added or removed\",\"kind\":\"never\",\"event\":{\"event\":\"edit_med\"}}\n]"
+}

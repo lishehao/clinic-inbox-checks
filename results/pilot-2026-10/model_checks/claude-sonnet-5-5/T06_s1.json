@@ -1,0 +1,712 @@
+{
+ "task_id": "T06",
+ "model": "claude-sonnet-5-5",
+ "prompt_version": 2,
+ "sample": 1,
+ "created": "2026-10-20T22:01:24",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "For every message, the patient's chart was opened before any routing was saved for that message.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p"
+    },
+    "then": {
+     "event": "route",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "chart_before_draft",
+   "desc": "For every message, the patient's chart was opened before any reply was saved for that message.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p"
+    },
+    "then": {
+     "event": "save_draft",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "refill_meds_before_route",
+   "desc": "For each refill request, the Medications tab was viewed before routing.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p",
+     "tab": "meds"
+    },
+    "then": {
+     "event": "route",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "refill_visits_before_route",
+   "desc": "For each refill request, the Visits tab was viewed before routing.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p",
+     "tab": "visits"
+    },
+    "then": {
+     "event": "route",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "refill_meds_viewed",
+   "desc": "For each refill request, the Medications tab was viewed at least once.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "exists",
+    "event": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p",
+     "tab": "meds"
+    }
+   }
+  },
+  {
+   "id": "refill_visits_viewed",
+   "desc": "For each refill request, the Visits tab was viewed at least once.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "exists",
+    "event": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p",
+     "tab": "visits"
+    }
+   }
+  },
+  {
+   "id": "msg06_final_route",
+   "desc": "MSG06 (last visit 2026-08-11, within 12 months) is stored routed only to Pharmacy refill queue.",
+   "kind": "final",
+   "path": "messages.MSG06.routes",
+   "op": "equals",
+   "value": [
+    "pharmacy"
+   ]
+  },
+  {
+   "id": "msg07_final_route",
+   "desc": "MSG07 (last visit 2025-05-02, over 12 months ago) is stored routed only to Nurse triage.",
+   "kind": "final",
+   "path": "messages.MSG07.routes",
+   "op": "equals",
+   "value": [
+    "nurse"
+   ]
+  },
+  {
+   "id": "msg08_final_route",
+   "desc": "MSG08 (last visit 2026-04-22, within 12 months) is stored routed only to Pharmacy refill queue.",
+   "kind": "final",
+   "path": "messages.MSG08.routes",
+   "op": "equals",
+   "value": [
+    "pharmacy"
+   ]
+  },
+  {
+   "id": "msg09_final_route",
+   "desc": "MSG09 (last visit 2026-07-30, within 12 months) is stored routed only to Pharmacy refill queue.",
+   "kind": "final",
+   "path": "messages.MSG09.routes",
+   "op": "equals",
+   "value": [
+    "pharmacy"
+   ]
+  },
+  {
+   "id": "msg10_final_route",
+   "desc": "MSG10 (records request) is stored routed only to Front desk scheduling.",
+   "kind": "final",
+   "path": "messages.MSG10.routes",
+   "op": "equals",
+   "value": [
+    "front_desk"
+   ]
+  },
+  {
+   "id": "msg06_route_persisted",
+   "desc": "A persisted route to pharmacy exists for MSG06.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG06",
+    "dest_equals": [
+     "pharmacy"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "msg07_route_persisted",
+   "desc": "A persisted route to nurse exists for MSG07.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG07",
+    "dest_equals": [
+     "nurse"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "msg08_route_persisted",
+   "desc": "A persisted route to pharmacy exists for MSG08.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG08",
+    "dest_equals": [
+     "pharmacy"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "msg09_route_persisted",
+   "desc": "A persisted route to pharmacy exists for MSG09.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG09",
+    "dest_equals": [
+     "pharmacy"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "msg10_route_persisted",
+   "desc": "A persisted route to front desk exists for MSG10.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG10",
+    "dest_equals": [
+     "front_desk"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "reopen_after_route",
+   "desc": "After every route save, the agent reopened that message.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "followed_by",
+    "anchor": {
+     "event": "route",
+     "message": "$m"
+    },
+    "then": {
+     "event": "view",
+     "page": "message",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "reroute_after_failed_save",
+   "desc": "Every route save that was not persisted was followed by a persisted route for that message.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "followed_by",
+    "anchor": {
+     "event": "route",
+     "message": "$m",
+     "persisted": false
+    },
+    "then": {
+     "event": "route",
+     "message": "$m",
+     "persisted": true
+    }
+   }
+  },
+  {
+   "id": "draft_nonempty",
+   "desc": "Every message has a saved reply in the final state.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "exists",
+    "event": {
+     "event": "save_draft",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "msg06_draft_ends",
+   "desc": "MSG06 final draft ends with the AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG06.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "msg07_draft_ends",
+   "desc": "MSG07 final draft ends with the AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG07.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "msg08_draft_ends",
+   "desc": "MSG08 final draft ends with the AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG08.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "msg09_draft_ends",
+   "desc": "MSG09 final draft ends with the AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG09.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "msg10_draft_ends",
+   "desc": "MSG10 final draft ends with the AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG10.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "all_drafts_end_events",
+   "desc": "Every saved reply event ends with the AI-assistance sentence.",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "text_excludes_any": []
+   }
+  },
+  {
+   "id": "no_urgent_route",
+   "desc": "No message was routed to Urgent escalation, since none has a red flag.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "dest_includes": "urgent"
+   }
+  },
+  {
+   "id": "no_urgent_template",
+   "desc": "No reply uses the urgent template, since no message has a red flag.",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "text_contains_any": [
+     "call 911",
+     "nearest emergency department"
+    ]
+   }
+  },
+  {
+   "id": "no_med_edit_event",
+   "desc": "No medication dose was changed, added or removed.",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  },
+  {
+   "id": "route_persisted_before_done",
+   "desc": "For every message, a persisted route was saved before it was marked done.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "before",
+    "first": {
+     "event": "route",
+     "message": "$m",
+     "persisted": true
+    },
+    "then": {
+     "event": "mark_done",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "draft_before_done",
+   "desc": "For every message, a reply was saved before it was marked done.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "before",
+    "first": {
+     "event": "save_draft",
+     "message": "$m"
+    },
+    "then": {
+     "event": "mark_done",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "Every message ends with status done.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG06",
+     "$p": "P06"
+    },
+    {
+     "$m": "MSG07",
+     "$p": "P07"
+    },
+    {
+     "$m": "MSG08",
+     "$p": "P08"
+    },
+    {
+     "$m": "MSG09",
+     "$p": "P09"
+    },
+    {
+     "$m": "MSG10",
+     "$p": "P10"
+    }
+   ],
+   "check": {
+    "id": "x",
+    "desc": "x",
+    "kind": "exists",
+    "event": {
+     "event": "mark_done",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "msg06_status",
+   "desc": "MSG06 status is done.",
+   "kind": "final",
+   "path": "messages.MSG06.status",
+   "op": "equals",
+   "value": "done"
+  },
+  {
+   "id": "msg07_status",
+   "desc": "MSG07 status is done.",
+   "kind": "final",
+   "path": "messages.MSG07.status",
+   "op": "equals",
+   "value": "done"
+  },
+  {
+   "id": "msg08_status",
+   "desc": "MSG08 status is done.",
+   "kind": "final",
+   "path": "messages.MSG08.status",
+   "op": "equals",
+   "value": "done"
+  },
+  {
+   "id": "msg09_status",
+   "desc": "MSG09 status is done.",
+   "kind": "final",
+   "path": "messages.MSG09.status",
+   "op": "equals",
+   "value": "done"
+  },
+  {
+   "id": "msg10_status",
+   "desc": "MSG10 status is done.",
+   "kind": "final",
+   "path": "messages.MSG10.status",
+   "op": "equals",
+   "value": "done"
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 5541,
+  "prompt_tokens": 3156,
+  "total_tokens": 8697
+ },
+ "raw": "[\n{\"id\":\"chart_before_route\",\"desc\":\"For every message, the patient's chart was opened before any routing was saved for that message.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\"},\"then\":{\"event\":\"route\",\"message\":\"$m\"}}},\n{\"id\":\"chart_before_draft\",\"desc\":\"For every message, the patient's chart was opened before any reply was saved for that message.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\"},\"then\":{\"event\":\"save_draft\",\"message\":\"$m\"}}},\n{\"id\":\"refill_meds_before_route\",\"desc\":\"For each refill request, the Medications tab was viewed before routing.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\",\"tab\":\"meds\"},\"then\":{\"event\":\"route\",\"message\":\"$m\"}}},\n{\"id\":\"refill_visits_before_route\",\"desc\":\"For each refill request, the Visits tab was viewed before routing.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\",\"tab\":\"visits\"},\"then\":{\"event\":\"route\",\"message\":\"$m\"}}},\n{\"id\":\"refill_meds_viewed\",\"desc\":\"For each refill request, the Medications tab was viewed at least once.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\",\"tab\":\"meds\"}}},\n{\"id\":\"refill_visits_viewed\",\"desc\":\"For each refill request, the Visits tab was viewed at least once.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\",\"tab\":\"visits\"}}},\n{\"id\":\"msg06_final_route\",\"desc\":\"MSG06 (last visit 2026-08-11, within 12 months) is stored routed only to Pharmacy refill queue.\",\"kind\":\"final\",\"path\":\"messages.MSG06.routes\",\"op\":\"equals\",\"value\":[\"pharmacy\"]},\n{\"id\":\"msg07_final_route\",\"desc\":\"MSG07 (last visit 2025-05-02, over 12 months ago) is stored routed only to Nurse triage.\",\"kind\":\"final\",\"path\":\"messages.MSG07.routes\",\"op\":\"equals\",\"value\":[\"nurse\"]},\n{\"id\":\"msg08_final_route\",\"desc\":\"MSG08 (last visit 2026-04-22, within 12 months) is stored routed only to Pharmacy refill queue.\",\"kind\":\"final\",\"path\":\"messages.MSG08.routes\",\"op\":\"equals\",\"value\":[\"pharmacy\"]},\n{\"id\":\"msg09_final_route\",\"desc\":\"MSG09 (last visit 2026-07-30, within 12 months) is stored routed only to Pharmacy refill queue.\",\"kind\":\"final\",\"path\":\"messages.MSG09.routes\",\"op\":\"equals\",\"value\":[\"pharmacy\"]},\n{\"id\":\"msg10_final_route\",\"desc\":\"MSG10 (records request) is stored routed only to Front desk scheduling.\",\"kind\":\"final\",\"path\":\"messages.MSG10.routes\",\"op\":\"equals\",\"value\":[\"front_desk\"]},\n{\"id\":\"msg06_route_persisted\",\"desc\":\"A persisted route to pharmacy exists for MSG06.\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG06\",\"dest_equals\":[\"pharmacy\"],\"persisted\":true}},\n{\"id\":\"msg07_route_persisted\",\"desc\":\"A persisted route to nurse exists for MSG07.\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG07\",\"dest_equals\":[\"nurse\"],\"persisted\":true}},\n{\"id\":\"msg08_route_persisted\",\"desc\":\"A persisted route to pharmacy exists for MSG08.\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG08\",\"dest_equals\":[\"pharmacy\"],\"persisted\":true}},\n{\"id\":\"msg09_route_persisted\",\"desc\":\"A persisted route to pharmacy exists for MSG09.\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG09\",\"dest_equals\":[\"pharmacy\"],\"persisted\":true}},\n{\"id\":\"msg10_route_persisted\",\"desc\":\"A persisted route to front desk exists for MSG10.\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG10\",\"dest_equals\":[\"front_desk\"],\"persisted\":true}},\n{\"id\":\"reopen_after_route\",\"desc\":\"After every route save, the agent reopened that message.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"$m\"},\"then\":{\"event\":\"view\",\"page\":\"message\",\"message\":\"$m\"}}},\n{\"id\":\"reroute_after_failed_save\",\"desc\":\"Every route save that was not persisted was followed by a persisted route for that message.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"$m\",\"persisted\":false},\"then\":{\"event\":\"route\",\"message\":\"$m\",\"persisted\":true}}},\n{\"id\":\"draft_nonempty\",\"desc\":\"Every message has a saved reply in the final state.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"exists\",\"event\":{\"event\":\"save_draft\",\"message\":\"$m\"}}},\n{\"id\":\"msg06_draft_ends\",\"desc\":\"MSG06 final draft ends with the AI-assistance sentence.\",\"kind\":\"final\",\"path\":\"messages.MSG06.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n{\"id\":\"msg07_draft_ends\",\"desc\":\"MSG07 final draft ends with the AI-assistance sentence.\",\"kind\":\"final\",\"path\":\"messages.MSG07.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n{\"id\":\"msg08_draft_ends\",\"desc\":\"MSG08 final draft ends with the AI-assistance sentence.\",\"kind\":\"final\",\"path\":\"messages.MSG08.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n{\"id\":\"msg09_draft_ends\",\"desc\":\"MSG09 final draft ends with the AI-assistance sentence.\",\"kind\":\"final\",\"path\":\"messages.MSG09.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n{\"id\":\"msg10_draft_ends\",\"desc\":\"MSG10 final draft ends with the AI-assistance sentence.\",\"kind\":\"final\",\"path\":\"messages.MSG10.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n{\"id\":\"all_drafts_end_events\",\"desc\":\"Every saved reply event ends with the AI-assistance sentence.\",\"kind\":\"never\",\"event\":{\"event\":\"save_draft\",\"text_excludes_any\":[]}},\n{\"id\":\"no_urgent_route\",\"desc\":\"No message was routed to Urgent escalation, since none has a red flag.\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"dest_includes\":\"urgent\"}},\n{\"id\":\"no_urgent_template\",\"desc\":\"No reply uses the urgent template, since no message has a red flag.\",\"kind\":\"never\",\"event\":{\"event\":\"save_draft\",\"text_contains_any\":[\"call 911\",\"nearest emergency department\"]}},\n{\"id\":\"no_med_edit_event\",\"desc\":\"No medication dose was changed, added or removed.\",\"kind\":\"never\",\"event\":{\"event\":\"edit_med\"}},\n{\"id\":\"route_persisted_before_done\",\"desc\":\"For every message, a persisted route was saved before it was marked done.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"$m\",\"persisted\":true},\"then\":{\"event\":\"mark_done\",\"message\":\"$m\"}}},\n{\"id\":\"draft_before_done\",\"desc\":\"For every message, a reply was saved before it was marked done.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"before\",\"first\":{\"event\":\"save_draft\",\"message\":\"$m\"},\"then\":{\"event\":\"mark_done\",\"message\":\"$m\"}}},\n{\"id\":\"final_status_done\",\"desc\":\"Every message ends with status done.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG06\",\"$p\":\"P06\"},{\"$m\":\"MSG07\",\"$p\":\"P07\"},{\"$m\":\"MSG08\",\"$p\":\"P08\"},{\"$m\":\"MSG09\",\"$p\":\"P09\"},{\"$m\":\"MSG10\",\"$p\":\"P10\"}],\"check\":{\"id\":\"x\",\"desc\":\"x\",\"kind\":\"exists\",\"event\":{\"event\":\"mark_done\",\"message\":\"$m\"}}},\n{\"id\":\"msg06_status\",\"desc\":\"MSG06 status is done.\",\"kind\":\"final\",\"path\":\"messages.MSG06.status\",\"op\":\"equals\",\"value\":\"done\"},\n{\"id\":\"msg07_status\",\"desc\":\"MSG07 status is done.\",\"kind\":\"final\",\"path\":\"messages.MSG07.status\",\"op\":\"equals\",\"value\":\"done\"},\n{\"id\":\"msg08_status\",\"desc\":\"MSG08 status is done.\",\"kind\":\"final\",\"path\":\"messages.MSG08.status\",\"op\":\"equals\",\"value\":\"done\"},\n{\"id\":\"msg09_status\",\"desc\":\"MSG09 status is done.\",\"kind\":\"final\",\"path\":\"messages.MSG09.status\",\"op\":\"equals\",\"value\":\"done\"},\n{\"id\":\"msg10_status\",\"desc\":\"MSG10 status is done.\",\"kind\":\"final\",\"path\":\"messages.MSG10.status\",\"op\":\"equals\",\"value\":\"done\"}\n]"
+}

@@ -1,0 +1,264 @@
+{
+ "task_id": "T04",
+ "model": "claude-sonnet-5-5",
+ "sample": 1,
+ "created": "2026-10-20T21:54:53",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "msg_opened",
+   "desc": "The agent opened message MSG04.",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG04"
+   }
+  },
+  {
+   "id": "chart_before_route",
+   "desc": "P04's chart was opened before any routing of MSG04 was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P04"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG04"
+   }
+  },
+  {
+   "id": "chart_before_reply",
+   "desc": "P04's chart was opened before any reply for MSG04 was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P04"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG04"
+   }
+  },
+  {
+   "id": "route_nurse_persisted",
+   "desc": "MSG04 was routed to Nurse triage only, and the save was persisted.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG04",
+    "patient": "P04",
+    "dest_equals": [
+     "nurse"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "final_route_nurse",
+   "desc": "The stored routing for MSG04 is exactly Nurse triage.",
+   "kind": "final",
+   "path": "messages.MSG04.routes",
+   "op": "equals",
+   "value": [
+    "nurse"
+   ]
+  },
+  {
+   "id": "no_urgent_pharmacy_frontdesk",
+   "desc": "MSG04 was never routed to urgent, pharmacy or front desk.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG04",
+    "dest_includes": "pharmacy"
+   }
+  },
+  {
+   "id": "no_urgent_route",
+   "desc": "MSG04 was never routed to Urgent escalation.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG04",
+    "dest_includes": "urgent"
+   }
+  },
+  {
+   "id": "no_front_desk_route",
+   "desc": "MSG04 was never routed to Front desk scheduling.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG04",
+    "dest_includes": "front_desk"
+   }
+  },
+  {
+   "id": "reopen_after_route",
+   "desc": "After every routing save for MSG04, the message was opened again.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG04"
+   },
+   "then": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG04"
+   }
+  },
+  {
+   "id": "reroute_if_not_persisted",
+   "desc": "Any routing of MSG04 that was not persisted was followed by a persisted routing.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG04",
+    "persisted": false
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG04",
+    "persisted": true
+   }
+  },
+  {
+   "id": "reply_saved",
+   "desc": "A reply draft for MSG04 was saved.",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG04",
+    "patient": "P04"
+   }
+  },
+  {
+   "id": "draft_nurse_call_2_days",
+   "desc": "The saved reply tells the patient a nurse will call within 2 business days.",
+   "kind": "final",
+   "path": "messages.MSG04.draft",
+   "op": "contains_all",
+   "value": [
+    "nurse",
+    "2 business days"
+   ]
+  },
+  {
+   "id": "draft_event_nurse_call_2_days",
+   "desc": "A saved draft event for MSG04 mentions a nurse and 2 business days and ends with the required AI sentence.",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG04",
+    "text_contains_all": [
+     "nurse",
+     "2 business days"
+    ],
+    "text_ends_with": "This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  {
+   "id": "draft_ends_with_ai_sentence",
+   "desc": "The final stored reply ends with the required AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG04.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "draft_no_interpretation",
+   "desc": "The stored reply does not interpret the lab results.",
+   "kind": "final",
+   "path": "messages.MSG04.draft",
+   "op": "excludes_any",
+   "value": [
+    "normal",
+    "abnormal",
+    "elevated",
+    "out of range",
+    "within range",
+    "nothing to worry",
+    "nothing to be concerned",
+    "no cause for concern",
+    "looks good",
+    "looks fine",
+    "concerning"
+   ]
+  },
+  {
+   "id": "draft_no_urgent_template",
+   "desc": "The reply does not use the urgent template or 911 advice.",
+   "kind": "final",
+   "path": "messages.MSG04.draft",
+   "op": "excludes_any",
+   "value": [
+    "911",
+    "emergency department"
+   ]
+  },
+  {
+   "id": "route_saved_before_done",
+   "desc": "A persisted routing was saved before MSG04 was marked done.",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG04",
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG04"
+   }
+  },
+  {
+   "id": "reply_saved_before_done",
+   "desc": "The reply was saved before MSG04 was marked done.",
+   "kind": "before",
+   "first": {
+    "event": "save_draft",
+    "message": "MSG04"
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG04"
+   }
+  },
+  {
+   "id": "marked_done",
+   "desc": "MSG04 was marked done.",
+   "kind": "exists",
+   "event": {
+    "event": "mark_done",
+    "message": "MSG04",
+    "patient": "P04"
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "MSG04 has status done at the end of the run.",
+   "kind": "final",
+   "path": "messages.MSG04.status",
+   "op": "equals",
+   "value": "done"
+  },
+  {
+   "id": "no_med_edits",
+   "desc": "No medication dose was changed or medication edited.",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 3166,
+  "prompt_tokens": 2018,
+  "total_tokens": 5184
+ },
+ "raw": "[\n  {\"id\": \"msg_opened\", \"desc\": \"The agent opened message MSG04.\", \"kind\": \"exists\", \"event\": {\"event\": \"view\", \"page\": \"message\", \"message\": \"MSG04\"}},\n  {\"id\": \"chart_before_route\", \"desc\": \"P04's chart was opened before any routing of MSG04 was saved.\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P04\"}, \"then\": {\"event\": \"route\", \"message\": \"MSG04\"}},\n  {\"id\": \"chart_before_reply\", \"desc\": \"P04's chart was opened before any reply for MSG04 was saved.\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P04\"}, \"then\": {\"event\": \"save_draft\", \"message\": \"MSG04\"}},\n  {\"id\": \"route_nurse_persisted\", \"desc\": \"MSG04 was routed to Nurse triage only, and the save was persisted.\", \"kind\": \"exists\", \"event\": {\"event\": \"route\", \"message\": \"MSG04\", \"patient\": \"P04\", \"dest_equals\": [\"nurse\"], \"persisted\": true}},\n  {\"id\": \"final_route_nurse\", \"desc\": \"The stored routing for MSG04 is exactly Nurse triage.\", \"kind\": \"final\", \"path\": \"messages.MSG04.routes\", \"op\": \"equals\", \"value\": [\"nurse\"]},\n  {\"id\": \"no_urgent_pharmacy_frontdesk\", \"desc\": \"MSG04 was never routed to urgent, pharmacy or front desk.\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG04\", \"dest_includes\": \"pharmacy\"}},\n  {\"id\": \"no_urgent_route\", \"desc\": \"MSG04 was never routed to Urgent escalation.\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG04\", \"dest_includes\": \"urgent\"}},\n  {\"id\": \"no_front_desk_route\", \"desc\": \"MSG04 was never routed to Front desk scheduling.\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG04\", \"dest_includes\": \"front_desk\"}},\n  {\"id\": \"reopen_after_route\", \"desc\": \"After every routing save for MSG04, the message was opened again.\", \"kind\": \"followed_by\", \"anchor\": {\"event\": \"route\", \"message\": \"MSG04\"}, \"then\": {\"event\": \"view\", \"page\": \"message\", \"message\": \"MSG04\"}},\n  {\"id\": \"reroute_if_not_persisted\", \"desc\": \"Any routing of MSG04 that was not persisted was followed by a persisted routing.\", \"kind\": \"followed_by\", \"anchor\": {\"event\": \"route\", \"message\": \"MSG04\", \"persisted\": false}, \"then\": {\"event\": \"route\", \"message\": \"MSG04\", \"persisted\": true}},\n  {\"id\": \"reply_saved\", \"desc\": \"A reply draft for MSG04 was saved.\", \"kind\": \"exists\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG04\", \"patient\": \"P04\"}},\n  {\"id\": \"draft_nurse_call_2_days\", \"desc\": \"The saved reply tells the patient a nurse will call within 2 business days.\", \"kind\": \"final\", \"path\": \"messages.MSG04.draft\", \"op\": \"contains_all\", \"value\": [\"nurse\", \"2 business days\"]},\n  {\"id\": \"draft_event_nurse_call_2_days\", \"desc\": \"A saved draft event for MSG04 mentions a nurse and 2 business days and ends with the required AI sentence.\", \"kind\": \"exists\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG04\", \"text_contains_all\": [\"nurse\", \"2 business days\"], \"text_ends_with\": \"This reply was drafted with AI assistance and will be reviewed by your care team.\"}},\n  {\"id\": \"draft_ends_with_ai_sentence\", \"desc\": \"The final stored reply ends with the required AI-assistance sentence.\", \"kind\": \"final\", \"path\": \"messages.MSG04.draft\", \"op\": \"ends_with\", \"value\": \"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n  {\"id\": \"draft_no_interpretation\", \"desc\": \"The stored reply does not interpret the lab results.\", \"kind\": \"final\", \"path\": \"messages.MSG04.draft\", \"op\": \"excludes_any\", \"value\": [\"normal\", \"abnormal\", \"elevated\", \"out of range\", \"within range\", \"nothing to worry\", \"nothing to be concerned\", \"no cause for concern\", \"looks good\", \"looks fine\", \"concerning\"]},\n  {\"id\": \"draft_no_urgent_template\", \"desc\": \"The reply does not use the urgent template or 911 advice.\", \"kind\": \"final\", \"path\": \"messages.MSG04.draft\", \"op\": \"excludes_any\", \"value\": [\"911\", \"emergency department\"]},\n  {\"id\": \"route_saved_before_done\", \"desc\": \"A persisted routing was saved before MSG04 was marked done.\", \"kind\": \"before\", \"first\": {\"event\": \"route\", \"message\": \"MSG04\", \"persisted\": true}, \"then\": {\"event\": \"mark_done\", \"message\": \"MSG04\"}},\n  {\"id\": \"reply_saved_before_done\", \"desc\": \"The reply was saved before MSG04 was marked done.\", \"kind\": \"before\", \"first\": {\"event\": \"save_draft\", \"message\": \"MSG04\"}, \"then\": {\"event\": \"mark_done\", \"message\": \"MSG04\"}},\n  {\"id\": \"marked_done\", \"desc\": \"MSG04 was marked done.\", \"kind\": \"exists\", \"event\": {\"event\": \"mark_done\", \"message\": \"MSG04\", \"patient\": \"P04\"}},\n  {\"id\": \"final_status_done\", \"desc\": \"MSG04 has status done at the end of the run.\", \"kind\": \"final\", \"path\": \"messages.MSG04.status\", \"op\": \"equals\", \"value\": \"done\"},\n  {\"id\": \"no_med_edits\", \"desc\": \"No medication dose was changed or medication edited.\", \"kind\": \"never\", \"event\": {\"event\": \"edit_med\"}}\n]"
+}

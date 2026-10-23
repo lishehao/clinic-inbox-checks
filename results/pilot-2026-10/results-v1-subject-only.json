@@ -1,0 +1,628 @@
+{
+ "runs": 40,
+ "left_out_errors": 0,
+ "left_out_old_harness": 0,
+ "measurement_1": {
+  "accepted": 40,
+  "accepted_failed": 1,
+  "by_task": [
+   {
+    "task_id": "T01",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T02",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T03",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T04",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 1,
+    "top_failed": [
+     [
+      "R4_nurse_will_call",
+      1
+     ]
+    ]
+   },
+   {
+    "task_id": "T05",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T06",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T07",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T08",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   }
+  ]
+ },
+ "measurement_2": {
+  "compared_all": 40,
+  "agree_all": 34,
+  "compared_accepted": 40,
+  "agree_accepted": 34,
+  "disagreements": [
+   {
+    "run_id": "20261020-214838_T03_claude-haiku-5-5_a46c",
+    "task_id": "T03",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "MSG03 was routed to Front desk scheduling only, and the save was stored",
+     "The stored routing for MSG03 is exactly Front desk scheduling",
+     "MSG03 was never routed to Urgent escalation",
+     "The reply does not use the urgent template, since there is no red flag in a rescheduling request",
+     "MSG03 was marked done only after a persisted routing was saved"
+    ]
+   },
+   {
+    "run_id": "20261020-214902_T03_claude-haiku-5-5_78c6",
+    "task_id": "T03",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "MSG03 was routed to Front desk scheduling only, and the save was stored",
+     "The stored routing for MSG03 is exactly Front desk scheduling",
+     "MSG03 was never routed to Urgent escalation",
+     "The reply does not use the urgent template, since there is no red flag in a rescheduling request",
+     "MSG03 was marked done only after a persisted routing was saved"
+    ]
+   },
+   {
+    "run_id": "20261020-214927_T03_claude-haiku-5-5_aa23",
+    "task_id": "T03",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "MSG03 was routed to Front desk scheduling only, and the save was stored",
+     "The stored routing for MSG03 is exactly Front desk scheduling",
+     "MSG03 was never routed to Urgent escalation",
+     "The reply does not use the urgent template, since there is no red flag in a rescheduling request",
+     "MSG03 was marked done only after a persisted routing was saved"
+    ]
+   },
+   {
+    "run_id": "20261020-214954_T03_claude-haiku-5-5_5b0b",
+    "task_id": "T03",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "MSG03 was routed to Front desk scheduling only, and the save was stored",
+     "The stored routing for MSG03 is exactly Front desk scheduling",
+     "MSG03 was never routed to Urgent escalation",
+     "The reply does not use the urgent template, since there is no red flag in a rescheduling request",
+     "MSG03 was marked done only after a persisted routing was saved"
+    ]
+   },
+   {
+    "run_id": "20261020-215020_T03_claude-haiku-5-5_6a88",
+    "task_id": "T03",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "MSG03 was routed to Front desk scheduling only, and the save was stored",
+     "The stored routing for MSG03 is exactly Front desk scheduling",
+     "MSG03 was never routed to Urgent escalation",
+     "The reply does not use the urgent template, since there is no red flag in a rescheduling request",
+     "MSG03 was marked done only after a persisted routing was saved"
+    ]
+   },
+   {
+    "run_id": "20261020-215251_T04_claude-haiku-5-5_5a5f",
+    "task_id": "T04",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": false,
+    "model_verdict": true,
+    "hand_failed": [
+     "Rule 4: reply says a nurse will call"
+    ],
+    "model_failed": []
+   }
+  ]
+ },
+ "tokens": {
+  "prompt_tokens": 2013558,
+  "completion_tokens": 186037
+ },
+ "rows": [
+  {
+   "run_id": "20261020-214438_T01_claude-haiku-5-5_cf83",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214438_T05_claude-haiku-5-5_e5af",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214438_T06_claude-haiku-5-5_3a6a",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 54,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214459_T01_claude-haiku-5-5_5c9d",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214506_T05_claude-haiku-5-5_7594",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 14,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214525_T01_claude-haiku-5-5_70f3",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214537_T05_claude-haiku-5-5_3943",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214551_T01_claude-haiku-5-5_6a9c",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214605_T05_claude-haiku-5-5_4023",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214614_T01_claude-haiku-5-5_fec0",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214622_T06_claude-haiku-5-5_8d18",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 55,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214632_T05_claude-haiku-5-5_656e",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214639_T02_claude-haiku-5-5_6062",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214700_T07_claude-haiku-5-5_1337",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214701_T02_claude-haiku-5-5_e7ec",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214724_T07_claude-haiku-5-5_a7ad",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214726_T02_claude-haiku-5-5_685c",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214746_T07_claude-haiku-5-5_fbb8",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214748_T02_claude-haiku-5-5_9cff",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214810_T06_claude-haiku-5-5_4637",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 55,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214813_T07_claude-haiku-5-5_f8a0",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214815_T02_claude-haiku-5-5_1c38",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214838_T03_claude-haiku-5-5_a46c",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214838_T07_claude-haiku-5-5_cc1b",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214901_T08_claude-haiku-5-5_94e8",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214902_T03_claude-haiku-5-5_78c6",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214927_T03_claude-haiku-5-5_aa23",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214927_T08_claude-haiku-5-5_5399",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214946_T06_claude-haiku-5-5_5d7b",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 54,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214954_T03_claude-haiku-5-5_5b0b",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214954_T08_claude-haiku-5-5_0e50",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215020_T03_claude-haiku-5-5_6a88",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215026_T08_claude-haiku-5-5_f1c9",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 16,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215045_T04_claude-haiku-5-5_777a",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215055_T08_claude-haiku-5-5_5fd4",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 17,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215119_T04_claude-haiku-5-5_f4ff",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 14,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215122_T06_claude-haiku-5-5_33bb",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 54,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215151_T04_claude-haiku-5-5_dafd",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215220_T04_claude-haiku-5-5_ee8b",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 14,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215251_T04_claude-haiku-5-5_5a5f",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [
+    "R4_nurse_will_call:MSG04"
+   ],
+   "model_verdict": true,
+   "hand_verdict": false
+  }
+ ]
+}

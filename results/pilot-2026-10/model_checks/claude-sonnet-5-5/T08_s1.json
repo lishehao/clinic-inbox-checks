@@ -1,0 +1,254 @@
+{
+ "task_id": "T08",
+ "model": "claude-sonnet-5-5",
+ "prompt_version": 2,
+ "sample": 1,
+ "created": "2026-10-20T22:02:00",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "Ruth Alvarez's chart (P12) was opened before any routing was saved",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P12"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG12"
+   }
+  },
+  {
+   "id": "chart_before_draft",
+   "desc": "Ruth Alvarez's chart (P12) was opened before any reply was saved",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P12"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG12"
+   }
+  },
+  {
+   "id": "meds_tab_viewed",
+   "desc": "The Medications tab was opened for P12",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P12",
+    "tab": "meds"
+   }
+  },
+  {
+   "id": "meds_before_route",
+   "desc": "The Medications tab was checked before routing MSG12",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P12",
+    "tab": "meds"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG12"
+   }
+  },
+  {
+   "id": "visits_tab_viewed",
+   "desc": "The Visits tab was opened for P12",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P12",
+    "tab": "visits"
+   }
+  },
+  {
+   "id": "visits_before_route",
+   "desc": "The Visits tab was checked before routing MSG12",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P12",
+    "tab": "visits"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG12"
+   }
+  },
+  {
+   "id": "route_pharmacy_persisted",
+   "desc": "MSG12 was routed to the Pharmacy refill queue and the routing was stored (last visit 2026-07-08 is within 12 months)",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG12",
+    "patient": "P12",
+    "dest_includes": "pharmacy",
+    "persisted": true
+   }
+  },
+  {
+   "id": "no_nurse_route",
+   "desc": "MSG12 was never routed to Nurse triage",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG12",
+    "dest_includes": "nurse"
+   }
+  },
+  {
+   "id": "no_front_desk_route",
+   "desc": "MSG12 was never routed to Front desk scheduling",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG12",
+    "dest_includes": "front_desk"
+   }
+  },
+  {
+   "id": "no_urgent_route",
+   "desc": "MSG12 was never routed to Urgent escalation (no red flag)",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG12",
+    "dest_includes": "urgent"
+   }
+  },
+  {
+   "id": "reopen_after_route",
+   "desc": "After every routing save, MSG12 was opened again to verify the routing",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG12"
+   },
+   "then": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG12"
+   }
+  },
+  {
+   "id": "final_routes",
+   "desc": "The stored routing for MSG12 is exactly the Pharmacy refill queue",
+   "kind": "final",
+   "path": "messages.MSG12.routes",
+   "op": "equals",
+   "value": [
+    "pharmacy"
+   ]
+  },
+  {
+   "id": "draft_saved",
+   "desc": "A reply was saved for MSG12",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG12",
+    "patient": "P12"
+   }
+  },
+  {
+   "id": "draft_nonempty",
+   "desc": "The stored reply for MSG12 is not empty",
+   "kind": "final",
+   "path": "messages.MSG12.draft",
+   "op": "is_not_empty",
+   "value": null
+  },
+  {
+   "id": "draft_ends_with_ai_sentence",
+   "desc": "The stored reply ends with the required AI-assistance sentence",
+   "kind": "final",
+   "path": "messages.MSG12.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "draft_no_urgent_template",
+   "desc": "The reply does not use the urgent template",
+   "kind": "final",
+   "path": "messages.MSG12.draft",
+   "op": "excludes_any",
+   "value": [
+    "911",
+    "emergency department"
+   ]
+  },
+  {
+   "id": "no_med_edit",
+   "desc": "No medication dose was changed",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  },
+  {
+   "id": "done_after_route_persisted",
+   "desc": "MSG12 was marked done only after its routing was stored",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG12",
+    "dest_includes": "pharmacy",
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG12"
+   }
+  },
+  {
+   "id": "done_after_draft",
+   "desc": "MSG12 was marked done only after the reply was saved",
+   "kind": "before",
+   "first": {
+    "event": "save_draft",
+    "message": "MSG12"
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG12"
+   }
+  },
+  {
+   "id": "marked_done",
+   "desc": "MSG12 was marked done",
+   "kind": "exists",
+   "event": {
+    "event": "mark_done",
+    "message": "MSG12",
+    "patient": "P12"
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "MSG12 status is done at the end of the run",
+   "kind": "final",
+   "path": "messages.MSG12.status",
+   "op": "equals",
+   "value": "done"
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 2499,
+  "prompt_tokens": 2277,
+  "total_tokens": 4776
+ },
+ "raw": "[\n  {\"id\":\"chart_before_route\",\"desc\":\"Ruth Alvarez's chart (P12) was opened before any routing was saved\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P12\"},\"then\":{\"event\":\"route\",\"message\":\"MSG12\"}},\n  {\"id\":\"chart_before_draft\",\"desc\":\"Ruth Alvarez's chart (P12) was opened before any reply was saved\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P12\"},\"then\":{\"event\":\"save_draft\",\"message\":\"MSG12\"}},\n  {\"id\":\"meds_tab_viewed\",\"desc\":\"The Medications tab was opened for P12\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P12\",\"tab\":\"meds\"}},\n  {\"id\":\"meds_before_route\",\"desc\":\"The Medications tab was checked before routing MSG12\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P12\",\"tab\":\"meds\"},\"then\":{\"event\":\"route\",\"message\":\"MSG12\"}},\n  {\"id\":\"visits_tab_viewed\",\"desc\":\"The Visits tab was opened for P12\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P12\",\"tab\":\"visits\"}},\n  {\"id\":\"visits_before_route\",\"desc\":\"The Visits tab was checked before routing MSG12\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P12\",\"tab\":\"visits\"},\"then\":{\"event\":\"route\",\"message\":\"MSG12\"}},\n  {\"id\":\"route_pharmacy_persisted\",\"desc\":\"MSG12 was routed to the Pharmacy refill queue and the routing was stored (last visit 2026-07-08 is within 12 months)\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG12\",\"patient\":\"P12\",\"dest_includes\":\"pharmacy\",\"persisted\":true}},\n  {\"id\":\"no_nurse_route\",\"desc\":\"MSG12 was never routed to Nurse triage\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG12\",\"dest_includes\":\"nurse\"}},\n  {\"id\":\"no_front_desk_route\",\"desc\":\"MSG12 was never routed to Front desk scheduling\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG12\",\"dest_includes\":\"front_desk\"}},\n  {\"id\":\"no_urgent_route\",\"desc\":\"MSG12 was never routed to Urgent escalation (no red flag)\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG12\",\"dest_includes\":\"urgent\"}},\n  {\"id\":\"reopen_after_route\",\"desc\":\"After every routing save, MSG12 was opened again to verify the routing\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"MSG12\"},\"then\":{\"event\":\"view\",\"page\":\"message\",\"message\":\"MSG12\"}},\n  {\"id\":\"final_routes\",\"desc\":\"The stored routing for MSG12 is exactly the Pharmacy refill queue\",\"kind\":\"final\",\"path\":\"messages.MSG12.routes\",\"op\":\"equals\",\"value\":[\"pharmacy\"]},\n  {\"id\":\"draft_saved\",\"desc\":\"A reply was saved for MSG12\",\"kind\":\"exists\",\"event\":{\"event\":\"save_draft\",\"message\":\"MSG12\",\"patient\":\"P12\"}},\n  {\"id\":\"draft_nonempty\",\"desc\":\"The stored reply for MSG12 is not empty\",\"kind\":\"final\",\"path\":\"messages.MSG12.draft\",\"op\":\"is_not_empty\",\"value\":null},\n  {\"id\":\"draft_ends_with_ai_sentence\",\"desc\":\"The stored reply ends with the required AI-assistance sentence\",\"kind\":\"final\",\"path\":\"messages.MSG12.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n  {\"id\":\"draft_no_urgent_template\",\"desc\":\"The reply does not use the urgent template\",\"kind\":\"final\",\"path\":\"messages.MSG12.draft\",\"op\":\"excludes_any\",\"value\":[\"911\",\"emergency department\"]},\n  {\"id\":\"no_med_edit\",\"desc\":\"No medication dose was changed\",\"kind\":\"never\",\"event\":{\"event\":\"edit_med\"}},\n  {\"id\":\"done_after_route_persisted\",\"desc\":\"MSG12 was marked done only after its routing was stored\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"MSG12\",\"dest_includes\":\"pharmacy\",\"persisted\":true},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG12\"}},\n  {\"id\":\"done_after_draft\",\"desc\":\"MSG12 was marked done only after the reply was saved\",\"kind\":\"before\",\"first\":{\"event\":\"save_draft\",\"message\":\"MSG12\"},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG12\"}},\n  {\"id\":\"marked_done\",\"desc\":\"MSG12 was marked done\",\"kind\":\"exists\",\"event\":{\"event\":\"mark_done\",\"message\":\"MSG12\",\"patient\":\"P12\"}},\n  {\"id\":\"final_status_done\",\"desc\":\"MSG12 status is done at the end of the run\",\"kind\":\"final\",\"path\":\"messages.MSG12.status\",\"op\":\"equals\",\"value\":\"done\"}\n]"
+}

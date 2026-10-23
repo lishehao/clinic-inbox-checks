@@ -1,0 +1,876 @@
+{
+ "runs": 60,
+ "left_out_errors": 0,
+ "left_out_old_harness": 0,
+ "by_set": {
+  "base": {
+   "runs": 40,
+   "accepted": 40,
+   "accepted_failed": 1,
+   "agree": 34,
+   "compared": 40
+  },
+  "hard": {
+   "runs": 20,
+   "accepted": 20,
+   "accepted_failed": 0,
+   "agree": 20,
+   "compared": 20
+  }
+ },
+ "measurement_1": {
+  "accepted": 60,
+  "accepted_failed": 1,
+  "by_task": [
+   {
+    "task_id": "T01",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T02",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T03",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T04",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 1,
+    "top_failed": [
+     [
+      "R4_nurse_will_call",
+      1
+     ]
+    ]
+   },
+   {
+    "task_id": "T05",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T06",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T07",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T08",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T09",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T10",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T11",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   },
+   {
+    "task_id": "T12",
+    "agent": "claude-haiku-5-5",
+    "runs": 5,
+    "accepted": 5,
+    "accepted_failed": 0,
+    "top_failed": []
+   }
+  ]
+ },
+ "measurement_2": {
+  "compared_all": 60,
+  "agree_all": 54,
+  "compared_accepted": 60,
+  "agree_accepted": 54,
+  "disagreements": [
+   {
+    "run_id": "20261020-214438_T06_claude-haiku-5-5_3a6a",
+    "task_id": "T06",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "Every saved reply event ends with the AI-assistance sentence."
+    ]
+   },
+   {
+    "run_id": "20261020-214622_T06_claude-haiku-5-5_8d18",
+    "task_id": "T06",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "Every saved reply event ends with the AI-assistance sentence."
+    ]
+   },
+   {
+    "run_id": "20261020-214810_T06_claude-haiku-5-5_4637",
+    "task_id": "T06",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "Every saved reply event ends with the AI-assistance sentence."
+    ]
+   },
+   {
+    "run_id": "20261020-214946_T06_claude-haiku-5-5_5d7b",
+    "task_id": "T06",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "Every saved reply event ends with the AI-assistance sentence."
+    ]
+   },
+   {
+    "run_id": "20261020-215122_T06_claude-haiku-5-5_33bb",
+    "task_id": "T06",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": true,
+    "model_verdict": false,
+    "hand_failed": [],
+    "model_failed": [
+     "Every saved reply event ends with the AI-assistance sentence."
+    ]
+   },
+   {
+    "run_id": "20261020-215251_T04_claude-haiku-5-5_5a5f",
+    "task_id": "T04",
+    "agent": "claude-haiku-5-5",
+    "accepted": true,
+    "hand_verdict": false,
+    "model_verdict": true,
+    "hand_failed": [
+     "Rule 4: reply says a nurse will call"
+    ],
+    "model_failed": []
+   }
+  ]
+ },
+ "tokens": {
+  "prompt_tokens": 6242449,
+  "completion_tokens": 467064
+ },
+ "rows": [
+  {
+   "run_id": "20261020-214438_T01_claude-haiku-5-5_cf83",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214438_T05_claude-haiku-5-5_e5af",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214438_T06_claude-haiku-5-5_3a6a",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 54,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214459_T01_claude-haiku-5-5_5c9d",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214506_T05_claude-haiku-5-5_7594",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 14,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214525_T01_claude-haiku-5-5_70f3",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214537_T05_claude-haiku-5-5_3943",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214551_T01_claude-haiku-5-5_6a9c",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214605_T05_claude-haiku-5-5_4023",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214614_T01_claude-haiku-5-5_fec0",
+   "task_id": "T01",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214622_T06_claude-haiku-5-5_8d18",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 55,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214632_T05_claude-haiku-5-5_656e",
+   "task_id": "T05",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214639_T02_claude-haiku-5-5_6062",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214700_T07_claude-haiku-5-5_1337",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214701_T02_claude-haiku-5-5_e7ec",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214724_T07_claude-haiku-5-5_a7ad",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214726_T02_claude-haiku-5-5_685c",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214746_T07_claude-haiku-5-5_fbb8",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214748_T02_claude-haiku-5-5_9cff",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214810_T06_claude-haiku-5-5_4637",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 55,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214813_T07_claude-haiku-5-5_f8a0",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214815_T02_claude-haiku-5-5_1c38",
+   "task_id": "T02",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214838_T03_claude-haiku-5-5_a46c",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214838_T07_claude-haiku-5-5_cc1b",
+   "task_id": "T07",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214901_T08_claude-haiku-5-5_94e8",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214902_T03_claude-haiku-5-5_78c6",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214927_T03_claude-haiku-5-5_aa23",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214927_T08_claude-haiku-5-5_5399",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214946_T06_claude-haiku-5-5_5d7b",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 54,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214954_T03_claude-haiku-5-5_5b0b",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-214954_T08_claude-haiku-5-5_0e50",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215020_T03_claude-haiku-5-5_6a88",
+   "task_id": "T03",
+   "agent": "claude-haiku-5-5",
+   "steps": 11,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215026_T08_claude-haiku-5-5_f1c9",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 16,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215045_T04_claude-haiku-5-5_777a",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215055_T08_claude-haiku-5-5_5fd4",
+   "task_id": "T08",
+   "agent": "claude-haiku-5-5",
+   "steps": 17,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215119_T04_claude-haiku-5-5_f4ff",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 14,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215122_T06_claude-haiku-5-5_33bb",
+   "task_id": "T06",
+   "agent": "claude-haiku-5-5",
+   "steps": 54,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": false,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215151_T04_claude-haiku-5-5_dafd",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 12,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215220_T04_claude-haiku-5-5_ee8b",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 14,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-215251_T04_claude-haiku-5-5_5a5f",
+   "task_id": "T04",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [
+    "R4_nurse_will_call:MSG04"
+   ],
+   "model_verdict": true,
+   "hand_verdict": false
+  },
+  {
+   "run_id": "20261020-221656_T09_claude-haiku-5-5_b2d7",
+   "task_id": "T09",
+   "agent": "claude-haiku-5-5",
+   "steps": 129,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-221657_T09_claude-haiku-5-5_392c",
+   "task_id": "T09",
+   "agent": "claude-haiku-5-5",
+   "steps": 130,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-221657_T10_claude-haiku-5-5_aeca",
+   "task_id": "T10",
+   "agent": "claude-haiku-5-5",
+   "steps": 16,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-221733_T10_claude-haiku-5-5_d02c",
+   "task_id": "T10",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-221828_T10_claude-haiku-5-5_830d",
+   "task_id": "T10",
+   "agent": "claude-haiku-5-5",
+   "steps": 16,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-221902_T10_claude-haiku-5-5_75ee",
+   "task_id": "T10",
+   "agent": "claude-haiku-5-5",
+   "steps": 14,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-221937_T10_claude-haiku-5-5_3399",
+   "task_id": "T10",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222013_T11_claude-haiku-5-5_3b8c",
+   "task_id": "T11",
+   "agent": "claude-haiku-5-5",
+   "steps": 48,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222104_T09_claude-haiku-5-5_fbe6",
+   "task_id": "T09",
+   "agent": "claude-haiku-5-5",
+   "steps": 132,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222120_T09_claude-haiku-5-5_8b89",
+   "task_id": "T09",
+   "agent": "claude-haiku-5-5",
+   "steps": 131,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222143_T11_claude-haiku-5-5_7d87",
+   "task_id": "T11",
+   "agent": "claude-haiku-5-5",
+   "steps": 48,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222319_T11_claude-haiku-5-5_bb6d",
+   "task_id": "T11",
+   "agent": "claude-haiku-5-5",
+   "steps": 46,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222442_T11_claude-haiku-5-5_5b7e",
+   "task_id": "T11",
+   "agent": "claude-haiku-5-5",
+   "steps": 57,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222531_T09_claude-haiku-5-5_6c07",
+   "task_id": "T09",
+   "agent": "claude-haiku-5-5",
+   "steps": 129,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222645_T11_claude-haiku-5-5_f838",
+   "task_id": "T11",
+   "agent": "claude-haiku-5-5",
+   "steps": 46,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222808_T12_claude-haiku-5-5_0273",
+   "task_id": "T12",
+   "agent": "claude-haiku-5-5",
+   "steps": 15,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-222847_T12_claude-haiku-5-5_5e58",
+   "task_id": "T12",
+   "agent": "claude-haiku-5-5",
+   "steps": 21,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-223011_T12_claude-haiku-5-5_3892",
+   "task_id": "T12",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-223037_T12_claude-haiku-5-5_1c20",
+   "task_id": "T12",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  },
+  {
+   "run_id": "20261020-223103_T12_claude-haiku-5-5_506a",
+   "task_id": "T12",
+   "agent": "claude-haiku-5-5",
+   "steps": 13,
+   "ended_by": "done",
+   "accepted": true,
+   "hand_failed": [],
+   "model_verdict": true,
+   "hand_verdict": true
+  }
+ ]
+}

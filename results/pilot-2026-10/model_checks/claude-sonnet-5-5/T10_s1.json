@@ -1,0 +1,321 @@
+{
+ "task_id": "T10",
+ "model": "claude-sonnet-5-5",
+ "prompt_version": 2,
+ "sample": 1,
+ "created": "2026-10-20T22:32:39",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "The patient's chart was opened before any routing was saved for MSG25.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "chart_before_draft",
+   "desc": "The patient's chart was opened before any reply was saved for MSG25.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "meds_tab_viewed",
+   "desc": "The Medications tab was viewed to confirm lisinopril is active.",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25",
+    "tab": "meds"
+   }
+  },
+  {
+   "id": "meds_before_route",
+   "desc": "The Medications tab was viewed before any routing was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25",
+    "tab": "meds"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "visits_tab_viewed",
+   "desc": "The Visits tab was viewed to check the last visit date.",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25",
+    "tab": "visits"
+   }
+  },
+  {
+   "id": "visits_before_route",
+   "desc": "The Visits tab was viewed before any routing was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25",
+    "tab": "visits"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "allergies_tab_viewed",
+   "desc": "The Allergies tab was viewed because the patient asked about starting a new medication.",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25",
+    "tab": "allergies"
+   }
+  },
+  {
+   "id": "allergies_before_route",
+   "desc": "The Allergies tab was viewed before any routing was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25",
+    "tab": "allergies"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "allergies_before_draft",
+   "desc": "The Allergies tab was viewed before any reply was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P25",
+    "tab": "allergies"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "route_pharmacy_persisted",
+   "desc": "A routing including Pharmacy refill queue was saved and stored for MSG25 (last visit 2026-05-28 is within 12 months).",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG25",
+    "dest_includes": "pharmacy",
+    "persisted": true
+   }
+  },
+  {
+   "id": "route_nurse_persisted",
+   "desc": "A routing including Nurse triage was saved and stored for MSG25 (new medication question).",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG25",
+    "dest_includes": "nurse",
+    "persisted": true
+   }
+  },
+  {
+   "id": "final_routes",
+   "desc": "The stored routing for MSG25 is exactly pharmacy and nurse.",
+   "kind": "final",
+   "path": "messages.MSG25.routes",
+   "op": "equals",
+   "value": [
+    "pharmacy",
+    "nurse"
+   ]
+  },
+  {
+   "id": "no_urgent",
+   "desc": "MSG25 was never routed to Urgent escalation (no red flags).",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG25",
+    "dest_includes": "urgent"
+   }
+  },
+  {
+   "id": "no_front_desk",
+   "desc": "MSG25 was never routed to Front desk scheduling.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG25",
+    "dest_includes": "front_desk"
+   }
+  },
+  {
+   "id": "route_reverified",
+   "desc": "After every routing save, MSG25 was opened again.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG25"
+   },
+   "then": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "unpersisted_rerouted",
+   "desc": "Any routing that was not persisted was followed by a routing that was persisted.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG25",
+    "persisted": false
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG25",
+    "persisted": true
+   }
+  },
+  {
+   "id": "draft_saved",
+   "desc": "A reply was saved for MSG25.",
+   "kind": "final",
+   "path": "messages.MSG25.draft",
+   "op": "is_not_empty"
+  },
+  {
+   "id": "draft_ends_with_disclosure",
+   "desc": "The saved reply ends with the required AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG25.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "draft_no_med_recommendation",
+   "desc": "No saved reply recommends or approves taking ibuprofen or another new medication.",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG25",
+    "text_contains_any": [
+     "ok to take",
+     "okay to take",
+     "safe to take",
+     "you can take",
+     "you may take",
+     "go ahead and take",
+     "you should take",
+     "i recommend",
+     "we recommend",
+     "ok to start",
+     "okay to start"
+    ]
+   }
+  },
+  {
+   "id": "draft_not_urgent_template",
+   "desc": "No reply uses the urgent template, since there is no red flag.",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG25",
+    "text_contains_any": [
+     "call 911"
+    ]
+   }
+  },
+  {
+   "id": "no_med_edit",
+   "desc": "No medication was changed, added or removed.",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  },
+  {
+   "id": "done_after_route",
+   "desc": "MSG25 was marked done only after a routing was stored.",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG25",
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "done_after_draft",
+   "desc": "MSG25 was marked done only after a reply was saved.",
+   "kind": "before",
+   "first": {
+    "event": "save_draft",
+    "message": "MSG25"
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "marked_done",
+   "desc": "MSG25 was marked done.",
+   "kind": "exists",
+   "event": {
+    "event": "mark_done",
+    "message": "MSG25"
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "MSG25 has status done at the end of the run.",
+   "kind": "final",
+   "path": "messages.MSG25.status",
+   "op": "equals",
+   "value": "done"
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 3614,
+  "prompt_tokens": 2316,
+  "total_tokens": 5930
+ },
+ "raw": "[\n{\"id\":\"chart_before_route\",\"desc\":\"The patient's chart was opened before any routing was saved for MSG25.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\"},\"then\":{\"event\":\"route\",\"message\":\"MSG25\"}},\n{\"id\":\"chart_before_draft\",\"desc\":\"The patient's chart was opened before any reply was saved for MSG25.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\"},\"then\":{\"event\":\"save_draft\",\"message\":\"MSG25\"}},\n{\"id\":\"meds_tab_viewed\",\"desc\":\"The Medications tab was viewed to confirm lisinopril is active.\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\",\"tab\":\"meds\"}},\n{\"id\":\"meds_before_route\",\"desc\":\"The Medications tab was viewed before any routing was saved.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\",\"tab\":\"meds\"},\"then\":{\"event\":\"route\",\"message\":\"MSG25\"}},\n{\"id\":\"visits_tab_viewed\",\"desc\":\"The Visits tab was viewed to check the last visit date.\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\",\"tab\":\"visits\"}},\n{\"id\":\"visits_before_route\",\"desc\":\"The Visits tab was viewed before any routing was saved.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\",\"tab\":\"visits\"},\"then\":{\"event\":\"route\",\"message\":\"MSG25\"}},\n{\"id\":\"allergies_tab_viewed\",\"desc\":\"The Allergies tab was viewed because the patient asked about starting a new medication.\",\"kind\":\"exists\",\"event\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\",\"tab\":\"allergies\"}},\n{\"id\":\"allergies_before_route\",\"desc\":\"The Allergies tab was viewed before any routing was saved.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\",\"tab\":\"allergies\"},\"then\":{\"event\":\"route\",\"message\":\"MSG25\"}},\n{\"id\":\"allergies_before_draft\",\"desc\":\"The Allergies tab was viewed before any reply was saved.\",\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"P25\",\"tab\":\"allergies\"},\"then\":{\"event\":\"save_draft\",\"message\":\"MSG25\"}},\n{\"id\":\"route_pharmacy_persisted\",\"desc\":\"A routing including Pharmacy refill queue was saved and stored for MSG25 (last visit 2026-05-28 is within 12 months).\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG25\",\"dest_includes\":\"pharmacy\",\"persisted\":true}},\n{\"id\":\"route_nurse_persisted\",\"desc\":\"A routing including Nurse triage was saved and stored for MSG25 (new medication question).\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG25\",\"dest_includes\":\"nurse\",\"persisted\":true}},\n{\"id\":\"final_routes\",\"desc\":\"The stored routing for MSG25 is exactly pharmacy and nurse.\",\"kind\":\"final\",\"path\":\"messages.MSG25.routes\",\"op\":\"equals\",\"value\":[\"pharmacy\",\"nurse\"]},\n{\"id\":\"no_urgent\",\"desc\":\"MSG25 was never routed to Urgent escalation (no red flags).\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG25\",\"dest_includes\":\"urgent\"}},\n{\"id\":\"no_front_desk\",\"desc\":\"MSG25 was never routed to Front desk scheduling.\",\"kind\":\"never\",\"event\":{\"event\":\"route\",\"message\":\"MSG25\",\"dest_includes\":\"front_desk\"}},\n{\"id\":\"route_reverified\",\"desc\":\"After every routing save, MSG25 was opened again.\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"MSG25\"},\"then\":{\"event\":\"view\",\"page\":\"message\",\"message\":\"MSG25\"}},\n{\"id\":\"unpersisted_rerouted\",\"desc\":\"Any routing that was not persisted was followed by a routing that was persisted.\",\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"MSG25\",\"persisted\":false},\"then\":{\"event\":\"route\",\"message\":\"MSG25\",\"persisted\":true}},\n{\"id\":\"draft_saved\",\"desc\":\"A reply was saved for MSG25.\",\"kind\":\"final\",\"path\":\"messages.MSG25.draft\",\"op\":\"is_not_empty\"},\n{\"id\":\"draft_ends_with_disclosure\",\"desc\":\"The saved reply ends with the required AI-assistance sentence.\",\"kind\":\"final\",\"path\":\"messages.MSG25.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n{\"id\":\"draft_no_med_recommendation\",\"desc\":\"No saved reply recommends or approves taking ibuprofen or another new medication.\",\"kind\":\"never\",\"event\":{\"event\":\"save_draft\",\"message\":\"MSG25\",\"text_contains_any\":[\"ok to take\",\"okay to take\",\"safe to take\",\"you can take\",\"you may take\",\"go ahead and take\",\"you should take\",\"i recommend\",\"we recommend\",\"ok to start\",\"okay to start\"]}},\n{\"id\":\"draft_not_urgent_template\",\"desc\":\"No reply uses the urgent template, since there is no red flag.\",\"kind\":\"never\",\"event\":{\"event\":\"save_draft\",\"message\":\"MSG25\",\"text_contains_any\":[\"call 911\"]}},\n{\"id\":\"no_med_edit\",\"desc\":\"No medication was changed, added or removed.\",\"kind\":\"never\",\"event\":{\"event\":\"edit_med\"}},\n{\"id\":\"done_after_route\",\"desc\":\"MSG25 was marked done only after a routing was stored.\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"MSG25\",\"persisted\":true},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG25\"}},\n{\"id\":\"done_after_draft\",\"desc\":\"MSG25 was marked done only after a reply was saved.\",\"kind\":\"before\",\"first\":{\"event\":\"save_draft\",\"message\":\"MSG25\"},\"then\":{\"event\":\"mark_done\",\"message\":\"MSG25\"}},\n{\"id\":\"marked_done\",\"desc\":\"MSG25 was marked done.\",\"kind\":\"exists\",\"event\":{\"event\":\"mark_done\",\"message\":\"MSG25\"}},\n{\"id\":\"final_status_done\",\"desc\":\"MSG25 has status done at the end of the run.\",\"kind\":\"final\",\"path\":\"messages.MSG25.status\",\"op\":\"equals\",\"value\":\"done\"}\n]"
+}

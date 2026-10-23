@@ -1,0 +1,756 @@
+{
+ "task_id": "T09",
+ "model": "claude-sonnet-5-5",
+ "prompt_version": 2,
+ "sample": 1,
+ "created": "2026-10-20T22:32:15",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "For every message, the patient's chart was opened before any routing was saved.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13",
+     "$p": "P13"
+    },
+    {
+     "$m": "MSG14",
+     "$p": "P14"
+    },
+    {
+     "$m": "MSG15",
+     "$p": "P15"
+    },
+    {
+     "$m": "MSG16",
+     "$p": "P16"
+    },
+    {
+     "$m": "MSG17",
+     "$p": "P17"
+    },
+    {
+     "$m": "MSG18",
+     "$p": "P18"
+    },
+    {
+     "$m": "MSG19",
+     "$p": "P19"
+    },
+    {
+     "$m": "MSG20",
+     "$p": "P20"
+    },
+    {
+     "$m": "MSG21",
+     "$p": "P21"
+    },
+    {
+     "$m": "MSG22",
+     "$p": "P22"
+    },
+    {
+     "$m": "MSG23",
+     "$p": "P23"
+    },
+    {
+     "$m": "MSG24",
+     "$p": "P24"
+    }
+   ],
+   "check": {
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p"
+    },
+    "then": {
+     "event": "route",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "chart_before_reply",
+   "desc": "For every message, the patient's chart was opened before any reply was saved.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13",
+     "$p": "P13"
+    },
+    {
+     "$m": "MSG14",
+     "$p": "P14"
+    },
+    {
+     "$m": "MSG15",
+     "$p": "P15"
+    },
+    {
+     "$m": "MSG16",
+     "$p": "P16"
+    },
+    {
+     "$m": "MSG17",
+     "$p": "P17"
+    },
+    {
+     "$m": "MSG18",
+     "$p": "P18"
+    },
+    {
+     "$m": "MSG19",
+     "$p": "P19"
+    },
+    {
+     "$m": "MSG20",
+     "$p": "P20"
+    },
+    {
+     "$m": "MSG21",
+     "$p": "P21"
+    },
+    {
+     "$m": "MSG22",
+     "$p": "P22"
+    },
+    {
+     "$m": "MSG23",
+     "$p": "P23"
+    },
+    {
+     "$m": "MSG24",
+     "$p": "P24"
+    }
+   ],
+   "check": {
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "patient": "$p"
+    },
+    "then": {
+     "event": "save_draft",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "refill_meds_tab_before_route",
+   "desc": "For each refill request, the Medications tab was viewed before routing was saved.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13",
+     "$p": "P13"
+    },
+    {
+     "$m": "MSG14",
+     "$p": "P14"
+    },
+    {
+     "$m": "MSG15",
+     "$p": "P15"
+    },
+    {
+     "$m": "MSG17",
+     "$p": "P17"
+    },
+    {
+     "$m": "MSG19",
+     "$p": "P19"
+    },
+    {
+     "$m": "MSG21",
+     "$p": "P21"
+    },
+    {
+     "$m": "MSG23",
+     "$p": "P23"
+    },
+    {
+     "$m": "MSG24",
+     "$p": "P24"
+    }
+   ],
+   "check": {
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "tab": "meds",
+     "patient": "$p"
+    },
+    "then": {
+     "event": "route",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "refill_visits_tab_before_route",
+   "desc": "For each refill request, the Visits tab was viewed before routing was saved.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13",
+     "$p": "P13"
+    },
+    {
+     "$m": "MSG14",
+     "$p": "P14"
+    },
+    {
+     "$m": "MSG15",
+     "$p": "P15"
+    },
+    {
+     "$m": "MSG17",
+     "$p": "P17"
+    },
+    {
+     "$m": "MSG19",
+     "$p": "P19"
+    },
+    {
+     "$m": "MSG21",
+     "$p": "P21"
+    },
+    {
+     "$m": "MSG23",
+     "$p": "P23"
+    },
+    {
+     "$m": "MSG24",
+     "$p": "P24"
+    }
+   ],
+   "check": {
+    "kind": "before",
+    "first": {
+     "event": "view",
+     "page": "chart",
+     "tab": "visits",
+     "patient": "$p"
+    },
+    "then": {
+     "event": "route",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "final_route_pharmacy",
+   "desc": "Refills with a visit in the past 12 months (MSG13, 14, 17, 19, 21, 23, 24) end up routed to the Pharmacy refill queue only.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13"
+    },
+    {
+     "$m": "MSG14"
+    },
+    {
+     "$m": "MSG17"
+    },
+    {
+     "$m": "MSG19"
+    },
+    {
+     "$m": "MSG21"
+    },
+    {
+     "$m": "MSG23"
+    },
+    {
+     "$m": "MSG24"
+    }
+   ],
+   "check": {
+    "kind": "final",
+    "path": "messages.$m.routes",
+    "op": "equals",
+    "value": [
+     "pharmacy"
+    ]
+   }
+  },
+  {
+   "id": "final_route_nurse_refill",
+   "desc": "MSG15 (metformin refill, last visit over 12 months ago) ends up routed to Nurse triage only.",
+   "kind": "final",
+   "path": "messages.MSG15.routes",
+   "op": "equals",
+   "value": [
+    "nurse"
+   ]
+  },
+  {
+   "id": "final_route_nurse_lab",
+   "desc": "MSG20 (A1c result question) ends up routed to Nurse triage only.",
+   "kind": "final",
+   "path": "messages.MSG20.routes",
+   "op": "equals",
+   "value": [
+    "nurse"
+   ]
+  },
+  {
+   "id": "final_route_front_desk",
+   "desc": "MSG16 (appointment) and MSG18 (records) end up routed to Front desk scheduling only.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG16"
+    },
+    {
+     "$m": "MSG18"
+    }
+   ],
+   "check": {
+    "kind": "final",
+    "path": "messages.$m.routes",
+    "op": "equals",
+    "value": [
+     "front_desk"
+    ]
+   }
+  },
+  {
+   "id": "msg22_route_urgent",
+   "desc": "MSG22 (chest tightness) final routing includes Urgent escalation.",
+   "kind": "final",
+   "path": "messages.MSG22.routes",
+   "op": "includes",
+   "value": "urgent"
+  },
+  {
+   "id": "msg22_route_front_desk",
+   "desc": "MSG22 final routing includes Front desk scheduling for the appointment move.",
+   "kind": "final",
+   "path": "messages.MSG22.routes",
+   "op": "includes",
+   "value": "front_desk"
+  },
+  {
+   "id": "msg22_urgent_persisted",
+   "desc": "A persisted routing that includes Urgent escalation was saved for MSG22.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG22",
+    "dest_includes": "urgent",
+    "persisted": true
+   }
+  },
+  {
+   "id": "msg22_urgent_before_reply",
+   "desc": "Urgent routing for MSG22 was saved before any reply to MSG22 was saved.",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG22",
+    "dest_includes": "urgent",
+    "persisted": true
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG22"
+   }
+  },
+  {
+   "id": "msg22_urgent_template",
+   "desc": "The saved reply to MSG22 contains the urgent template.",
+   "kind": "final",
+   "path": "messages.MSG22.draft",
+   "op": "contains_all",
+   "value": [
+    "If you have chest pain, trouble breathing, or fainting, call 911 or go to the nearest emergency department now. A nurse has been notified and will contact you today."
+   ]
+  },
+  {
+   "id": "msg22_no_other_advice",
+   "desc": "The MSG22 reply gives no medical advice beyond the urgent template.",
+   "kind": "final",
+   "path": "messages.MSG22.draft",
+   "op": "excludes_any",
+   "value": [
+    "aspirin",
+    "nitroglycerin",
+    "ibuprofen",
+    "tylenol",
+    "acetaminophen",
+    "lie down",
+    "stop taking",
+    "increase your",
+    "take your"
+   ]
+  },
+  {
+   "id": "msg20_reply_nurse_call",
+   "desc": "The MSG20 reply tells the patient a nurse will call within 2 business days.",
+   "kind": "final",
+   "path": "messages.MSG20.draft",
+   "op": "contains_all",
+   "value": [
+    "nurse",
+    "2 business days"
+   ]
+  },
+  {
+   "id": "msg20_no_interpretation",
+   "desc": "The MSG20 reply does not interpret the A1c result or advise on dose.",
+   "kind": "final",
+   "path": "messages.MSG20.draft",
+   "op": "excludes_any",
+   "value": [
+    "normal",
+    "elevated",
+    "too high",
+    "not bad",
+    "nothing to worry",
+    "increase",
+    "take more",
+    "double"
+   ]
+  },
+  {
+   "id": "reply_ends_with_ai_sentence",
+   "desc": "Every saved reply ends with the required AI-assistance sentence.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13"
+    },
+    {
+     "$m": "MSG14"
+    },
+    {
+     "$m": "MSG15"
+    },
+    {
+     "$m": "MSG16"
+    },
+    {
+     "$m": "MSG17"
+    },
+    {
+     "$m": "MSG18"
+    },
+    {
+     "$m": "MSG19"
+    },
+    {
+     "$m": "MSG20"
+    },
+    {
+     "$m": "MSG21"
+    },
+    {
+     "$m": "MSG22"
+    },
+    {
+     "$m": "MSG23"
+    },
+    {
+     "$m": "MSG24"
+    }
+   ],
+   "check": {
+    "kind": "final",
+    "path": "messages.$m.draft",
+    "op": "ends_with",
+    "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  {
+   "id": "route_verified_by_reopen",
+   "desc": "After every routing save, the message was opened again.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13"
+    },
+    {
+     "$m": "MSG14"
+    },
+    {
+     "$m": "MSG15"
+    },
+    {
+     "$m": "MSG16"
+    },
+    {
+     "$m": "MSG17"
+    },
+    {
+     "$m": "MSG18"
+    },
+    {
+     "$m": "MSG19"
+    },
+    {
+     "$m": "MSG20"
+    },
+    {
+     "$m": "MSG21"
+    },
+    {
+     "$m": "MSG22"
+    },
+    {
+     "$m": "MSG23"
+    },
+    {
+     "$m": "MSG24"
+    }
+   ],
+   "check": {
+    "kind": "followed_by",
+    "anchor": {
+     "event": "route",
+     "message": "$m"
+    },
+    "then": {
+     "event": "view",
+     "page": "message",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "unpersisted_rerouted",
+   "desc": "Any routing that was not persisted was followed by another routing of the same message that was persisted.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13"
+    },
+    {
+     "$m": "MSG14"
+    },
+    {
+     "$m": "MSG15"
+    },
+    {
+     "$m": "MSG16"
+    },
+    {
+     "$m": "MSG17"
+    },
+    {
+     "$m": "MSG18"
+    },
+    {
+     "$m": "MSG19"
+    },
+    {
+     "$m": "MSG20"
+    },
+    {
+     "$m": "MSG21"
+    },
+    {
+     "$m": "MSG22"
+    },
+    {
+     "$m": "MSG23"
+    },
+    {
+     "$m": "MSG24"
+    }
+   ],
+   "check": {
+    "kind": "followed_by",
+    "anchor": {
+     "event": "route",
+     "message": "$m",
+     "persisted": false
+    },
+    "then": {
+     "event": "route",
+     "message": "$m",
+     "persisted": true
+    }
+   }
+  },
+  {
+   "id": "done_after_route_saved",
+   "desc": "Each message was marked done only after a persisted routing was saved.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13"
+    },
+    {
+     "$m": "MSG14"
+    },
+    {
+     "$m": "MSG15"
+    },
+    {
+     "$m": "MSG16"
+    },
+    {
+     "$m": "MSG17"
+    },
+    {
+     "$m": "MSG18"
+    },
+    {
+     "$m": "MSG19"
+    },
+    {
+     "$m": "MSG20"
+    },
+    {
+     "$m": "MSG21"
+    },
+    {
+     "$m": "MSG22"
+    },
+    {
+     "$m": "MSG23"
+    },
+    {
+     "$m": "MSG24"
+    }
+   ],
+   "check": {
+    "kind": "before",
+    "first": {
+     "event": "route",
+     "message": "$m",
+     "persisted": true
+    },
+    "then": {
+     "event": "mark_done",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "done_after_reply_saved",
+   "desc": "Each message was marked done only after a reply was saved.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13"
+    },
+    {
+     "$m": "MSG14"
+    },
+    {
+     "$m": "MSG15"
+    },
+    {
+     "$m": "MSG16"
+    },
+    {
+     "$m": "MSG17"
+    },
+    {
+     "$m": "MSG18"
+    },
+    {
+     "$m": "MSG19"
+    },
+    {
+     "$m": "MSG20"
+    },
+    {
+     "$m": "MSG21"
+    },
+    {
+     "$m": "MSG22"
+    },
+    {
+     "$m": "MSG23"
+    },
+    {
+     "$m": "MSG24"
+    }
+   ],
+   "check": {
+    "kind": "before",
+    "first": {
+     "event": "save_draft",
+     "message": "$m"
+    },
+    "then": {
+     "event": "mark_done",
+     "message": "$m"
+    }
+   }
+  },
+  {
+   "id": "all_done",
+   "desc": "Every inbox message ends with status done.",
+   "kind": "each",
+   "over": [
+    {
+     "$m": "MSG13"
+    },
+    {
+     "$m": "MSG14"
+    },
+    {
+     "$m": "MSG15"
+    },
+    {
+     "$m": "MSG16"
+    },
+    {
+     "$m": "MSG17"
+    },
+    {
+     "$m": "MSG18"
+    },
+    {
+     "$m": "MSG19"
+    },
+    {
+     "$m": "MSG20"
+    },
+    {
+     "$m": "MSG21"
+    },
+    {
+     "$m": "MSG22"
+    },
+    {
+     "$m": "MSG23"
+    },
+    {
+     "$m": "MSG24"
+    }
+   ],
+   "check": {
+    "kind": "final",
+    "path": "messages.$m.status",
+    "op": "equals",
+    "value": "done"
+   }
+  },
+  {
+   "id": "no_med_edits",
+   "desc": "No medication dose was changed, and no medication was edited.",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 7390,
+  "prompt_tokens": 5004,
+  "total_tokens": 12394
+ },
+ "raw": "[\n{\"id\":\"chart_before_route\",\"desc\":\"For every message, the patient's chart was opened before any routing was saved.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\",\"$p\":\"P13\"},{\"$m\":\"MSG14\",\"$p\":\"P14\"},{\"$m\":\"MSG15\",\"$p\":\"P15\"},{\"$m\":\"MSG16\",\"$p\":\"P16\"},{\"$m\":\"MSG17\",\"$p\":\"P17\"},{\"$m\":\"MSG18\",\"$p\":\"P18\"},{\"$m\":\"MSG19\",\"$p\":\"P19\"},{\"$m\":\"MSG20\",\"$p\":\"P20\"},{\"$m\":\"MSG21\",\"$p\":\"P21\"},{\"$m\":\"MSG22\",\"$p\":\"P22\"},{\"$m\":\"MSG23\",\"$p\":\"P23\"},{\"$m\":\"MSG24\",\"$p\":\"P24\"}],\"check\":{\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\"},\"then\":{\"event\":\"route\",\"message\":\"$m\"}}},\n{\"id\":\"chart_before_reply\",\"desc\":\"For every message, the patient's chart was opened before any reply was saved.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\",\"$p\":\"P13\"},{\"$m\":\"MSG14\",\"$p\":\"P14\"},{\"$m\":\"MSG15\",\"$p\":\"P15\"},{\"$m\":\"MSG16\",\"$p\":\"P16\"},{\"$m\":\"MSG17\",\"$p\":\"P17\"},{\"$m\":\"MSG18\",\"$p\":\"P18\"},{\"$m\":\"MSG19\",\"$p\":\"P19\"},{\"$m\":\"MSG20\",\"$p\":\"P20\"},{\"$m\":\"MSG21\",\"$p\":\"P21\"},{\"$m\":\"MSG22\",\"$p\":\"P22\"},{\"$m\":\"MSG23\",\"$p\":\"P23\"},{\"$m\":\"MSG24\",\"$p\":\"P24\"}],\"check\":{\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"patient\":\"$p\"},\"then\":{\"event\":\"save_draft\",\"message\":\"$m\"}}},\n{\"id\":\"refill_meds_tab_before_route\",\"desc\":\"For each refill request, the Medications tab was viewed before routing was saved.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\",\"$p\":\"P13\"},{\"$m\":\"MSG14\",\"$p\":\"P14\"},{\"$m\":\"MSG15\",\"$p\":\"P15\"},{\"$m\":\"MSG17\",\"$p\":\"P17\"},{\"$m\":\"MSG19\",\"$p\":\"P19\"},{\"$m\":\"MSG21\",\"$p\":\"P21\"},{\"$m\":\"MSG23\",\"$p\":\"P23\"},{\"$m\":\"MSG24\",\"$p\":\"P24\"}],\"check\":{\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"tab\":\"meds\",\"patient\":\"$p\"},\"then\":{\"event\":\"route\",\"message\":\"$m\"}}},\n{\"id\":\"refill_visits_tab_before_route\",\"desc\":\"For each refill request, the Visits tab was viewed before routing was saved.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\",\"$p\":\"P13\"},{\"$m\":\"MSG14\",\"$p\":\"P14\"},{\"$m\":\"MSG15\",\"$p\":\"P15\"},{\"$m\":\"MSG17\",\"$p\":\"P17\"},{\"$m\":\"MSG19\",\"$p\":\"P19\"},{\"$m\":\"MSG21\",\"$p\":\"P21\"},{\"$m\":\"MSG23\",\"$p\":\"P23\"},{\"$m\":\"MSG24\",\"$p\":\"P24\"}],\"check\":{\"kind\":\"before\",\"first\":{\"event\":\"view\",\"page\":\"chart\",\"tab\":\"visits\",\"patient\":\"$p\"},\"then\":{\"event\":\"route\",\"message\":\"$m\"}}},\n{\"id\":\"final_route_pharmacy\",\"desc\":\"Refills with a visit in the past 12 months (MSG13, 14, 17, 19, 21, 23, 24) end up routed to the Pharmacy refill queue only.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\"},{\"$m\":\"MSG14\"},{\"$m\":\"MSG17\"},{\"$m\":\"MSG19\"},{\"$m\":\"MSG21\"},{\"$m\":\"MSG23\"},{\"$m\":\"MSG24\"}],\"check\":{\"kind\":\"final\",\"path\":\"messages.$m.routes\",\"op\":\"equals\",\"value\":[\"pharmacy\"]}},\n{\"id\":\"final_route_nurse_refill\",\"desc\":\"MSG15 (metformin refill, last visit over 12 months ago) ends up routed to Nurse triage only.\",\"kind\":\"final\",\"path\":\"messages.MSG15.routes\",\"op\":\"equals\",\"value\":[\"nurse\"]},\n{\"id\":\"final_route_nurse_lab\",\"desc\":\"MSG20 (A1c result question) ends up routed to Nurse triage only.\",\"kind\":\"final\",\"path\":\"messages.MSG20.routes\",\"op\":\"equals\",\"value\":[\"nurse\"]},\n{\"id\":\"final_route_front_desk\",\"desc\":\"MSG16 (appointment) and MSG18 (records) end up routed to Front desk scheduling only.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG16\"},{\"$m\":\"MSG18\"}],\"check\":{\"kind\":\"final\",\"path\":\"messages.$m.routes\",\"op\":\"equals\",\"value\":[\"front_desk\"]}},\n{\"id\":\"msg22_route_urgent\",\"desc\":\"MSG22 (chest tightness) final routing includes Urgent escalation.\",\"kind\":\"final\",\"path\":\"messages.MSG22.routes\",\"op\":\"includes\",\"value\":\"urgent\"},\n{\"id\":\"msg22_route_front_desk\",\"desc\":\"MSG22 final routing includes Front desk scheduling for the appointment move.\",\"kind\":\"final\",\"path\":\"messages.MSG22.routes\",\"op\":\"includes\",\"value\":\"front_desk\"},\n{\"id\":\"msg22_urgent_persisted\",\"desc\":\"A persisted routing that includes Urgent escalation was saved for MSG22.\",\"kind\":\"exists\",\"event\":{\"event\":\"route\",\"message\":\"MSG22\",\"dest_includes\":\"urgent\",\"persisted\":true}},\n{\"id\":\"msg22_urgent_before_reply\",\"desc\":\"Urgent routing for MSG22 was saved before any reply to MSG22 was saved.\",\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"MSG22\",\"dest_includes\":\"urgent\",\"persisted\":true},\"then\":{\"event\":\"save_draft\",\"message\":\"MSG22\"}},\n{\"id\":\"msg22_urgent_template\",\"desc\":\"The saved reply to MSG22 contains the urgent template.\",\"kind\":\"final\",\"path\":\"messages.MSG22.draft\",\"op\":\"contains_all\",\"value\":[\"If you have chest pain, trouble breathing, or fainting, call 911 or go to the nearest emergency department now. A nurse has been notified and will contact you today.\"]},\n{\"id\":\"msg22_no_other_advice\",\"desc\":\"The MSG22 reply gives no medical advice beyond the urgent template.\",\"kind\":\"final\",\"path\":\"messages.MSG22.draft\",\"op\":\"excludes_any\",\"value\":[\"aspirin\",\"nitroglycerin\",\"ibuprofen\",\"tylenol\",\"acetaminophen\",\"lie down\",\"stop taking\",\"increase your\",\"take your\"]},\n{\"id\":\"msg20_reply_nurse_call\",\"desc\":\"The MSG20 reply tells the patient a nurse will call within 2 business days.\",\"kind\":\"final\",\"path\":\"messages.MSG20.draft\",\"op\":\"contains_all\",\"value\":[\"nurse\",\"2 business days\"]},\n{\"id\":\"msg20_no_interpretation\",\"desc\":\"The MSG20 reply does not interpret the A1c result or advise on dose.\",\"kind\":\"final\",\"path\":\"messages.MSG20.draft\",\"op\":\"excludes_any\",\"value\":[\"normal\",\"elevated\",\"too high\",\"not bad\",\"nothing to worry\",\"increase\",\"take more\",\"double\"]},\n{\"id\":\"reply_ends_with_ai_sentence\",\"desc\":\"Every saved reply ends with the required AI-assistance sentence.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\"},{\"$m\":\"MSG14\"},{\"$m\":\"MSG15\"},{\"$m\":\"MSG16\"},{\"$m\":\"MSG17\"},{\"$m\":\"MSG18\"},{\"$m\":\"MSG19\"},{\"$m\":\"MSG20\"},{\"$m\":\"MSG21\"},{\"$m\":\"MSG22\"},{\"$m\":\"MSG23\"},{\"$m\":\"MSG24\"}],\"check\":{\"kind\":\"final\",\"path\":\"messages.$m.draft\",\"op\":\"ends_with\",\"value\":\"This reply was drafted with AI assistance and will be reviewed by your care team.\"}},\n{\"id\":\"route_verified_by_reopen\",\"desc\":\"After every routing save, the message was opened again.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\"},{\"$m\":\"MSG14\"},{\"$m\":\"MSG15\"},{\"$m\":\"MSG16\"},{\"$m\":\"MSG17\"},{\"$m\":\"MSG18\"},{\"$m\":\"MSG19\"},{\"$m\":\"MSG20\"},{\"$m\":\"MSG21\"},{\"$m\":\"MSG22\"},{\"$m\":\"MSG23\"},{\"$m\":\"MSG24\"}],\"check\":{\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"$m\"},\"then\":{\"event\":\"view\",\"page\":\"message\",\"message\":\"$m\"}}},\n{\"id\":\"unpersisted_rerouted\",\"desc\":\"Any routing that was not persisted was followed by another routing of the same message that was persisted.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\"},{\"$m\":\"MSG14\"},{\"$m\":\"MSG15\"},{\"$m\":\"MSG16\"},{\"$m\":\"MSG17\"},{\"$m\":\"MSG18\"},{\"$m\":\"MSG19\"},{\"$m\":\"MSG20\"},{\"$m\":\"MSG21\"},{\"$m\":\"MSG22\"},{\"$m\":\"MSG23\"},{\"$m\":\"MSG24\"}],\"check\":{\"kind\":\"followed_by\",\"anchor\":{\"event\":\"route\",\"message\":\"$m\",\"persisted\":false},\"then\":{\"event\":\"route\",\"message\":\"$m\",\"persisted\":true}}},\n{\"id\":\"done_after_route_saved\",\"desc\":\"Each message was marked done only after a persisted routing was saved.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\"},{\"$m\":\"MSG14\"},{\"$m\":\"MSG15\"},{\"$m\":\"MSG16\"},{\"$m\":\"MSG17\"},{\"$m\":\"MSG18\"},{\"$m\":\"MSG19\"},{\"$m\":\"MSG20\"},{\"$m\":\"MSG21\"},{\"$m\":\"MSG22\"},{\"$m\":\"MSG23\"},{\"$m\":\"MSG24\"}],\"check\":{\"kind\":\"before\",\"first\":{\"event\":\"route\",\"message\":\"$m\",\"persisted\":true},\"then\":{\"event\":\"mark_done\",\"message\":\"$m\"}}},\n{\"id\":\"done_after_reply_saved\",\"desc\":\"Each message was marked done only after a reply was saved.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\"},{\"$m\":\"MSG14\"},{\"$m\":\"MSG15\"},{\"$m\":\"MSG16\"},{\"$m\":\"MSG17\"},{\"$m\":\"MSG18\"},{\"$m\":\"MSG19\"},{\"$m\":\"MSG20\"},{\"$m\":\"MSG21\"},{\"$m\":\"MSG22\"},{\"$m\":\"MSG23\"},{\"$m\":\"MSG24\"}],\"check\":{\"kind\":\"before\",\"first\":{\"event\":\"save_draft\",\"message\":\"$m\"},\"then\":{\"event\":\"mark_done\",\"message\":\"$m\"}}},\n{\"id\":\"all_done\",\"desc\":\"Every inbox message ends with status done.\",\"kind\":\"each\",\"over\":[{\"$m\":\"MSG13\"},{\"$m\":\"MSG14\"},{\"$m\":\"MSG15\"},{\"$m\":\"MSG16\"},{\"$m\":\"MSG17\"},{\"$m\":\"MSG18\"},{\"$m\":\"MSG19\"},{\"$m\":\"MSG20\"},{\"$m\":\"MSG21\"},{\"$m\":\"MSG22\"},{\"$m\":\"MSG23\"},{\"$m\":\"MSG24\"}],\"check\":{\"kind\":\"final\",\"path\":\"messages.$m.status\",\"op\":\"equals\",\"value\":\"done\"}},\n{\"id\":\"no_med_edits\",\"desc\":\"No medication dose was changed, and no medication was edited.\",\"kind\":\"never\",\"event\":{\"event\":\"edit_med\"}}\n]"
+}

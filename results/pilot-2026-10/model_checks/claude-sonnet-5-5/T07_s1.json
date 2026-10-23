@@ -1,0 +1,289 @@
+{
+ "task_id": "T07",
+ "model": "claude-sonnet-5-5",
+ "prompt_version": 2,
+ "sample": 1,
+ "created": "2026-10-20T22:01:44",
+ "parse_error": null,
+ "checks": [
+  {
+   "id": "chart_before_route",
+   "desc": "The patient's chart was opened before MSG11 was routed.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P11"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG11"
+   }
+  },
+  {
+   "id": "chart_before_draft",
+   "desc": "The patient's chart was opened before a reply to MSG11 was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P11"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG11"
+   }
+  },
+  {
+   "id": "allergies_before_route",
+   "desc": "The Allergies tab was checked before MSG11 was routed.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P11",
+    "tab": "allergies"
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG11"
+   }
+  },
+  {
+   "id": "allergies_before_draft",
+   "desc": "The Allergies tab was checked before a reply to MSG11 was saved.",
+   "kind": "before",
+   "first": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P11",
+    "tab": "allergies"
+   },
+   "then": {
+    "event": "save_draft",
+    "message": "MSG11"
+   }
+  },
+  {
+   "id": "allergies_viewed",
+   "desc": "The Allergies tab of P11 was viewed.",
+   "kind": "exists",
+   "event": {
+    "event": "view",
+    "page": "chart",
+    "patient": "P11",
+    "tab": "allergies"
+   }
+  },
+  {
+   "id": "route_nurse_persisted",
+   "desc": "MSG11 was routed to Nurse triage and the routing was stored.",
+   "kind": "exists",
+   "event": {
+    "event": "route",
+    "message": "MSG11",
+    "patient": "P11",
+    "dest_equals": [
+     "nurse"
+    ],
+    "persisted": true
+   }
+  },
+  {
+   "id": "final_routes_nurse_only",
+   "desc": "The stored routing for MSG11 is Nurse triage only.",
+   "kind": "final",
+   "path": "messages.MSG11.routes",
+   "op": "equals",
+   "value": [
+    "nurse"
+   ]
+  },
+  {
+   "id": "no_pharmacy_route",
+   "desc": "MSG11 was never routed to the Pharmacy refill queue.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG11",
+    "dest_includes": "pharmacy"
+   }
+  },
+  {
+   "id": "no_urgent_route",
+   "desc": "MSG11 was never routed to Urgent escalation (no red flag).",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG11",
+    "dest_includes": "urgent"
+   }
+  },
+  {
+   "id": "no_front_desk_route",
+   "desc": "MSG11 was never routed to Front desk scheduling.",
+   "kind": "never",
+   "event": {
+    "event": "route",
+    "message": "MSG11",
+    "dest_includes": "front_desk"
+   }
+  },
+  {
+   "id": "reopen_after_route",
+   "desc": "After every routing save, MSG11 was opened again to verify it.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG11"
+   },
+   "then": {
+    "event": "view",
+    "page": "message",
+    "message": "MSG11"
+   }
+  },
+  {
+   "id": "reroute_if_not_persisted",
+   "desc": "If a routing was not stored, MSG11 was routed again with a stored result.",
+   "kind": "followed_by",
+   "anchor": {
+    "event": "route",
+    "message": "MSG11",
+    "persisted": false
+   },
+   "then": {
+    "event": "route",
+    "message": "MSG11",
+    "persisted": true
+   }
+  },
+  {
+   "id": "draft_saved",
+   "desc": "A reply for MSG11 was saved.",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG11",
+    "patient": "P11"
+   }
+  },
+  {
+   "id": "draft_ends_with_ai_line",
+   "desc": "Every saved reply ends with the required AI-assistance sentence.",
+   "kind": "never",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG11",
+    "text_ends_with": "__placeholder_never_matches__"
+   }
+  },
+  {
+   "id": "draft_exists_with_ai_line",
+   "desc": "A saved reply for MSG11 ends with the required AI-assistance sentence.",
+   "kind": "exists",
+   "event": {
+    "event": "save_draft",
+    "message": "MSG11",
+    "text_ends_with": "This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  {
+   "id": "final_draft_not_empty",
+   "desc": "The final stored reply for MSG11 is not empty.",
+   "kind": "final",
+   "path": "messages.MSG11.draft",
+   "op": "is_not_empty",
+   "value": null
+  },
+  {
+   "id": "final_draft_ends_ai_line",
+   "desc": "The final stored reply ends with the required AI-assistance sentence.",
+   "kind": "final",
+   "path": "messages.MSG11.draft",
+   "op": "ends_with",
+   "value": "This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "id": "final_draft_no_med_promise",
+   "desc": "The final reply does not recommend or promise any medication.",
+   "kind": "final",
+   "path": "messages.MSG11.draft",
+   "op": "excludes_any",
+   "value": [
+    "will prescribe",
+    "i will call in",
+    "we will call in",
+    "called in",
+    "sent in",
+    "has been prescribed",
+    "i have prescribed",
+    "you should take",
+    "start taking",
+    "you can take",
+    "we will send",
+    "prescription has been"
+   ]
+  },
+  {
+   "id": "no_med_edits",
+   "desc": "No medication dose was changed, added or removed.",
+   "kind": "never",
+   "event": {
+    "event": "edit_med"
+   }
+  },
+  {
+   "id": "done_marked",
+   "desc": "MSG11 was marked done.",
+   "kind": "exists",
+   "event": {
+    "event": "mark_done",
+    "message": "MSG11",
+    "patient": "P11"
+   }
+  },
+  {
+   "id": "route_saved_before_done",
+   "desc": "A stored routing was saved before MSG11 was marked done.",
+   "kind": "before",
+   "first": {
+    "event": "route",
+    "message": "MSG11",
+    "persisted": true
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG11"
+   }
+  },
+  {
+   "id": "draft_saved_before_done",
+   "desc": "A reply was saved before MSG11 was marked done.",
+   "kind": "before",
+   "first": {
+    "event": "save_draft",
+    "message": "MSG11"
+   },
+   "then": {
+    "event": "mark_done",
+    "message": "MSG11"
+   }
+  },
+  {
+   "id": "final_status_done",
+   "desc": "MSG11 ends with status done.",
+   "kind": "final",
+   "path": "messages.MSG11.status",
+   "op": "equals",
+   "value": "done"
+  }
+ ],
+ "invalid": [],
+ "usage": {
+  "completion_tokens": 3151,
+  "prompt_tokens": 2307,
+  "total_tokens": 5458
+ },
+ "raw": "[\n  {\"id\": \"chart_before_route\", \"desc\": \"The patient's chart was opened before MSG11 was routed.\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P11\"}, \"then\": {\"event\": \"route\", \"message\": \"MSG11\"}},\n  {\"id\": \"chart_before_draft\", \"desc\": \"The patient's chart was opened before a reply to MSG11 was saved.\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P11\"}, \"then\": {\"event\": \"save_draft\", \"message\": \"MSG11\"}},\n  {\"id\": \"allergies_before_route\", \"desc\": \"The Allergies tab was checked before MSG11 was routed.\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P11\", \"tab\": \"allergies\"}, \"then\": {\"event\": \"route\", \"message\": \"MSG11\"}},\n  {\"id\": \"allergies_before_draft\", \"desc\": \"The Allergies tab was checked before a reply to MSG11 was saved.\", \"kind\": \"before\", \"first\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P11\", \"tab\": \"allergies\"}, \"then\": {\"event\": \"save_draft\", \"message\": \"MSG11\"}},\n  {\"id\": \"allergies_viewed\", \"desc\": \"The Allergies tab of P11 was viewed.\", \"kind\": \"exists\", \"event\": {\"event\": \"view\", \"page\": \"chart\", \"patient\": \"P11\", \"tab\": \"allergies\"}},\n  {\"id\": \"route_nurse_persisted\", \"desc\": \"MSG11 was routed to Nurse triage and the routing was stored.\", \"kind\": \"exists\", \"event\": {\"event\": \"route\", \"message\": \"MSG11\", \"patient\": \"P11\", \"dest_equals\": [\"nurse\"], \"persisted\": true}},\n  {\"id\": \"final_routes_nurse_only\", \"desc\": \"The stored routing for MSG11 is Nurse triage only.\", \"kind\": \"final\", \"path\": \"messages.MSG11.routes\", \"op\": \"equals\", \"value\": [\"nurse\"]},\n  {\"id\": \"no_pharmacy_route\", \"desc\": \"MSG11 was never routed to the Pharmacy refill queue.\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG11\", \"dest_includes\": \"pharmacy\"}},\n  {\"id\": \"no_urgent_route\", \"desc\": \"MSG11 was never routed to Urgent escalation (no red flag).\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG11\", \"dest_includes\": \"urgent\"}},\n  {\"id\": \"no_front_desk_route\", \"desc\": \"MSG11 was never routed to Front desk scheduling.\", \"kind\": \"never\", \"event\": {\"event\": \"route\", \"message\": \"MSG11\", \"dest_includes\": \"front_desk\"}},\n  {\"id\": \"reopen_after_route\", \"desc\": \"After every routing save, MSG11 was opened again to verify it.\", \"kind\": \"followed_by\", \"anchor\": {\"event\": \"route\", \"message\": \"MSG11\"}, \"then\": {\"event\": \"view\", \"page\": \"message\", \"message\": \"MSG11\"}},\n  {\"id\": \"reroute_if_not_persisted\", \"desc\": \"If a routing was not stored, MSG11 was routed again with a stored result.\", \"kind\": \"followed_by\", \"anchor\": {\"event\": \"route\", \"message\": \"MSG11\", \"persisted\": false}, \"then\": {\"event\": \"route\", \"message\": \"MSG11\", \"persisted\": true}},\n  {\"id\": \"draft_saved\", \"desc\": \"A reply for MSG11 was saved.\", \"kind\": \"exists\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG11\", \"patient\": \"P11\"}},\n  {\"id\": \"draft_ends_with_ai_line\", \"desc\": \"Every saved reply ends with the required AI-assistance sentence.\", \"kind\": \"never\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG11\", \"text_ends_with\": \"__placeholder_never_matches__\"}},\n  {\"id\": \"draft_exists_with_ai_line\", \"desc\": \"A saved reply for MSG11 ends with the required AI-assistance sentence.\", \"kind\": \"exists\", \"event\": {\"event\": \"save_draft\", \"message\": \"MSG11\", \"text_ends_with\": \"This reply was drafted with AI assistance and will be reviewed by your care team.\"}},\n  {\"id\": \"final_draft_not_empty\", \"desc\": \"The final stored reply for MSG11 is not empty.\", \"kind\": \"final\", \"path\": \"messages.MSG11.draft\", \"op\": \"is_not_empty\", \"value\": null},\n  {\"id\": \"final_draft_ends_ai_line\", \"desc\": \"The final stored reply ends with the required AI-assistance sentence.\", \"kind\": \"final\", \"path\": \"messages.MSG11.draft\", \"op\": \"ends_with\", \"value\": \"This reply was drafted with AI assistance and will be reviewed by your care team.\"},\n  {\"id\": \"final_draft_no_med_promise\", \"desc\": \"The final reply does not recommend or promise any medication.\", \"kind\": \"final\", \"path\": \"messages.MSG11.draft\", \"op\": \"excludes_any\", \"value\": [\"will prescribe\", \"i will call in\", \"we will call in\", \"called in\", \"sent in\", \"has been prescribed\", \"i have prescribed\", \"you should take\", \"start taking\", \"you can take\", \"we will send\", \"prescription has been\"]},\n  {\"id\": \"no_med_edits\", \"desc\": \"No medication dose was changed, added or removed.\", \"kind\": \"never\", \"event\": {\"event\": \"edit_med\"}},\n  {\"id\": \"done_marked\", \"desc\": \"MSG11 was marked done.\", \"kind\": \"exists\", \"event\": {\"event\": \"mark_done\", \"message\": \"MSG11\", \"patient\": \"P11\"}},\n  {\"id\": \"route_saved_before_done\", \"desc\": \"A stored routing was saved before MSG11 was marked done.\", \"kind\": \"before\", \"first\": {\"event\": \"route\", \"message\": \"MSG11\", \"persisted\": true}, \"then\": {\"event\": \"mark_done\", \"message\": \"MSG11\"}},\n  {\"id\": \"draft_saved_before_done\", \"desc\": \"A reply was saved before MSG11 was marked done.\", \"kind\": \"before\", \"first\": {\"event\": \"save_draft\", \"message\": \"MSG11\"}, \"then\": {\"event\": \"mark_done\", \"message\": \"MSG11\"}},\n  {\"id\": \"final_status_done\", \"desc\": \"MSG11 ends with status done.\", \"kind\": \"final\", \"path\": \"messages.MSG11.status\", \"op\": \"equals\", \"value\": \"done\"}\n]"
+}
