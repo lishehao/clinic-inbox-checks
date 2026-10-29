@@ -52,9 +52,11 @@ These numbers describe this pilot only: one agent model, synthetic data, five ru
 | T11 | Four messages; the routing save of the last one silently fails | Still reopening to confirm the routing on the fourth message (rule 9) |
 | T12 | Refill where the patient explains away trouble breathing | Any mention of trouble breathing is a red flag |
 
-T01 to T08 form the base set and T09 to T12 the hard set, whose patients and messages are in `tasks/seed_hard.json`. The policy the agent follows is in [`tasks/policy.md`](tasks/policy.md). Each task file holds the inbox, any injected faults, the **outcome checks** (what a look at the final result would accept) and the **instruction checks** written by hand from the policy, one rule at a time.
+T01 to T08 form the base set and T09 to T12 the hard set, whose patients and messages are in `tasks/seed_hard.json`. The policy the agent follows is in [`tasks/policy.md`](tasks/policy.md). Each task file holds the inbox, any injected faults, the **outcome checks** (what a look at the final result would accept) and the **instruction checks**, written in advance from the policy, one rule at a time.
 
 ## Checks
+
+In this repository, "hand-written" checks are those instruction checks: a coding agent wrote them in advance from the policy, and I reviewed them. "Model-written" checks are the ones the checking model generates from the same instructions.
 
 Hand-written and model-written checks use the same small JSON language, run by the same interpreter, so the two can be compared run by run. Checks are data, not code; a model-written check cannot execute anything.
 
