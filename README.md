@@ -84,7 +84,7 @@ pip install -r requirements.txt
 python -m playwright install chromium
 
 cp .env.example .env              # pick one way to run the model (see below)
-python -m cic doctor              # checks packages, Chromium, the simulated inbox and the model
+python -m cic doctor              # checks packages, Chromium, the simulated inbox, and sends the model one short request
 
 python -m cic run --tasks all --repeats 5     # model runs, saved under runs/
 python -m cic gen-checks                      # the model writes checks from the policy
@@ -97,7 +97,7 @@ If the batch stops (an API error, or a usage limit), finished runs are kept; run
 
 ### Two ways to run the model
 
-**An API key.** Any OpenAI-compatible `/chat/completions` endpoint: OpenRouter, Alibaba Cloud Model Studio (Qwen) in compatible mode, or OpenAI. Put the base URL, model and key in `.env`, or point `CIC_API_KEY_FILE` at a file that holds the key (for example `OPENROUTER_API_KEY=...`), so the key stays in one place outside the project. With no key set, an OpenRouter endpoint uses `~/.secrets/openrouter/openrouter.env` if that file exists, so no `.env` is needed for the default model.
+**An API key.** Any OpenAI-compatible `/chat/completions` endpoint: OpenRouter, Alibaba Cloud Model Studio (Qwen) in compatible mode, or OpenAI. Put the base URL, model and key in `.env`, or point `CIC_API_KEY_FILE` at a file that holds the key (for example `OPENROUTER_API_KEY=...`), so the key stays in one place outside the project.
 
 **Your ChatGPT plan (Plus or Pro).** OpenAI's [Sign in with ChatGPT](https://developers.openai.com/siwc/token-sharing-open-source) lets a locally run app send Responses API requests that count against the signed-in user's plan. On the computer whose browser you use:
 
@@ -127,7 +127,7 @@ Without a key, scripted test agents exercise the whole pipeline. They are labell
 ```bash
 python -m cic run --tasks all --agent scripted:careful
 python -m cic run --tasks T01 --agent scripted:skip_visits    # accepted, but fails rule 3
-python -m unittest discover -s tests
+python -m unittest discover -s tests    # pip install cryptography first to run the two sign-in signature tests
 ```
 
 ## Layout
@@ -153,3 +153,7 @@ docs/             the demo
 - The ChatGPT-plan sign-in follows OpenAI's documentation and is tested against local fakes of the sign-in and API servers; it has not yet been tried against the real service.
 
 Coding agents wrote most of the code. The idea, the choice of what to build and test, and the understanding of the problem are mine.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

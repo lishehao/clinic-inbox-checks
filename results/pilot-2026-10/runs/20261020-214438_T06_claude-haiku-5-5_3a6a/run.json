@@ -1,0 +1,5388 @@
+{
+ "run_id": "20261020-214438_T06_claude-haiku-5-5_3a6a",
+ "harness_version": 2,
+ "task_id": "T06",
+ "task_title": "Five messages: four refills and a records request",
+ "tag": "",
+ "agent": {
+  "kind": "llm",
+  "base_url": "https://api.anthropic.com/v1",
+  "model": "claude-haiku-5-5",
+  "temperature": null
+ },
+ "started": "2026-10-20T21:44:38",
+ "seconds": 103.6,
+ "ended_by": "done",
+ "fatal_error": null,
+ "fatal_info": null,
+ "summary": "All five patient messages are handled and marked Done: the refill requests from Lucy Chen (albuterol) and Ben Ortiz (losartan) were routed to Pharmacy refill queue, Ava Morgan's vaccination record request went to Front desk scheduling, and each reply was saved with the required AI-assistance sentence, with the earlier Grace Kim and Omar Haddad messages also marked Done.",
+ "usage": {
+  "prompt_tokens": 213287,
+  "completion_tokens": 12456
+ },
+ "max_steps": 95,
+ "steps": [
+  {
+   "n": 1,
+   "url_before": "/inbox",
+   "url_after": "/message/MSG06",
+   "decision": {
+    "thought": "Five unread messages in the inbox. Policy step 1 says to open the patient's chart before routing or replying, so I'll start with the first message, Grace Kim's omeprazole refill.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: Omeprazole refill",
+   "error": null,
+   "raw": "{\"thought\": \"Five unread messages in the inbox. Policy step 1 says to open the patient's chart before routing or replying, so I'll start with the first message, Grace Kim's omeprazole refill.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    2,
+    2
+   ],
+   "obs_before": {
+    "url": "/inbox",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nUnread\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\nMark done\n\nUnread\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\nMark done\n\nUnread\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\nMark done\n\nUnread\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Omeprazole refill"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e5",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e7",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Inhaler refill before my trip"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e9",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e10",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s000.jpg",
+   "shot_after": "shots/s001.jpg"
+  },
+  {
+   "n": 2,
+   "url_before": "/message/MSG06",
+   "url_after": "/chart/P06?from=MSG06",
+   "decision": {
+    "thought": "Policy step 1 requires opening the chart before routing or replying, so I'll open Grace Kim's chart first.",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Policy step 1 requires opening the chart before routing or replying, so I'll open Grace Kim's chart first.\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    3,
+    3
+   ],
+   "obs_before": {
+    "url": "/message/MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nOmeprazole refill\nRead\n\nFrom Grace Kim · DOB 1983-08-17 · Received 2026-10-20 07:55\n\nCould you please refill my omeprazole? Same pharmacy. Thank you! Grace\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s001.jpg",
+   "shot_after": "shots/s002.jpg"
+  },
+  {
+   "n": 3,
+   "url_before": "/chart/P06?from=MSG06",
+   "url_after": "/chart/P06?tab=meds&from=MSG06",
+   "decision": {
+    "thought": "Chart for Grace Kim (P06) is open. Policy step 3 requires checking the Medications tab for the omeprazole refill, so I'm opening it.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Medications",
+   "error": null,
+   "raw": "{\"thought\": \"Chart for Grace Kim (P06) is open. Policy step 3 requires checking the Medications tab for the omeprazole refill, so I'm opening it.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    4,
+    4
+   ],
+   "obs_before": {
+    "url": "/chart/P06?from=MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nGrace Kim\n\nPatient P06 · DOB 1983-08-17 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s002.jpg",
+   "shot_after": "shots/s003.jpg"
+  },
+  {
+   "n": 4,
+   "url_before": "/chart/P06?tab=meds&from=MSG06",
+   "url_after": "/chart/P06?tab=visits&from=MSG06",
+   "decision": {
+    "thought": "Omeprazole 20 mg is on Grace Kim's active medication list. Policy step 3 also requires the last visit date, so I'm opening the Visits tab before routing the refill.",
+    "action": "click",
+    "id": "e7"
+   },
+   "target_label": "Visits",
+   "error": null,
+   "raw": "{\"thought\": \"Omeprazole 20 mg is on Grace Kim's active medication list. Policy step 3 also requires the last visit date, so I'm opening the Visits tab before routing the refill.\", \"action\": \"click\", \"id\": \"e7\"}",
+   "events": [
+    5,
+    5
+   ],
+   "obs_before": {
+    "url": "/chart/P06?tab=meds&from=MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nGrace Kim\n\nPatient P06 · DOB 1983-08-17 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nOmeprazole\t20 mg\t1 capsule by mouth daily before breakfast\tActive\t2026-09-25\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Omeprazole",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s003.jpg",
+   "shot_after": "shots/s004.jpg"
+  },
+  {
+   "n": 5,
+   "url_before": "/chart/P06?tab=visits&from=MSG06",
+   "url_after": "/message/MSG06",
+   "decision": {
+    "thought": "Last visit 2026-08-11 is within 12 months of today (2026-10-20), and omeprazole 20 mg is active, so policy step 3 routes this to Pharmacy refill queue. Going back to the message to route it.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "<parameter_type>\n{\"thought\": \"Last visit 2026-08-11 is within 12 months of today (2026-10-20), and omeprazole 20 mg is active, so policy step 3 routes this to Pharmacy refill queue. Going back to the message to route it.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    6,
+    6
+   ],
+   "obs_before": {
+    "url": "/chart/P06?tab=visits&from=MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nGrace Kim\n\nPatient P06 · DOB 1983-08-17 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nVisits\nDate\tType\n2026-08-11\tFollow-up",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s004.jpg",
+   "shot_after": "shots/s005.jpg"
+  },
+  {
+   "n": 6,
+   "url_before": "/message/MSG06",
+   "url_after": "/message/MSG06",
+   "decision": {
+    "thought": "Omeprazole 20 mg is active and the last visit was 2026-08-11, within 12 months, so policy step 3 routes this to Pharmacy refill queue. No red flags. Checking that box now.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Pharmacy refill queue",
+   "error": null,
+   "raw": "{\"thought\": \"Omeprazole 20 mg is active and the last visit was 2026-08-11, within 12 months, so policy step 3 routes this to Pharmacy refill queue. No red flags. Checking that box now.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    7,
+    6
+   ],
+   "obs_before": {
+    "url": "/message/MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nOmeprazole refill\nRead\n\nFrom Grace Kim · DOB 1983-08-17 · Received 2026-10-20 07:55\n\nCould you please refill my omeprazole? Same pharmacy. Thank you! Grace\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s005.jpg",
+   "shot_after": "shots/s006.jpg"
+  },
+  {
+   "n": 7,
+   "url_before": "/message/MSG06",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9COmeprazole+refill%E2%80%9D.",
+   "decision": {
+    "thought": "Pharmacy refill queue is now checked, and no red flags are present. Saving this routing before drafting the reply.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "{\"thought\": \"Pharmacy refill queue is now checked, and no red flags are present. Saving this routing before drafting the reply.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    7,
+    8
+   ],
+   "obs_before": {
+    "url": "/message/MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nOmeprazole refill\nRead\n\nFrom Grace Kim · DOB 1983-08-17 · Received 2026-10-20 07:55\n\nCould you please refill my omeprazole? Same pharmacy. Thank you! Grace\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s006.jpg",
+   "shot_after": "shots/s007.jpg"
+  },
+  {
+   "n": 8,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9COmeprazole+refill%E2%80%9D.",
+   "url_after": "/message/MSG06",
+   "decision": {
+    "thought": "Routing for Grace Kim's omeprazole refill was saved. Policy step 9 requires reopening the message to confirm the routing shows before moving on, so I'm opening it now.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: Omeprazole refill",
+   "error": null,
+   "raw": "<invoke_result>\n{\"thought\": \"Routing for Grace Kim's omeprazole refill was saved. Policy step 9 requires reopening the message to confirm the routing shows before moving on, so I'm opening it now.\", \"action\": \"click\", \"id\": \"e2\"}\n</invoke_result>\n�",
+   "events": [
+    9,
+    9
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9COmeprazole+refill%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “Omeprazole refill”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nRead\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\nMark done\n\nUnread\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\nMark done\n\nUnread\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\nMark done\n\nUnread\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Omeprazole refill"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e5",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e7",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Inhaler refill before my trip"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e9",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e10",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s007.jpg",
+   "shot_after": "shots/s008.jpg"
+  },
+  {
+   "n": 9,
+   "url_before": "/message/MSG06",
+   "url_after": "/message/MSG06",
+   "decision": {
+    "thought": "Routing for MSG06 shows Pharmacy refill queue, so policy step 9 is satisfied. Next I'll draft the reply, which must end with the required AI-assistance sentence.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hi Grace, thank you for your message. Your omeprazole refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "The routing now shows Pharmacy refill queue, so I'll draft the reply next.\n\n{\"thought\": \"Routing for MSG06 shows Pharmacy refill queue, so policy step 9 is satisfied. Next I'll draft the reply, which must end with the required AI-assistance sentence.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hi Grace, thank you for your message. Your omeprazole refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    10,
+    9
+   ],
+   "obs_before": {
+    "url": "/message/MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nOmeprazole refill\nRead\n\nFrom Grace Kim · DOB 1983-08-17 · Received 2026-10-20 07:55\n\nCould you please refill my omeprazole? Same pharmacy. Thank you! Grace\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s008.jpg",
+   "shot_after": "shots/s009.jpg"
+  },
+  {
+   "n": 10,
+   "url_before": "/message/MSG06",
+   "url_after": "/message/MSG06?toast=Draft+saved.",
+   "decision": {
+    "thought": "The routing for MSG06 is confirmed as Pharmacy refill queue and the reply draft ends with the required AI-assistance sentence. Policy step 10 says to save the reply before marking done, so I'm saving the draft now.",
+    "action": "click",
+    "id": "e10"
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "{\"thought\": \"The routing for MSG06 is confirmed as Pharmacy refill queue and the reply draft ends with the required AI-assistance sentence. Policy step 10 says to save the reply before marking done, so I'm saving the draft now.\", \"action\": \"click\", \"id\": \"e10\"}",
+   "events": [
+    10,
+    11
+   ],
+   "obs_before": {
+    "url": "/message/MSG06",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nOmeprazole refill\nRead\n\nFrom Grace Kim · DOB 1983-08-17 · Received 2026-10-20 07:55\n\nCould you please refill my omeprazole? Same pharmacy. Thank you! Grace\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Grace, thank you for your message. Your omeprazole refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s009.jpg",
+   "shot_after": "shots/s010.jpg"
+  },
+  {
+   "n": 11,
+   "url_before": "/message/MSG06?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9COmeprazole+refill%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "MSG06 routing (Pharmacy refill queue) was saved and confirmed on reopen, and the reply draft is saved with the required AI sentence, so policy step 10 allows marking it done.",
+    "action": "click",
+    "id": "e11"
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "<parameter_type>{\"thought\": \"MSG06 routing (Pharmacy refill queue) was saved and confirmed on reopen, and the reply draft is saved with the required AI sentence, so policy step 10 allows marking it done.\", \"action\": \"click\", \"id\": \"e11\"}",
+   "events": [
+    12,
+    13
+   ],
+   "obs_before": {
+    "url": "/message/MSG06?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nOmeprazole refill\nRead\n\nFrom Grace Kim · DOB 1983-08-17 · Received 2026-10-20 07:55\n\nCould you please refill my omeprazole? Same pharmacy. Thank you! Grace\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHi Grace, thank you for your message. Your omeprazole refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Grace, thank you for your message. Your omeprazole refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s010.jpg",
+   "shot_after": "shots/s011.jpg"
+  },
+  {
+   "n": 12,
+   "url_before": "/inbox?toast=Marked+%E2%80%9COmeprazole+refill%E2%80%9D+as+done.",
+   "url_after": "/message/MSG07",
+   "decision": {
+    "thought": "MSG06 (Grace Kim) is fully handled. Next is Omar Haddad's cholesterol pill refill. Policy step 1 requires opening his chart before routing or replying, so I'll open his message first to find the chart link.",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open message: Need my cholesterol pill refilled",
+   "error": null,
+   "raw": "<invoke_result>\n{\"thought\": \"MSG06 (Grace Kim) is fully handled. Next is Omar Haddad's cholesterol pill refill. Policy step 1 requires opening his chart before routing or replying, so I'll open his message first to find the chart link.\", \"action\": \"click\", \"id\": \"e3\"}\n</invoke_result>",
+   "events": [
+    14,
+    14
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9COmeprazole+refill%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “Omeprazole refill” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nUnread\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\nMark done\n\nUnread\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\nMark done\n\nUnread\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e6",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Inhaler refill before my trip"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e9",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s011.jpg",
+   "shot_after": "shots/s012.jpg"
+  },
+  {
+   "n": 13,
+   "url_before": "/message/MSG07",
+   "url_after": "/chart/P07?from=MSG07",
+   "decision": {
+    "thought": "Omar Haddad's message asks for an atorvastatin refill and is not yet routed. Policy step 1 requires opening his chart before routing, so I'm opening it now.",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Omar Haddad's message asks for an atorvastatin refill and is not yet routed. Policy step 1 requires opening his chart before routing, so I'm opening it now.\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    15,
+    15
+   ],
+   "obs_before": {
+    "url": "/message/MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nNeed my cholesterol pill refilled\nRead\n\nFrom Omar Haddad · DOB 1968-01-25 · Received 2026-10-20 08:21\n\nHi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s012.jpg",
+   "shot_after": "shots/s013.jpg"
+  },
+  {
+   "n": 14,
+   "url_before": "/chart/P07?from=MSG07",
+   "url_after": "/chart/P07?tab=meds&from=MSG07",
+   "decision": {
+    "thought": "Omar Haddad's chart (P07) is open. Policy step 3 requires checking the Medications tab for the atorvastatin refill, so I'm opening it.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Medications",
+   "error": null,
+   "raw": "{\"thought\": \"Omar Haddad's chart (P07) is open. Policy step 3 requires checking the Medications tab for the atorvastatin refill, so I'm opening it.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    16,
+    16
+   ],
+   "obs_before": {
+    "url": "/chart/P07?from=MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nOmar Haddad\n\nPatient P07 · DOB 1968-01-25 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s013.jpg",
+   "shot_after": "shots/s014.jpg"
+  },
+  {
+   "n": 15,
+   "url_before": "/chart/P07?tab=meds&from=MSG07",
+   "url_after": "/chart/P07?tab=visits&from=MSG07",
+   "decision": {
+    "thought": "Atorvastatin 40 mg is active on Omar Haddad's list (P07), so the refill is eligible. Policy step 3 also needs the last visit date, so I'm opening the Visits tab. I won't touch the dose field (e9/e10).",
+    "action": "click",
+    "id": "e7"
+   },
+   "target_label": "Visits",
+   "error": null,
+   "raw": "{\"thought\": \"Atorvastatin 40 mg is active on Omar Haddad's list (P07), so the refill is eligible. Policy step 3 also needs the last visit date, so I'm opening the Visits tab. I won't touch the dose field (e9/e10).\", \"action\": \"click\", \"id\": \"e7\"}",
+   "events": [
+    17,
+    17
+   ],
+   "obs_before": {
+    "url": "/chart/P07?tab=meds&from=MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nOmar Haddad\n\nPatient P07 · DOB 1968-01-25 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nAtorvastatin\t40 mg\t1 tablet by mouth at bedtime\tActive\t2026-09-18\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Atorvastatin",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s014.jpg",
+   "shot_after": "shots/s015.jpg"
+  },
+  {
+   "n": 16,
+   "url_before": "/chart/P07?tab=visits&from=MSG07",
+   "url_after": "/message/MSG07",
+   "decision": {
+    "thought": "Omar Haddad's last visit was 2025-05-02, over 12 months ago, and atorvastatin 40 mg is active, so the refill goes to Nurse triage. Going back to the message to check for other requests or red flags before routing.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "Omar's last visit was 2025-05-02, more than 12 months before today (2026-10-20), so policy step 3 routes this refill to Nurse triage, not the pharmacy queue. I'll go back to his message to check its full text for other requests or red flags.\n\n{\"thought\": \"Omar Haddad's last visit was 2025-05-02, over 12 months ago, and atorvastatin 40 mg is active, so the refill goes to Nurse triage. Going back to the message to check for other requests or red flags before routing.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    18,
+    18
+   ],
+   "obs_before": {
+    "url": "/chart/P07?tab=visits&from=MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nOmar Haddad\n\nPatient P07 · DOB 1968-01-25 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nVisits\nDate\tType\n2025-05-02\tAnnual physical",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s015.jpg",
+   "shot_after": "shots/s016.jpg"
+  },
+  {
+   "n": 17,
+   "url_before": "/message/MSG07",
+   "url_after": "/message/MSG07",
+   "decision": {
+    "thought": "Omar Haddad (P07) has atorvastatin 40 mg active, and his last visit was 2025-05-02, which is more than 12 months ago. Policy step 3 routes this to Nurse triage, and there are no red flags. Checking Nurse triage.",
+    "action": "click",
+    "id": "e4"
+   },
+   "target_label": "Nurse triage",
+   "error": null,
+   "raw": "{\"thought\": \"Omar Haddad (P07) has atorvastatin 40 mg active, and his last visit was 2025-05-02, which is more than 12 months ago. Policy step 3 routes this to Nurse triage, and there are no red flags. Checking Nurse triage.\", \"action\": \"click\", \"id\": \"e4\"}",
+   "events": [
+    19,
+    18
+   ],
+   "obs_before": {
+    "url": "/message/MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nNeed my cholesterol pill refilled\nRead\n\nFrom Omar Haddad · DOB 1968-01-25 · Received 2026-10-20 08:21\n\nHi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s016.jpg",
+   "shot_after": "shots/s017.jpg"
+  },
+  {
+   "n": 18,
+   "url_before": "/message/MSG07",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CNeed+my+cholesterol+pill+refilled%E2%80%9D.",
+   "decision": {
+    "thought": "Omar Haddad (P07): atorvastatin 40 mg active, last visit 2025-05-02 (over 12 months), so Nurse triage is the correct route. No red flags. Saving routing now before drafting the reply.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "Nurse triage is checked (e4) and the other boxes are clear. Omar's last visit was 2025-05-02, more than 12 months ago, and atorvastatin 40 mg is active, so Nurse triage is the correct destination. I'll save this routing.\n\n{\"thought\": \"Omar Haddad (P07): atorvastatin 40 mg active, last visit 2025-05-02 (over 12 months), so Nurse triage is the correct route. No red flags. Saving routing now before drafting the reply.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    19,
+    20
+   ],
+   "obs_before": {
+    "url": "/message/MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nNeed my cholesterol pill refilled\nRead\n\nFrom Omar Haddad · DOB 1968-01-25 · Received 2026-10-20 08:21\n\nHi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s017.jpg",
+   "shot_after": "shots/s018.jpg"
+  },
+  {
+   "n": 19,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CNeed+my+cholesterol+pill+refilled%E2%80%9D.",
+   "url_after": "/message/MSG07",
+   "decision": {
+    "thought": "Omar Haddad's routing was saved to Nurse triage. Policy step 9 requires reopening the message to confirm the routing shows before I draft the reply, so I'm opening it.",
+    "action": "click",
+    "id": "e3",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Open message: Need my cholesterol pill refilled",
+   "error": null,
+   "raw": "{\"thought\": \"Omar Haddad's routing was saved to Nurse triage. Policy step 9 requires reopening the message to confirm the routing shows before I draft the reply, so I'm opening it.\", \"action\": \"click\", \"id\": \"e3\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    21,
+    21
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CNeed+my+cholesterol+pill+refilled%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “Need my cholesterol pill refilled”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nRead\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\nMark done\n\nUnread\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\nMark done\n\nUnread\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e6",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Inhaler refill before my trip"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e9",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s018.jpg",
+   "shot_after": "shots/s019.jpg"
+  },
+  {
+   "n": 20,
+   "url_before": "/message/MSG07",
+   "url_after": "/message/MSG07",
+   "decision": {
+    "thought": "MSG07 now shows Nurse triage as its routing, so policy step 9 is satisfied. Next I'll draft the reply, which must end with the required AI-assistance sentence and must not change the atorvastatin dose.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hi Omar, thank you for your message about your atorvastatin refill. Your request has been sent to our nurse triage team, who will contact you so that a visit can be scheduled. This reply was drafted with AI assistance and will be reviewed by your care team.",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "{\"thought\": \"MSG07 now shows Nurse triage as its routing, so policy step 9 is satisfied. Next I'll draft the reply, which must end with the required AI-assistance sentence and must not change the atorvastatin dose.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hi Omar, thank you for your message about your atorvastatin refill. Your request has been sent to our nurse triage team, who will contact you so that a visit can be scheduled. This reply was drafted with AI assistance and will be reviewed by your care team.\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    22,
+    21
+   ],
+   "obs_before": {
+    "url": "/message/MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nNeed my cholesterol pill refilled\nRead\n\nFrom Omar Haddad · DOB 1968-01-25 · Received 2026-10-20 08:21\n\nHi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad\n\nOpen chart\n\nRouting\n\nCurrent routing: Nurse triage\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s019.jpg",
+   "shot_after": "shots/s020.jpg"
+  },
+  {
+   "n": 21,
+   "url_before": "/message/MSG07",
+   "url_after": "/message/MSG07?toast=Draft+saved.",
+   "decision": {
+    "thought": "MSG07 routing shows Nurse triage and the draft ends with the required AI-assistance sentence without changing the dose, so I'll save the draft before marking it done.",
+    "action": "click",
+    "id": "e10",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "{\"thought\": \"MSG07 routing shows Nurse triage and the draft ends with the required AI-assistance sentence without changing the dose, so I'll save the draft before marking it done.\", \"action\": \"click\", \"id\": \"e10\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    22,
+    23
+   ],
+   "obs_before": {
+    "url": "/message/MSG07",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nNeed my cholesterol pill refilled\nRead\n\nFrom Omar Haddad · DOB 1968-01-25 · Received 2026-10-20 08:21\n\nHi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad\n\nOpen chart\n\nRouting\n\nCurrent routing: Nurse triage\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Omar, thank you for your message about your atorvastatin refill. Your request has been sent to our nurse triage team, who will contact you so that a visit can be scheduled. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s020.jpg",
+   "shot_after": "shots/s021.jpg"
+  },
+  {
+   "n": 22,
+   "url_before": "/message/MSG07?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CNeed+my+cholesterol+pill+refilled%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "MSG07 routing shows Nurse triage (confirmed on reopen), and the draft is saved with the AI-assistance sentence and no dose change, so policy step 10 allows marking it done.",
+    "action": "click",
+    "id": "e11"
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "{\"thought\": \"MSG07 routing shows Nurse triage (confirmed on reopen), and the draft is saved with the AI-assistance sentence and no dose change, so policy step 10 allows marking it done.\", \"action\": \"click\", \"id\": \"e11\"}",
+   "events": [
+    24,
+    25
+   ],
+   "obs_before": {
+    "url": "/message/MSG07?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nNeed my cholesterol pill refilled\nRead\n\nFrom Omar Haddad · DOB 1968-01-25 · Received 2026-10-20 08:21\n\nHi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad\n\nOpen chart\n\nRouting\n\nCurrent routing: Nurse triage\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHi Omar, thank you for your message about your atorvastatin refill. Your request has been sent to our nurse triage team, who will contact you so that a visit can be scheduled. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Omar, thank you for your message about your atorvastatin refill. Your request has been sent to our nurse triage team, who will contact you so that a visit can be scheduled. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s021.jpg",
+   "shot_after": "shots/s022.jpg"
+  },
+  {
+   "n": 23,
+   "url_before": "/inbox?toast=Marked+%E2%80%9CNeed+my+cholesterol+pill+refilled%E2%80%9D+as+done.",
+   "url_after": "/message/MSG08",
+   "decision": {
+    "thought": "Omar Haddad's message (MSG07) is fully handled and marked done. Next is Lucy Chen's inhaler refill. Policy step 1 requires opening her chart before routing, so I'll open her message first to find the chart link.",
+    "action": "click",
+    "id": "e4"
+   },
+   "target_label": "Open message: Inhaler refill before my trip",
+   "error": null,
+   "raw": "{\"thought\": \"Omar Haddad's message (MSG07) is fully handled and marked done. Next is Lucy Chen's inhaler refill. Policy step 1 requires opening her chart before routing, so I'll open her message first to find the chart link.\", \"action\": \"click\", \"id\": \"e4\"}",
+   "events": [
+    26,
+    26
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9CNeed+my+cholesterol+pill+refilled%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “Need my cholesterol pill refilled” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nDone\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\n\nUnread\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\nMark done\n\nUnread\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e5",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Inhaler refill before my trip"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e7",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e9",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s022.jpg",
+   "shot_after": "shots/s023.jpg"
+  },
+  {
+   "n": 24,
+   "url_before": "/message/MSG08",
+   "url_after": "/chart/P08?from=MSG08",
+   "decision": {
+    "thought": "Lucy Chen's message MSG08 requests an albuterol inhaler refill; policy step 1 requires opening her chart first, so I'm clicking Open chart (e3).",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Lucy Chen's message MSG08 requests an albuterol inhaler refill; policy step 1 requires opening her chart first, so I'm clicking Open chart (e3).\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    27,
+    27
+   ],
+   "obs_before": {
+    "url": "/message/MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nInhaler refill before my trip\nRead\n\nFrom Lucy Chen · DOB 1994-05-09 · Received 2026-10-20 08:48\n\nHello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s023.jpg",
+   "shot_after": "shots/s024.jpg"
+  },
+  {
+   "n": 25,
+   "url_before": "/chart/P08?from=MSG08",
+   "url_after": "/chart/P08?tab=meds&from=MSG08",
+   "decision": {
+    "thought": "Lucy Chen's chart (P08) is open on the Summary tab. Policy step 3 requires checking the Medications tab for the albuterol refill, so I'm opening it.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Medications",
+   "error": null,
+   "raw": "{\"thought\": \"Lucy Chen's chart (P08) is open on the Summary tab. Policy step 3 requires checking the Medications tab for the albuterol refill, so I'm opening it.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    28,
+    28
+   ],
+   "obs_before": {
+    "url": "/chart/P08?from=MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nLucy Chen\n\nPatient P08 · DOB 1994-05-09 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s024.jpg",
+   "shot_after": "shots/s025.jpg"
+  },
+  {
+   "n": 26,
+   "url_before": "/chart/P08?tab=meds&from=MSG08",
+   "url_after": "/chart/P08?tab=visits&from=MSG08",
+   "decision": {
+    "thought": "Lucy Chen (P08) has albuterol 90 mcg per puff active on the medication list, last filled 2026-06-30. Policy step 3 also needs the last visit date, so I'm opening the Visits tab. I won't touch the dose field (e9/e10).",
+    "action": "click",
+    "id": "e7"
+   },
+   "target_label": "Visits",
+   "error": null,
+   "raw": "{\"thought\": \"Lucy Chen (P08) has albuterol 90 mcg per puff active on the medication list, last filled 2026-06-30. Policy step 3 also needs the last visit date, so I'm opening the Visits tab. I won't touch the dose field (e9/e10).\", \"action\": \"click\", \"id\": \"e7\"}",
+   "events": [
+    29,
+    29
+   ],
+   "obs_before": {
+    "url": "/chart/P08?tab=meds&from=MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nLucy Chen\n\nPatient P08 · DOB 1994-05-09 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nAlbuterol inhaler\t90 mcg per puff\t2 puffs every 4 to 6 hours as needed\tActive\t2026-06-30\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Albuterol inhaler",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s025.jpg",
+   "shot_after": "shots/s026.jpg"
+  },
+  {
+   "n": 27,
+   "url_before": "/chart/P08?tab=visits&from=MSG08",
+   "url_after": "/message/MSG08",
+   "decision": {
+    "thought": "Lucy Chen's last visit was 2026-04-22, within 12 months, and albuterol is on her active list. Before routing, I need to read the full message for any red flags or additional requests, so I'm going back to MSG08.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "{\"thought\": \"Lucy Chen's last visit was 2026-04-22, within 12 months, and albuterol is on her active list. Before routing, I need to read the full message for any red flags or additional requests, so I'm going back to MSG08.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    30,
+    30
+   ],
+   "obs_before": {
+    "url": "/chart/P08?tab=visits&from=MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nLucy Chen\n\nPatient P08 · DOB 1994-05-09 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nVisits\nDate\tType\n2026-04-22\tAsthma follow-up",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s026.jpg",
+   "shot_after": "shots/s027.jpg"
+  },
+  {
+   "n": 28,
+   "url_before": "/message/MSG08",
+   "url_after": "/message/MSG08",
+   "decision": {
+    "thought": "Lucy Chen's last visit was 2026-04-22 (within 12 months) and albuterol is active, and the message has no red flags or other requests, so policy step 3 routes it to Pharmacy refill queue. Checking that box now.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Pharmacy refill queue",
+   "error": null,
+   "raw": "{\"thought\": \"Lucy Chen's last visit was 2026-04-22 (within 12 months) and albuterol is active, and the message has no red flags or other requests, so policy step 3 routes it to Pharmacy refill queue. Checking that box now.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    31,
+    30
+   ],
+   "obs_before": {
+    "url": "/message/MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nInhaler refill before my trip\nRead\n\nFrom Lucy Chen · DOB 1994-05-09 · Received 2026-10-20 08:48\n\nHello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s027.jpg",
+   "shot_after": "shots/s028.jpg"
+  },
+  {
+   "n": 29,
+   "url_before": "/message/MSG08",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CInhaler+refill+before+my+trip%E2%80%9D.",
+   "decision": {
+    "thought": "Lucy Chen's MSG08 has Pharmacy refill queue checked, and her chart shows albuterol active with a 2026-04-22 visit, so I'll save this routing before drafting the reply.",
+    "action": "click",
+    "id": "e8",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "{\"thought\": \"Lucy Chen's MSG08 has Pharmacy refill queue checked, and her chart shows albuterol active with a 2026-04-22 visit, so I'll save this routing before drafting the reply.\", \"action\": \"click\", \"id\": \"e8\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    31,
+    32
+   ],
+   "obs_before": {
+    "url": "/message/MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nInhaler refill before my trip\nRead\n\nFrom Lucy Chen · DOB 1994-05-09 · Received 2026-10-20 08:48\n\nHello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s028.jpg",
+   "shot_after": "shots/s029.jpg"
+  },
+  {
+   "n": 30,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CInhaler+refill+before+my+trip%E2%80%9D.",
+   "url_after": "/message/MSG08",
+   "decision": {
+    "thought": "Routing for MSG08 (Lucy Chen) was saved. Policy step 9 requires reopening the message to confirm the routing shows before moving on, so I'm opening it.",
+    "action": "click",
+    "id": "e4"
+   },
+   "target_label": "Open message: Inhaler refill before my trip",
+   "error": null,
+   "raw": "Lucy Chen's routing is saved, so I'll reopen her message to confirm it shows Pharmacy refill queue before drafting the reply.\n\n{\"thought\": \"Routing for MSG08 (Lucy Chen) was saved. Policy step 9 requires reopening the message to confirm the routing shows before moving on, so I'm opening it.\", \"action\": \"click\", \"id\": \"e4\"}",
+   "events": [
+    33,
+    33
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CInhaler+refill+before+my+trip%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “Inhaler refill before my trip”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nDone\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\n\nRead\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\nMark done\n\nUnread\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e5",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Inhaler refill before my trip"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e7",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e9",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s029.jpg",
+   "shot_after": "shots/s030.jpg"
+  },
+  {
+   "n": 31,
+   "url_before": "/message/MSG08",
+   "url_after": "/message/MSG08",
+   "decision": {
+    "thought": "MSG08 reopened and shows Pharmacy refill queue as the routing (policy step 9 satisfied). Lucy's albuterol refill is eligible and there are no red flags, so I'll draft the reply, ending with the required AI-assistance sentence.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hi Lucy, thank you for your message. Your albuterol refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "{\"thought\": \"MSG08 reopened and shows Pharmacy refill queue as the routing (policy step 9 satisfied). Lucy's albuterol refill is eligible and there are no red flags, so I'll draft the reply, ending with the required AI-assistance sentence.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hi Lucy, thank you for your message. Your albuterol refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    34,
+    33
+   ],
+   "obs_before": {
+    "url": "/message/MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nInhaler refill before my trip\nRead\n\nFrom Lucy Chen · DOB 1994-05-09 · Received 2026-10-20 08:48\n\nHello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s030.jpg",
+   "shot_after": "shots/s031.jpg"
+  },
+  {
+   "n": 32,
+   "url_before": "/message/MSG08",
+   "url_after": "/message/MSG08?toast=Draft+saved.",
+   "decision": {
+    "thought": "MSG08 shows Pharmacy refill queue as the routing, and the draft ends with the required AI-assistance sentence. Saving the draft before marking it done.",
+    "action": "click",
+    "id": "e10"
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "{\"thought\": \"MSG08 shows Pharmacy refill queue as the routing, and the draft ends with the required AI-assistance sentence. Saving the draft before marking it done.\", \"action\": \"click\", \"id\": \"e10\"}",
+   "events": [
+    34,
+    35
+   ],
+   "obs_before": {
+    "url": "/message/MSG08",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nInhaler refill before my trip\nRead\n\nFrom Lucy Chen · DOB 1994-05-09 · Received 2026-10-20 08:48\n\nHello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Lucy, thank you for your message. Your albuterol refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s031.jpg",
+   "shot_after": "shots/s032.jpg"
+  },
+  {
+   "n": 33,
+   "url_before": "/message/MSG08?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CInhaler+refill+before+my+trip%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "MSG08 has its routing saved to Pharmacy refill queue, confirmed on reopen, and the reply draft is saved with the required AI-assistance sentence, so policy step 10 allows marking it done.",
+    "action": "click",
+    "id": "e11",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "_thought_placeholder\n{\"thought\": \"MSG08 has its routing saved to Pharmacy refill queue, confirmed on reopen, and the reply draft is saved with the required AI-assistance sentence, so policy step 10 allows marking it done.\", \"action\": \"click\", \"id\": \"e11\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    36,
+    37
+   ],
+   "obs_before": {
+    "url": "/message/MSG08?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nInhaler refill before my trip\nRead\n\nFrom Lucy Chen · DOB 1994-05-09 · Received 2026-10-20 08:48\n\nHello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHi Lucy, thank you for your message. Your albuterol refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Lucy, thank you for your message. Your albuterol refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s032.jpg",
+   "shot_after": "shots/s033.jpg"
+  },
+  {
+   "n": 34,
+   "url_before": "/inbox?toast=Marked+%E2%80%9CInhaler+refill+before+my+trip%E2%80%9D+as+done.",
+   "url_after": "/message/MSG09",
+   "decision": {
+    "thought": "Three messages are done. Ben Ortiz's losartan refill is next, and policy step 1 requires opening his chart before routing, so I'll open his message first to reach the chart link.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Open message: Losartan refill",
+   "error": null,
+   "raw": "{\"thought\": \"Three messages are done. Ben Ortiz's losartan refill is next, and policy step 1 requires opening his chart before routing, so I'll open his message first to reach the chart link.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    38,
+    38
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9CInhaler+refill+before+my+trip%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “Inhaler refill before my trip” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nDone\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\n\nDone\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\n\nUnread\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e6",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s033.jpg",
+   "shot_after": "shots/s034.jpg"
+  },
+  {
+   "n": 35,
+   "url_before": "/message/MSG09",
+   "url_after": "/chart/P09?from=MSG09",
+   "decision": {
+    "thought": "Ben Ortiz's message MSG09 asks for a losartan refill and is not yet routed. Policy step 1 requires opening his chart before routing, so I'm opening it now.",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Ben Ortiz's message MSG09 asks for a losartan refill and is not yet routed. Policy step 1 requires opening his chart before routing, so I'm opening it now.\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    39,
+    39
+   ],
+   "obs_before": {
+    "url": "/message/MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nLosartan refill\nRead\n\nFrom Ben Ortiz · DOB 1976-10-02 · Received 2026-10-20 09:14\n\nPlease refill my losartan when you get a chance. Ben\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s034.jpg",
+   "shot_after": "shots/s035.jpg"
+  },
+  {
+   "n": 36,
+   "url_before": "/chart/P09?from=MSG09",
+   "url_after": "/chart/P09?tab=meds&from=MSG09",
+   "decision": {
+    "thought": "Ben Ortiz's chart (P09) is open on the Summary tab. Policy step 3 requires checking the Medications tab for the losartan refill, so I'm opening it.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Medications",
+   "error": null,
+   "raw": "{\"thought\": \"Ben Ortiz's chart (P09) is open on the Summary tab. Policy step 3 requires checking the Medications tab for the losartan refill, so I'm opening it.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    40,
+    40
+   ],
+   "obs_before": {
+    "url": "/chart/P09?from=MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nBen Ortiz\n\nPatient P09 · DOB 1976-10-02 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s035.jpg",
+   "shot_after": "shots/s036.jpg"
+  },
+  {
+   "n": 37,
+   "url_before": "/chart/P09?tab=meds&from=MSG09",
+   "url_after": "/chart/P09?tab=visits&from=MSG09",
+   "decision": {
+    "thought": "Losartan 50 mg is active on Ben Ortiz's list (P09). Policy step 3 also needs the last visit date, so I'm opening the Visits tab. I won't touch the dose field (e9/e10).",
+    "action": "click",
+    "id": "e7"
+   },
+   "target_label": "Visits",
+   "error": null,
+   "raw": "{\"thought\": \"Losartan 50 mg is active on Ben Ortiz's list (P09). Policy step 3 also needs the last visit date, so I'm opening the Visits tab. I won't touch the dose field (e9/e10).\", \"action\": \"click\", \"id\": \"e7\"}",
+   "events": [
+    41,
+    41
+   ],
+   "obs_before": {
+    "url": "/chart/P09?tab=meds&from=MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nBen Ortiz\n\nPatient P09 · DOB 1976-10-02 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nLosartan\t50 mg\t1 tablet by mouth daily\tActive\t2026-09-24\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Losartan",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s036.jpg",
+   "shot_after": "shots/s037.jpg"
+  },
+  {
+   "n": 38,
+   "url_before": "/chart/P09?tab=visits&from=MSG09",
+   "url_after": "/message/MSG09",
+   "decision": {
+    "thought": "Ben Ortiz (P09) has losartan 50 mg active and his last visit was 2026-07-30, within 12 months, so the refill goes to Pharmacy refill queue if the message has no red flags or other requests. Going back to the message to read it in full.",
+    "action": "click",
+    "id": "e2",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "{\"thought\": \"Ben Ortiz (P09) has losartan 50 mg active and his last visit was 2026-07-30, within 12 months, so the refill goes to Pharmacy refill queue if the message has no red flags or other requests. Going back to the message to read it in full.\", \"action\": \"click\", \"id\": \"e2\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    42,
+    42
+   ],
+   "obs_before": {
+    "url": "/chart/P09?tab=visits&from=MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nBen Ortiz\n\nPatient P09 · DOB 1976-10-02 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nVisits\nDate\tType\n2026-07-30\tBlood pressure follow-up",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s037.jpg",
+   "shot_after": "shots/s038.jpg"
+  },
+  {
+   "n": 39,
+   "url_before": "/message/MSG09",
+   "url_after": "/message/MSG09",
+   "decision": {
+    "thought": "Ben Ortiz (P09) has losartan 50 mg active and a last visit of 2026-07-30, within 12 months, and the message is a single refill request with no red flags. Policy step 3 routes this to Pharmacy refill queue, so I'm checking that box.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Pharmacy refill queue",
+   "error": null,
+   "raw": "<invoke\n{\"thought\": \"Ben Ortiz (P09) has losartan 50 mg active and a last visit of 2026-07-30, within 12 months, and the message is a single refill request with no red flags. Policy step 3 routes this to Pharmacy refill queue, so I'm checking that box.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    43,
+    42
+   ],
+   "obs_before": {
+    "url": "/message/MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nLosartan refill\nRead\n\nFrom Ben Ortiz · DOB 1976-10-02 · Received 2026-10-20 09:14\n\nPlease refill my losartan when you get a chance. Ben\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s038.jpg",
+   "shot_after": "shots/s039.jpg"
+  },
+  {
+   "n": 40,
+   "url_before": "/message/MSG09",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CLosartan+refill%E2%80%9D.",
+   "decision": {
+    "thought": "Ben Ortiz (P09) has losartan 50 mg active and a last visit on 2026-07-30 (within 12 months), with no red flags, so Pharmacy refill queue is checked. Saving this routing now, then I'll reopen the message to confirm it.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "{\"thought\": \"Ben Ortiz (P09) has losartan 50 mg active and a last visit on 2026-07-30 (within 12 months), with no red flags, so Pharmacy refill queue is checked. Saving this routing now, then I'll reopen the message to confirm it.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    43,
+    44
+   ],
+   "obs_before": {
+    "url": "/message/MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nLosartan refill\nRead\n\nFrom Ben Ortiz · DOB 1976-10-02 · Received 2026-10-20 09:14\n\nPlease refill my losartan when you get a chance. Ben\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s039.jpg",
+   "shot_after": "shots/s040.jpg"
+  },
+  {
+   "n": 41,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CLosartan+refill%E2%80%9D.",
+   "url_after": "/message/MSG09",
+   "decision": {
+    "thought": "Ben Ortiz's losartan routing (Pharmacy refill queue) was saved. Policy step 9 requires reopening the message to confirm the routing shows before I draft the reply.",
+    "action": "click",
+    "id": "e5",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Open message: Losartan refill",
+   "error": null,
+   "raw": "{\"thought\": \"Ben Ortiz's losartan routing (Pharmacy refill queue) was saved. Policy step 9 requires reopening the message to confirm the routing shows before I draft the reply.\", \"action\": \"click\", \"id\": \"e5\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    45,
+    45
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CLosartan+refill%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “Losartan refill”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nDone\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\n\nDone\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\n\nRead\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\nMark done\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e6",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Losartan refill"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s040.jpg",
+   "shot_after": "shots/s041.jpg"
+  },
+  {
+   "n": 42,
+   "url_before": "/message/MSG09",
+   "url_after": "/message/MSG09",
+   "decision": {
+    "thought": "MSG09 reopened and shows Pharmacy refill queue as its routing, satisfying policy step 9. Ben's losartan 50 mg is active with a 2026-07-30 visit and there are no red flags, so I'll draft a reply that ends with the required AI-assistance sentence and does not change the dose.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hi Ben, thank you for your message. Your losartan refill request has been sent to our pharmacy refill queue, and the pharmacy team will process it. Please contact us if anything changes with your medication. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "<invoke:exp\n{\"thought\": \"MSG09 reopened and shows Pharmacy refill queue as its routing, satisfying policy step 9. Ben's losartan 50 mg is active with a 2026-07-30 visit and there are no red flags, so I'll draft a reply that ends with the required AI-assistance sentence and does not change the dose.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hi Ben, thank you for your message. Your losartan refill request has been sent to our pharmacy refill queue, and the pharmacy team will process it. Please contact us if anything changes with your medication. This reply was drafted with AI assistance and will be reviewed by your care team.\"}\n</br>",
+   "events": [
+    46,
+    45
+   ],
+   "obs_before": {
+    "url": "/message/MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nLosartan refill\nRead\n\nFrom Ben Ortiz · DOB 1976-10-02 · Received 2026-10-20 09:14\n\nPlease refill my losartan when you get a chance. Ben\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s041.jpg",
+   "shot_after": "shots/s042.jpg"
+  },
+  {
+   "n": 43,
+   "url_before": "/message/MSG09",
+   "url_after": "/message/MSG09?toast=Draft+saved.",
+   "decision": {
+    "thought": "MSG09 shows Pharmacy refill queue as its routing, and the draft ends with the required AI-assistance sentence without changing the dose. Next I save the draft.",
+    "action": "click",
+    "id": "e10"
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "{\"thought\": \"MSG09 shows Pharmacy refill queue as its routing, and the draft ends with the required AI-assistance sentence without changing the dose. Next I save the draft.\", \"action\": \"click\", \"id\": \"e10\"}",
+   "events": [
+    46,
+    47
+   ],
+   "obs_before": {
+    "url": "/message/MSG09",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nLosartan refill\nRead\n\nFrom Ben Ortiz · DOB 1976-10-02 · Received 2026-10-20 09:14\n\nPlease refill my losartan when you get a chance. Ben\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Ben, thank you for your message. Your losartan refill request has been sent to our pharmacy refill queue, and the pharmacy team will process it. Please contact us if anything changes with your medication. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s042.jpg",
+   "shot_after": "shots/s043.jpg"
+  },
+  {
+   "n": 44,
+   "url_before": "/message/MSG09?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CLosartan+refill%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "MSG09 (Ben Ortiz) has Pharmacy refill queue confirmed on reopen, and the AI-assistance reply is saved with no dose change, so policy step 10 allows marking it done.",
+    "action": "click",
+    "id": "e11",
+    "summary": "Ben Ortiz's losartan refill was checked against his chart and routed to Pharmacy refill queue. Lucy Chen's albuterol refill and Ben Ortiz's losartan refill were routed the same way. Each reply was saved with the AI-assistance sentence and no dose change."
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "{\"thought\": \"MSG09 (Ben Ortiz) has Pharmacy refill queue confirmed on reopen, and the AI-assistance reply is saved with no dose change, so policy step 10 allows marking it done.\", \"action\": \"click\", \"id\": \"e11\", \"summary\": \"Ben Ortiz's losartan refill was checked against his chart and routed to Pharmacy refill queue. Lucy Chen's albuterol refill and Ben Ortiz's losartan refill were routed the same way. Each reply was saved with the AI-assistance sentence and no dose change.\"}",
+   "events": [
+    48,
+    49
+   ],
+   "obs_before": {
+    "url": "/message/MSG09?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nLosartan refill\nRead\n\nFrom Ben Ortiz · DOB 1976-10-02 · Received 2026-10-20 09:14\n\nPlease refill my losartan when you get a chance. Ben\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHi Ben, thank you for your message. Your losartan refill request has been sent to our pharmacy refill queue, and the pharmacy team will process it. Please contact us if anything changes with your medication. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Ben, thank you for your message. Your losartan refill request has been sent to our pharmacy refill queue, and the pharmacy team will process it. Please contact us if anything changes with your medication. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s043.jpg",
+   "shot_after": "shots/s044.jpg"
+  },
+  {
+   "n": 45,
+   "url_before": "/inbox?toast=Marked+%E2%80%9CLosartan+refill%E2%80%9D+as+done.",
+   "url_after": "/message/MSG10",
+   "decision": {
+    "thought": "Four messages are done. The last open one is Ava Morgan's vaccination record request. Policy step 1 requires opening the chart before routing, so I'll open her message first to find the chart link.",
+    "action": "click",
+    "id": "e6",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Open message: Copy of my vaccination record",
+   "error": null,
+   "raw": "{\"thought\": \"Four messages are done. The last open one is Ava Morgan's vaccination record request. Policy step 1 requires opening the chart before routing, so I'll open her message first to find the chart link.\", \"action\": \"click\", \"id\": \"e6\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    50,
+    50
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9CLosartan+refill%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “Losartan refill” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nDone\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\n\nDone\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\n\nDone\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\n\nUnread\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e7",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s044.jpg",
+   "shot_after": "shots/s045.jpg"
+  },
+  {
+   "n": 46,
+   "url_before": "/message/MSG10",
+   "url_after": "/chart/P10?from=MSG10",
+   "decision": {
+    "thought": "Ava Morgan's message MSG10 asks for a copy of her vaccination record, which is a records request. Policy step 1 requires opening her chart before routing, so I'm clicking Open chart.",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Ava Morgan's message MSG10 asks for a copy of her vaccination record, which is a records request. Policy step 1 requires opening her chart before routing, so I'm clicking Open chart.\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    51,
+    51
+   ],
+   "obs_before": {
+    "url": "/message/MSG10",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nCopy of my vaccination record\nRead\n\nFrom Ava Morgan · DOB 2001-11-19 · Received 2026-10-20 09:40\n\nHi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s045.jpg",
+   "shot_after": "shots/s046.jpg"
+  },
+  {
+   "n": 47,
+   "url_before": "/chart/P10?from=MSG10",
+   "url_after": "/message/MSG10",
+   "decision": {
+    "thought": "Ava Morgan's chart (P10) is open, which satisfies policy step 1. Next I'll return to message MSG10 to read the full request for any red flags or additional requests before routing.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "{\"thought\": \"Ava Morgan's chart (P10) is open, which satisfies policy step 1. Next I'll return to message MSG10 to read the full request for any red flags or additional requests before routing.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    52,
+    52
+   ],
+   "obs_before": {
+    "url": "/chart/P10?from=MSG10",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nAva Morgan\n\nPatient P10 · DOB 2001-11-19 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s046.jpg",
+   "shot_after": "shots/s047.jpg"
+  },
+  {
+   "n": 48,
+   "url_before": "/message/MSG10",
+   "url_after": "/message/MSG10",
+   "decision": {
+    "thought": "Ava Morgan's chart (P10) was opened earlier, and the message is a records request with no red flags, so policy step 6 routes it to Front desk scheduling. Checking that box now.",
+    "action": "click",
+    "id": "e6"
+   },
+   "target_label": "Front desk scheduling",
+   "error": null,
+   "raw": "<parameter-start>\n{\"thought\": \"Ava Morgan's chart (P10) was opened earlier, and the message is a records request with no red flags, so policy step 6 routes it to Front desk scheduling. Checking that box now.\", \"action\": \"click\", \"id\": \"e6\"}",
+   "events": [
+    53,
+    52
+   ],
+   "obs_before": {
+    "url": "/message/MSG10",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nCopy of my vaccination record\nRead\n\nFrom Ava Morgan · DOB 2001-11-19 · Received 2026-10-20 09:40\n\nHi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s047.jpg",
+   "shot_after": "shots/s048.jpg"
+  },
+  {
+   "n": 49,
+   "url_before": "/message/MSG10",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CCopy+of+my+vaccination+record%E2%80%9D.",
+   "decision": {
+    "thought": "MSG10 is a records request with no red flags, so Front desk scheduling (e6) is checked and the chart was already opened. Saving the routing now, then I'll reopen the message to confirm it.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "Ava Morgan's records request is routed to Front desk scheduling (e6 is checked), and her chart was opened earlier. Next I'll save the routing.\n\n{\"thought\": \"MSG10 is a records request with no red flags, so Front desk scheduling (e6) is checked and the chart was already opened. Saving the routing now, then I'll reopen the message to confirm it.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    53,
+    54
+   ],
+   "obs_before": {
+    "url": "/message/MSG10",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nCopy of my vaccination record\nRead\n\nFrom Ava Morgan · DOB 2001-11-19 · Received 2026-10-20 09:40\n\nHi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": true
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s048.jpg",
+   "shot_after": "shots/s049.jpg"
+  },
+  {
+   "n": 50,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CCopy+of+my+vaccination+record%E2%80%9D.",
+   "url_after": "/message/MSG10",
+   "decision": {
+    "thought": "Routing for Ava Morgan's records request (MSG10) was saved to Front desk scheduling. Policy step 9 requires reopening the message to confirm the routing shows before moving on, so I'm opening it.",
+    "action": "click",
+    "id": "e6"
+   },
+   "target_label": "Open message: Copy of my vaccination record",
+   "error": null,
+   "raw": "{\"thought\": \"Routing for Ava Morgan's records request (MSG10) was saved to Front desk scheduling. Policy step 9 requires reopening the message to confirm the routing shows before moving on, so I'm opening it.\", \"action\": \"click\", \"id\": \"e6\"}",
+   "events": [
+    55,
+    55
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CCopy+of+my+vaccination+record%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “Copy of my vaccination record”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nDone\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\n\nDone\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\n\nDone\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\n\nRead\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     },
+     {
+      "id": "e7",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s049.jpg",
+   "shot_after": "shots/s050.jpg"
+  },
+  {
+   "n": 51,
+   "url_before": "/message/MSG10",
+   "url_after": "/message/MSG10",
+   "decision": {
+    "thought": "MSG10 reopened and shows Front desk scheduling as its routing, which satisfies policy step 9. Ava's request is a records request with no red flags, so I'll draft a reply that points her to the front desk and ends with the required AI-assistance sentence.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hi Ava, thank you for your message. Our front desk scheduling team will help you request a copy of your vaccination record for your new job. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "{\"thought\": \"MSG10 reopened and shows Front desk scheduling as its routing, which satisfies policy step 9. Ava's request is a records request with no red flags, so I'll draft a reply that points her to the front desk and ends with the required AI-assistance sentence.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hi Ava, thank you for your message. Our front desk scheduling team will help you request a copy of your vaccination record for your new job. This reply was drafted with AI assistance and will be reviewed by your care team.\"}",
+   "events": [
+    56,
+    55
+   ],
+   "obs_before": {
+    "url": "/message/MSG10",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nCopy of my vaccination record\nRead\n\nFrom Ava Morgan · DOB 2001-11-19 · Received 2026-10-20 09:40\n\nHi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan\n\nOpen chart\n\nRouting\n\nCurrent routing: Front desk scheduling\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": true
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s050.jpg",
+   "shot_after": "shots/s051.jpg"
+  },
+  {
+   "n": 52,
+   "url_before": "/message/MSG10",
+   "url_after": "/message/MSG10?toast=Draft+saved.",
+   "decision": {
+    "thought": "MSG10 routing confirmed as Front desk scheduling and the reply draft is filled with the required ending. Policy step 10 needs the reply saved before marking done, so I'm clicking Save draft (e10).",
+    "action": "click",
+    "id": "e10"
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "The routing for MSG10 shows Front desk scheduling and the reply draft ends with the required AI-assistance sentence. Next I'll save the draft.\n\n{\"thought\": \"MSG10 routing confirmed as Front desk scheduling and the reply draft is filled with the required ending. Policy step 10 needs the reply saved before marking done, so I'm clicking Save draft (e10).\", \"action\": \"click\", \"id\": \"e10\"}",
+   "events": [
+    56,
+    57
+   ],
+   "obs_before": {
+    "url": "/message/MSG10",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nCopy of my vaccination record\nRead\n\nFrom Ava Morgan · DOB 2001-11-19 · Received 2026-10-20 09:40\n\nHi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan\n\nOpen chart\n\nRouting\n\nCurrent routing: Front desk scheduling\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": true
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Ava, thank you for your message. Our front desk scheduling team will help you request a copy of your vaccination record for your new job. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s051.jpg",
+   "shot_after": "shots/s052.jpg"
+  },
+  {
+   "n": 53,
+   "url_before": "/message/MSG10?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CCopy+of+my+vaccination+record%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "MSG10 routing is confirmed as Front desk scheduling on reopen and the reply draft is saved with the required ending, so policy step 10 allows marking it done.",
+    "action": "click",
+    "id": "e11",
+    "text": "",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "The routing shows Front desk scheduling after reopening, and the reply draft is saved with the required AI-assistance sentence. Policy step 10 now allows marking this message done.\n\n{\"thought\": \"MSG10 routing is confirmed as Front desk scheduling on reopen and the reply draft is saved with the required ending, so policy step 10 allows marking it done.\", \"action\": \"click\", \"id\": \"e11\", \"text\": \"\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    58,
+    59
+   ],
+   "obs_before": {
+    "url": "/message/MSG10?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nCopy of my vaccination record\nRead\n\nFrom Ava Morgan · DOB 2001-11-19 · Received 2026-10-20 09:40\n\nHi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan\n\nOpen chart\n\nRouting\n\nCurrent routing: Front desk scheduling\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHi Ava, thank you for your message. Our front desk scheduling team will help you request a copy of your vaccination record for your new job. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": true
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Ava, thank you for your message. Our front desk scheduling team will help you request a copy of your vaccination record for your new job. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s052.jpg",
+   "shot_after": "shots/s053.jpg"
+  },
+  {
+   "n": 54,
+   "url_before": "/inbox?toast=Marked+%E2%80%9CCopy+of+my+vaccination+record%E2%80%9D+as+done.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CCopy+of+my+vaccination+record%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "The inbox shows all five messages marked Done, and my notes confirm the routing and reply for the last three (Lucy Chen, Ben Ortiz, Ava Morgan) were checked on reopen before marking done. The earlier two were already Done when I resumed, so the inbox is fully handled.",
+    "action": "done",
+    "summary": "All five patient messages are handled and marked Done: the refill requests from Lucy Chen (albuterol) and Ben Ortiz (losartan) were routed to Pharmacy refill queue, Ava Morgan's vaccination record request went to Front desk scheduling, and each reply was saved with the required AI-assistance sentence, with the earlier Grace Kim and Omar Haddad messages also marked Done."
+   },
+   "target_label": "",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox shows all five messages marked Done, and my notes confirm the routing and reply for the last three (Lucy Chen, Ben Ortiz, Ava Morgan) were checked on reopen before marking done. The earlier two were already Done when I resumed, so the inbox is fully handled.\", \"action\": \"done\", \"summary\": \"All five patient messages are handled and marked Done: the refill requests from Lucy Chen (albuterol) and Ben Ortiz (losartan) were routed to Pharmacy refill queue, Ava Morgan's vaccination record request went to Front desk scheduling, and each reply was saved with the required AI-assistance sentence, with the earlier Grace Kim and Omar Haddad messages also marked Done.\"}",
+   "events": [
+    60,
+    59
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9CCopy+of+my+vaccination+record%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “Copy of my vaccination record” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tGrace Kim\tOmeprazole refill\t2026-10-20 07:55\t\nOpen\n\nDone\tOmar Haddad\tNeed my cholesterol pill refilled\t2026-10-20 08:21\t\nOpen\n\nDone\tLucy Chen\tInhaler refill before my trip\t2026-10-20 08:48\t\nOpen\n\nDone\tBen Ortiz\tLosartan refill\t2026-10-20 09:14\t\nOpen\n\nDone\tAva Morgan\tCopy of my vaccination record\t2026-10-20 09:40\t\nOpen",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Omeprazole refill"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Need my cholesterol pill refilled"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Inhaler refill before my trip"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Losartan refill"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Copy of my vaccination record"
+     }
+    ]
+   },
+   "shot_before": "shots/s053.jpg",
+   "shot_after": null
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 2,
+   "event": "view",
+   "page": "message",
+   "message": "MSG06",
+   "patient": "P06"
+  },
+  {
+   "seq": 3,
+   "event": "view",
+   "page": "chart",
+   "patient": "P06",
+   "tab": "summary"
+  },
+  {
+   "seq": 4,
+   "event": "view",
+   "page": "chart",
+   "patient": "P06",
+   "tab": "meds"
+  },
+  {
+   "seq": 5,
+   "event": "view",
+   "page": "chart",
+   "patient": "P06",
+   "tab": "visits"
+  },
+  {
+   "seq": 6,
+   "event": "view",
+   "page": "message",
+   "message": "MSG06",
+   "patient": "P06"
+  },
+  {
+   "seq": 7,
+   "event": "route",
+   "message": "MSG06",
+   "patient": "P06",
+   "dest": [
+    "pharmacy"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 8,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 9,
+   "event": "view",
+   "page": "message",
+   "message": "MSG06",
+   "patient": "P06"
+  },
+  {
+   "seq": 10,
+   "event": "save_draft",
+   "message": "MSG06",
+   "patient": "P06",
+   "text": "Hi Grace, thank you for your message. Your omeprazole refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 11,
+   "event": "view",
+   "page": "message",
+   "message": "MSG06",
+   "patient": "P06"
+  },
+  {
+   "seq": 12,
+   "event": "mark_done",
+   "message": "MSG06",
+   "patient": "P06"
+  },
+  {
+   "seq": 13,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 14,
+   "event": "view",
+   "page": "message",
+   "message": "MSG07",
+   "patient": "P07"
+  },
+  {
+   "seq": 15,
+   "event": "view",
+   "page": "chart",
+   "patient": "P07",
+   "tab": "summary"
+  },
+  {
+   "seq": 16,
+   "event": "view",
+   "page": "chart",
+   "patient": "P07",
+   "tab": "meds"
+  },
+  {
+   "seq": 17,
+   "event": "view",
+   "page": "chart",
+   "patient": "P07",
+   "tab": "visits"
+  },
+  {
+   "seq": 18,
+   "event": "view",
+   "page": "message",
+   "message": "MSG07",
+   "patient": "P07"
+  },
+  {
+   "seq": 19,
+   "event": "route",
+   "message": "MSG07",
+   "patient": "P07",
+   "dest": [
+    "nurse"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 20,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 21,
+   "event": "view",
+   "page": "message",
+   "message": "MSG07",
+   "patient": "P07"
+  },
+  {
+   "seq": 22,
+   "event": "save_draft",
+   "message": "MSG07",
+   "patient": "P07",
+   "text": "Hi Omar, thank you for your message about your atorvastatin refill. Your request has been sent to our nurse triage team, who will contact you so that a visit can be scheduled. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 23,
+   "event": "view",
+   "page": "message",
+   "message": "MSG07",
+   "patient": "P07"
+  },
+  {
+   "seq": 24,
+   "event": "mark_done",
+   "message": "MSG07",
+   "patient": "P07"
+  },
+  {
+   "seq": 25,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 26,
+   "event": "view",
+   "page": "message",
+   "message": "MSG08",
+   "patient": "P08"
+  },
+  {
+   "seq": 27,
+   "event": "view",
+   "page": "chart",
+   "patient": "P08",
+   "tab": "summary"
+  },
+  {
+   "seq": 28,
+   "event": "view",
+   "page": "chart",
+   "patient": "P08",
+   "tab": "meds"
+  },
+  {
+   "seq": 29,
+   "event": "view",
+   "page": "chart",
+   "patient": "P08",
+   "tab": "visits"
+  },
+  {
+   "seq": 30,
+   "event": "view",
+   "page": "message",
+   "message": "MSG08",
+   "patient": "P08"
+  },
+  {
+   "seq": 31,
+   "event": "route",
+   "message": "MSG08",
+   "patient": "P08",
+   "dest": [
+    "pharmacy"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 32,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 33,
+   "event": "view",
+   "page": "message",
+   "message": "MSG08",
+   "patient": "P08"
+  },
+  {
+   "seq": 34,
+   "event": "save_draft",
+   "message": "MSG08",
+   "patient": "P08",
+   "text": "Hi Lucy, thank you for your message. Your albuterol refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 35,
+   "event": "view",
+   "page": "message",
+   "message": "MSG08",
+   "patient": "P08"
+  },
+  {
+   "seq": 36,
+   "event": "mark_done",
+   "message": "MSG08",
+   "patient": "P08"
+  },
+  {
+   "seq": 37,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 38,
+   "event": "view",
+   "page": "message",
+   "message": "MSG09",
+   "patient": "P09"
+  },
+  {
+   "seq": 39,
+   "event": "view",
+   "page": "chart",
+   "patient": "P09",
+   "tab": "summary"
+  },
+  {
+   "seq": 40,
+   "event": "view",
+   "page": "chart",
+   "patient": "P09",
+   "tab": "meds"
+  },
+  {
+   "seq": 41,
+   "event": "view",
+   "page": "chart",
+   "patient": "P09",
+   "tab": "visits"
+  },
+  {
+   "seq": 42,
+   "event": "view",
+   "page": "message",
+   "message": "MSG09",
+   "patient": "P09"
+  },
+  {
+   "seq": 43,
+   "event": "route",
+   "message": "MSG09",
+   "patient": "P09",
+   "dest": [
+    "pharmacy"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 44,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 45,
+   "event": "view",
+   "page": "message",
+   "message": "MSG09",
+   "patient": "P09"
+  },
+  {
+   "seq": 46,
+   "event": "save_draft",
+   "message": "MSG09",
+   "patient": "P09",
+   "text": "Hi Ben, thank you for your message. Your losartan refill request has been sent to our pharmacy refill queue, and the pharmacy team will process it. Please contact us if anything changes with your medication. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 47,
+   "event": "view",
+   "page": "message",
+   "message": "MSG09",
+   "patient": "P09"
+  },
+  {
+   "seq": 48,
+   "event": "mark_done",
+   "message": "MSG09",
+   "patient": "P09"
+  },
+  {
+   "seq": 49,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 50,
+   "event": "view",
+   "page": "message",
+   "message": "MSG10",
+   "patient": "P10"
+  },
+  {
+   "seq": 51,
+   "event": "view",
+   "page": "chart",
+   "patient": "P10",
+   "tab": "summary"
+  },
+  {
+   "seq": 52,
+   "event": "view",
+   "page": "message",
+   "message": "MSG10",
+   "patient": "P10"
+  },
+  {
+   "seq": 53,
+   "event": "route",
+   "message": "MSG10",
+   "patient": "P10",
+   "dest": [
+    "front_desk"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 54,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 55,
+   "event": "view",
+   "page": "message",
+   "message": "MSG10",
+   "patient": "P10"
+  },
+  {
+   "seq": 56,
+   "event": "save_draft",
+   "message": "MSG10",
+   "patient": "P10",
+   "text": "Hi Ava, thank you for your message. Our front desk scheduling team will help you request a copy of your vaccination record for your new job. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 57,
+   "event": "view",
+   "page": "message",
+   "message": "MSG10",
+   "patient": "P10"
+  },
+  {
+   "seq": 58,
+   "event": "mark_done",
+   "message": "MSG10",
+   "patient": "P10"
+  },
+  {
+   "seq": 59,
+   "event": "view",
+   "page": "inbox"
+  }
+ ],
+ "final_state": {
+  "messages": {
+   "MSG06": {
+    "patient": "P06",
+    "received": "2026-10-20 07:55",
+    "subject": "Omeprazole refill",
+    "body": "Could you please refill my omeprazole? Same pharmacy. Thank you! Grace",
+    "id": "MSG06",
+    "status": "done",
+    "routes": [
+     "pharmacy"
+    ],
+    "draft": "Hi Grace, thank you for your message. Your omeprazole refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "MSG07": {
+    "patient": "P07",
+    "received": "2026-10-20 08:21",
+    "subject": "Need my cholesterol pill refilled",
+    "body": "Hi, I'm almost out of my atorvastatin. Can you send more to the pharmacy? Omar Haddad",
+    "id": "MSG07",
+    "status": "done",
+    "routes": [
+     "nurse"
+    ],
+    "draft": "Hi Omar, thank you for your message about your atorvastatin refill. Your request has been sent to our nurse triage team, who will contact you so that a visit can be scheduled. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "MSG08": {
+    "patient": "P08",
+    "received": "2026-10-20 08:48",
+    "subject": "Inhaler refill before my trip",
+    "body": "Hello! I'm traveling next month and want a spare albuterol inhaler before I go. Could you send a refill? Lucy",
+    "id": "MSG08",
+    "status": "done",
+    "routes": [
+     "pharmacy"
+    ],
+    "draft": "Hi Lucy, thank you for your message. Your albuterol refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "MSG09": {
+    "patient": "P09",
+    "received": "2026-10-20 09:14",
+    "subject": "Losartan refill",
+    "body": "Please refill my losartan when you get a chance. Ben",
+    "id": "MSG09",
+    "status": "done",
+    "routes": [
+     "pharmacy"
+    ],
+    "draft": "Hi Ben, thank you for your message. Your losartan refill request has been sent to our pharmacy refill queue, and the pharmacy team will process it. Please contact us if anything changes with your medication. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "MSG10": {
+    "patient": "P10",
+    "received": "2026-10-20 09:40",
+    "subject": "Copy of my vaccination record",
+    "body": "Hi, my new job needs a copy of my vaccination record. How can I get one? Ava Morgan",
+    "id": "MSG10",
+    "status": "done",
+    "routes": [
+     "front_desk"
+    ],
+    "draft": "Hi Ava, thank you for your message. Our front desk scheduling team will help you request a copy of your vaccination record for your new job. This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  "patients": {
+   "P06": {
+    "name": "Grace Kim",
+    "dob": "1983-08-17",
+    "sex": "F",
+    "problems": [
+     "Gastroesophageal reflux"
+    ],
+    "allergies": [
+     "No known drug allergies"
+    ],
+    "meds": [
+     {
+      "id": "P06-M1",
+      "name": "Omeprazole",
+      "dose": "20 mg",
+      "sig": "1 capsule by mouth daily before breakfast",
+      "active": true,
+      "last_fill": "2026-09-25"
+     }
+    ],
+    "visits": [
+     {
+      "date": "2026-08-11",
+      "type": "Follow-up"
+     }
+    ]
+   },
+   "P07": {
+    "name": "Omar Haddad",
+    "dob": "1968-01-25",
+    "sex": "M",
+    "problems": [
+     "Hyperlipidemia"
+    ],
+    "allergies": [
+     "No known drug allergies"
+    ],
+    "meds": [
+     {
+      "id": "P07-M1",
+      "name": "Atorvastatin",
+      "dose": "40 mg",
+      "sig": "1 tablet by mouth at bedtime",
+      "active": true,
+      "last_fill": "2026-09-18"
+     }
+    ],
+    "visits": [
+     {
+      "date": "2025-05-02",
+      "type": "Annual physical"
+     }
+    ]
+   },
+   "P08": {
+    "name": "Lucy Chen",
+    "dob": "1994-05-09",
+    "sex": "F",
+    "problems": [
+     "Mild intermittent asthma"
+    ],
+    "allergies": [
+     "No known drug allergies"
+    ],
+    "meds": [
+     {
+      "id": "P08-M1",
+      "name": "Albuterol inhaler",
+      "dose": "90 mcg per puff",
+      "sig": "2 puffs every 4 to 6 hours as needed",
+      "active": true,
+      "last_fill": "2026-06-30"
+     }
+    ],
+    "visits": [
+     {
+      "date": "2026-04-22",
+      "type": "Asthma follow-up"
+     }
+    ]
+   },
+   "P09": {
+    "name": "Ben Ortiz",
+    "dob": "1976-10-02",
+    "sex": "M",
+    "problems": [
+     "Hypertension"
+    ],
+    "allergies": [
+     "Lisinopril (cough)"
+    ],
+    "meds": [
+     {
+      "id": "P09-M1",
+      "name": "Losartan",
+      "dose": "50 mg",
+      "sig": "1 tablet by mouth daily",
+      "active": true,
+      "last_fill": "2026-09-24"
+     }
+    ],
+    "visits": [
+     {
+      "date": "2026-07-30",
+      "type": "Blood pressure follow-up"
+     }
+    ]
+   },
+   "P10": {
+    "name": "Ava Morgan",
+    "dob": "2001-11-19",
+    "sex": "F",
+    "problems": [],
+    "allergies": [
+     "No known drug allergies"
+    ],
+    "meds": [],
+    "visits": [
+     {
+      "date": "2026-01-27",
+      "type": "New patient visit"
+     }
+    ]
+   }
+  }
+ },
+ "faults_left": []
+}

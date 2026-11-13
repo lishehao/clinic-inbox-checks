@@ -47,8 +47,8 @@ def _client():
     from cic.agent.llm import ChatClient, LLMError
     key = s["api_key"]
     if not key:
-        from cic.config import default_key_file, read_key_file
-        key_file = s["api_key_file"] or default_key_file(s["base_url"])
+        from cic.config import read_key_file
+        key_file = s["api_key_file"]
         if key_file:
             try:
                 key = read_key_file(key_file)
