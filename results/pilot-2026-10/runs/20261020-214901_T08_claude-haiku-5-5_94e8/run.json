@@ -1,0 +1,1356 @@
+{
+ "run_id": "20261020-214901_T08_claude-haiku-5-5_94e8",
+ "harness_version": 2,
+ "task_id": "T08",
+ "task_title": "Refill where the first routing save silently fails",
+ "tag": "",
+ "agent": {
+  "kind": "llm",
+  "base_url": "https://api.anthropic.com/v1",
+  "model": "claude-haiku-5-5",
+  "temperature": null
+ },
+ "started": "2026-10-20T21:49:01",
+ "seconds": 26.2,
+ "ended_by": "done",
+ "fatal_error": null,
+ "fatal_info": null,
+ "summary": "Opened Ruth Alvarez's HCTZ refill request, confirmed HCTZ 25 mg is active and her last visit (2026-07-08) is within 12 months, routed it to Pharmacy refill queue (re-saved after the first save did not stick), saved a reply ending with the required AI-assistance sentence, and marked the message done; it was the only message in the inbox.",
+ "usage": {
+  "prompt_tokens": 33547,
+  "completion_tokens": 3274
+ },
+ "max_steps": 35,
+ "steps": [
+  {
+   "n": 1,
+   "url_before": "/inbox",
+   "url_after": "/message/MSG12",
+   "decision": {
+    "thought": "The inbox has one unread message, HCTZ refill from Ruth Alvarez. Policy step 1 says to open the chart before routing or replying, so I'll open the message first.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: HCTZ refill",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox has one unread message, HCTZ refill from Ruth Alvarez. Policy step 1 says to open the chart before routing or replying, so I'll open the message first.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    2,
+    2
+   ],
+   "obs_before": {
+    "url": "/inbox",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nUnread\tRuth Alvarez\tHCTZ refill\t2026-10-20 10:35\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: HCTZ refill"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: HCTZ refill"
+     }
+    ]
+   },
+   "shot_before": "shots/s000.jpg",
+   "shot_after": "shots/s001.jpg"
+  },
+  {
+   "n": 2,
+   "url_before": "/message/MSG12",
+   "url_after": "/chart/P12?from=MSG12",
+   "decision": {
+    "thought": "Policy step 1 requires opening the chart before routing or replying, so I'll open the chart now (e3) to check the active medication list and last visit date.",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Policy step 1 requires opening the chart before routing or replying, so I'll open the chart now (e3) to check the active medication list and last visit date.\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    3,
+    3
+   ],
+   "obs_before": {
+    "url": "/message/MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s001.jpg",
+   "shot_after": "shots/s002.jpg"
+  },
+  {
+   "n": 3,
+   "url_before": "/chart/P12?from=MSG12",
+   "url_after": "/chart/P12?tab=meds&from=MSG12",
+   "decision": {
+    "thought": "Chart is open for Ruth Alvarez (P12); today is Tue Oct 20, 2026. Policy step 3 requires checking the active medication list next, so I'll open the Medications tab.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Medications",
+   "error": null,
+   "raw": "{\"thought\": \"Chart is open for Ruth Alvarez (P12); today is Tue Oct 20, 2026. Policy step 3 requires checking the active medication list next, so I'll open the Medications tab.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    4,
+    4
+   ],
+   "obs_before": {
+    "url": "/chart/P12?from=MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nRuth Alvarez\n\nPatient P12 · DOB 1959-07-27 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s002.jpg",
+   "shot_after": "shots/s003.jpg"
+  },
+  {
+   "n": 4,
+   "url_before": "/chart/P12?tab=meds&from=MSG12",
+   "url_after": "/chart/P12?tab=visits&from=MSG12",
+   "decision": {
+    "thought": "Hydrochlorothiazide 25 mg is on the active medication list for Ruth Alvarez (P12). Policy step 3 also requires the last visit date, so I'll open the Visits tab next.",
+    "action": "click",
+    "id": "e7"
+   },
+   "target_label": "Visits",
+   "error": null,
+   "raw": "{\"thought\": \"Hydrochlorothiazide 25 mg is on the active medication list for Ruth Alvarez (P12). Policy step 3 also requires the last visit date, so I'll open the Visits tab next.\", \"action\": \"click\", \"id\": \"e7\"}",
+   "events": [
+    5,
+    5
+   ],
+   "obs_before": {
+    "url": "/chart/P12?tab=meds&from=MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nRuth Alvarez\n\nPatient P12 · DOB 1959-07-27 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nHydrochlorothiazide\t25 mg\t1 tablet by mouth every morning\tActive\t2026-09-22\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Hydrochlorothiazide",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s003.jpg",
+   "shot_after": "shots/s004.jpg"
+  },
+  {
+   "n": 5,
+   "url_before": "/chart/P12?tab=visits&from=MSG12",
+   "url_after": "/message/MSG12",
+   "decision": {
+    "thought": "Last visit was 2026-07-08, within 12 months of today (Oct 20, 2026), and HCTZ 25 mg is active, so a refill routes to Pharmacy refill queue. Next I'll return to the message to read it fully and check for other requests.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "<invoke_tool>\n{\"thought\": \"Last visit was 2026-07-08, within 12 months of today (Oct 20, 2026), and HCTZ 25 mg is active, so a refill routes to Pharmacy refill queue. Next I'll return to the message to read it fully and check for other requests.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    6,
+    6
+   ],
+   "obs_before": {
+    "url": "/chart/P12?tab=visits&from=MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nRuth Alvarez\n\nPatient P12 · DOB 1959-07-27 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nVisits\nDate\tType\n2026-07-08\tBlood pressure follow-up",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s004.jpg",
+   "shot_after": "shots/s005.jpg"
+  },
+  {
+   "n": 6,
+   "url_before": "/message/MSG12",
+   "url_after": "/message/MSG12",
+   "decision": {
+    "thought": "Message is a single HCTZ refill request. HCTZ 25 mg is active and the last visit (2026-07-08) is within 12 months, so policy step 3 routes it to Pharmacy refill queue. Checking that box now.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Pharmacy refill queue",
+   "error": null,
+   "raw": "<invoke:\n{\"thought\": \"Message is a single HCTZ refill request. HCTZ 25 mg is active and the last visit (2026-07-08) is within 12 months, so policy step 3 routes it to Pharmacy refill queue. Checking that box now.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    7,
+    6
+   ],
+   "obs_before": {
+    "url": "/message/MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s005.jpg",
+   "shot_after": "shots/s006.jpg"
+  },
+  {
+   "n": 7,
+   "url_before": "/message/MSG12",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CHCTZ+refill%E2%80%9D.",
+   "decision": {
+    "thought": "Pharmacy refill queue is checked and it is the only destination that applies (no red flags, single refill request). Saving the routing now, before the reply, as policy step 9 requires.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "{\"thought\": \"Pharmacy refill queue is checked and it is the only destination that applies (no red flags, single refill request). Saving the routing now, before the reply, as policy step 9 requires.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    7,
+    8
+   ],
+   "obs_before": {
+    "url": "/message/MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s006.jpg",
+   "shot_after": "shots/s007.jpg"
+  },
+  {
+   "n": 8,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CHCTZ+refill%E2%80%9D.",
+   "url_after": "/message/MSG12",
+   "decision": {
+    "thought": "Routing was saved for the HCTZ refill, but policy step 9 requires reopening the message to confirm the new routing shows before moving on. Opening it now.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: HCTZ refill",
+   "error": null,
+   "raw": "{\"thought\": \"Routing was saved for the HCTZ refill, but policy step 9 requires reopening the message to confirm the new routing shows before moving on. Opening it now.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    9,
+    9
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CHCTZ+refill%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “HCTZ refill”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nRead\tRuth Alvarez\tHCTZ refill\t2026-10-20 10:35\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: HCTZ refill"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: HCTZ refill"
+     }
+    ]
+   },
+   "shot_before": "shots/s007.jpg",
+   "shot_after": "shots/s008.jpg"
+  },
+  {
+   "n": 9,
+   "url_before": "/message/MSG12",
+   "url_after": "/message/MSG12",
+   "decision": {
+    "thought": "The message page shows 'Current routing: Not routed yet' and the Pharmacy refill queue box is unchecked, so the earlier save did not stick. Policy step 9 requires routing again, so I'll re-check Pharmacy refill queue (e5) before saving.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Pharmacy refill queue",
+   "error": null,
+   "raw": "The routing shows \"Not routed yet\" and the Pharmacy refill queue box is unchecked, so the earlier save didn't take. Policy step 9 says to route it again, so I'll re-check that box.\n\n{\"thought\": \"The message page shows 'Current routing: Not routed yet' and the Pharmacy refill queue box is unchecked, so the earlier save did not stick. Policy step 9 requires routing again, so I'll re-check Pharmacy refill queue (e5) before saving.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    10,
+    9
+   ],
+   "obs_before": {
+    "url": "/message/MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s008.jpg",
+   "shot_after": "shots/s009.jpg"
+  },
+  {
+   "n": 10,
+   "url_before": "/message/MSG12",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CHCTZ+refill%E2%80%9D.",
+   "decision": {
+    "thought": "The Pharmacy refill queue box is now checked, and it is the only destination that applies. I'll save the routing before drafting the reply, as policy step 9 requires, then reopen the message to confirm it stuck.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "{\"thought\": \"The Pharmacy refill queue box is now checked, and it is the only destination that applies. I'll save the routing before drafting the reply, as policy step 9 requires, then reopen the message to confirm it stuck.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    10,
+    11
+   ],
+   "obs_before": {
+    "url": "/message/MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s009.jpg",
+   "shot_after": "shots/s010.jpg"
+  },
+  {
+   "n": 11,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CHCTZ+refill%E2%80%9D.",
+   "url_after": "/message/MSG12",
+   "decision": {
+    "thought": "The inbox shows the save toast, but the earlier save did not stick, so policy step 9 requires reopening the message to confirm the routing before I draft the reply.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: HCTZ refill",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox shows the save toast, but the earlier save did not stick, so policy step 9 requires reopening the message to confirm the routing before I draft the reply.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    12,
+    12
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CHCTZ+refill%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “HCTZ refill”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nRead\tRuth Alvarez\tHCTZ refill\t2026-10-20 10:35\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: HCTZ refill"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: HCTZ refill"
+     }
+    ]
+   },
+   "shot_before": "shots/s010.jpg",
+   "shot_after": "shots/s011.jpg"
+  },
+  {
+   "n": 12,
+   "url_before": "/message/MSG12",
+   "url_after": "/message/MSG12",
+   "decision": {
+    "thought": "The message page now shows 'Current routing: Pharmacy refill queue', so the routing saved this time. Next I'll draft the reply to Ruth's refill request, ending with the required AI-assistance sentence.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hello Ruth, your request for a refill of your hydrochlorothiazide has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "{\"thought\": \"The message page now shows 'Current routing: Pharmacy refill queue', so the routing saved this time. Next I'll draft the reply to Ruth's refill request, ending with the required AI-assistance sentence.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hello Ruth, your request for a refill of your hydrochlorothiazide has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\"}",
+   "events": [
+    13,
+    12
+   ],
+   "obs_before": {
+    "url": "/message/MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s011.jpg",
+   "shot_after": "shots/s012.jpg"
+  },
+  {
+   "n": 13,
+   "url_before": "/message/MSG12",
+   "url_after": "/message/MSG12?toast=Draft+saved.",
+   "decision": {
+    "thought": "Routing now shows 'Pharmacy refill queue' as saved, and the reply draft contains the required AI-assistance sentence. The draft is not saved yet, so I'll click Save draft before marking the message done.",
+    "action": "click",
+    "id": "e10"
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "{\"thought\": \"Routing now shows 'Pharmacy refill queue' as saved, and the reply draft contains the required AI-assistance sentence. The draft is not saved yet, so I'll click Save draft before marking the message done.\", \"action\": \"click\", \"id\": \"e10\"}",
+   "events": [
+    13,
+    14
+   ],
+   "obs_before": {
+    "url": "/message/MSG12",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hello Ruth, your request for a refill of your hydrochlorothiazide has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s012.jpg",
+   "shot_after": "shots/s013.jpg"
+  },
+  {
+   "n": 14,
+   "url_before": "/message/MSG12?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CHCTZ+refill%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "The routing shows 'Pharmacy refill queue' on a reopened message and the reply draft is saved with the required AI sentence, so the message is ready to mark done under step 10.",
+    "action": "click",
+    "id": "e11"
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "<invoke>\n{\"thought\": \"The routing shows 'Pharmacy refill queue' on a reopened message and the reply draft is saved with the required AI sentence, so the message is ready to mark done under step 10.\", \"action\": \"click\", \"id\": \"e11\"}\n</invoke>\nels",
+   "events": [
+    15,
+    16
+   ],
+   "obs_before": {
+    "url": "/message/MSG12?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nHCTZ refill\nRead\n\nFrom Ruth Alvarez · DOB 1959-07-27 · Received 2026-10-20 10:35\n\nGood morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHello Ruth, your request for a refill of your hydrochlorothiazide has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hello Ruth, your request for a refill of your hydrochlorothiazide has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s013.jpg",
+   "shot_after": "shots/s014.jpg"
+  },
+  {
+   "n": 15,
+   "url_before": "/inbox?toast=Marked+%E2%80%9CHCTZ+refill%E2%80%9D+as+done.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CHCTZ+refill%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "The inbox now lists only the HCTZ refill message, marked Done. Routing was confirmed on a reopened message (Pharmacy refill queue) and the reply draft was saved before marking done, so the inbox is fully handled.",
+    "action": "done",
+    "summary": "Opened Ruth Alvarez's HCTZ refill request, confirmed HCTZ 25 mg is active and her last visit (2026-07-08) is within 12 months, routed it to Pharmacy refill queue (re-saved after the first save did not stick), saved a reply ending with the required AI-assistance sentence, and marked the message done; it was the only message in the inbox."
+   },
+   "target_label": "",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox now lists only the HCTZ refill message, marked Done. Routing was confirmed on a reopened message (Pharmacy refill queue) and the reply draft was saved before marking done, so the inbox is fully handled.\", \"action\": \"done\", \"summary\": \"Opened Ruth Alvarez's HCTZ refill request, confirmed HCTZ 25 mg is active and her last visit (2026-07-08) is within 12 months, routed it to Pharmacy refill queue (re-saved after the first save did not stick), saved a reply ending with the required AI-assistance sentence, and marked the message done; it was the only message in the inbox.\"}",
+   "events": [
+    17,
+    16
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9CHCTZ+refill%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “HCTZ refill” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tRuth Alvarez\tHCTZ refill\t2026-10-20 10:35\t\nOpen",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: HCTZ refill"
+     }
+    ]
+   },
+   "shot_before": "shots/s014.jpg",
+   "shot_after": null
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 2,
+   "event": "view",
+   "page": "message",
+   "message": "MSG12",
+   "patient": "P12"
+  },
+  {
+   "seq": 3,
+   "event": "view",
+   "page": "chart",
+   "patient": "P12",
+   "tab": "summary"
+  },
+  {
+   "seq": 4,
+   "event": "view",
+   "page": "chart",
+   "patient": "P12",
+   "tab": "meds"
+  },
+  {
+   "seq": 5,
+   "event": "view",
+   "page": "chart",
+   "patient": "P12",
+   "tab": "visits"
+  },
+  {
+   "seq": 6,
+   "event": "view",
+   "page": "message",
+   "message": "MSG12",
+   "patient": "P12"
+  },
+  {
+   "seq": 7,
+   "event": "route",
+   "message": "MSG12",
+   "patient": "P12",
+   "dest": [
+    "pharmacy"
+   ],
+   "persisted": false
+  },
+  {
+   "seq": 8,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 9,
+   "event": "view",
+   "page": "message",
+   "message": "MSG12",
+   "patient": "P12"
+  },
+  {
+   "seq": 10,
+   "event": "route",
+   "message": "MSG12",
+   "patient": "P12",
+   "dest": [
+    "pharmacy"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 11,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 12,
+   "event": "view",
+   "page": "message",
+   "message": "MSG12",
+   "patient": "P12"
+  },
+  {
+   "seq": 13,
+   "event": "save_draft",
+   "message": "MSG12",
+   "patient": "P12",
+   "text": "Hello Ruth, your request for a refill of your hydrochlorothiazide has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 14,
+   "event": "view",
+   "page": "message",
+   "message": "MSG12",
+   "patient": "P12"
+  },
+  {
+   "seq": 15,
+   "event": "mark_done",
+   "message": "MSG12",
+   "patient": "P12"
+  },
+  {
+   "seq": 16,
+   "event": "view",
+   "page": "inbox"
+  }
+ ],
+ "final_state": {
+  "messages": {
+   "MSG12": {
+    "patient": "P12",
+    "received": "2026-10-20 10:35",
+    "subject": "HCTZ refill",
+    "body": "Good morning, I need a refill of my hydrochlorothiazide, please. Ruth Alvarez",
+    "id": "MSG12",
+    "status": "done",
+    "routes": [
+     "pharmacy"
+    ],
+    "draft": "Hello Ruth, your request for a refill of your hydrochlorothiazide has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  "patients": {
+   "P12": {
+    "name": "Ruth Alvarez",
+    "dob": "1959-07-27",
+    "sex": "F",
+    "problems": [
+     "Hypertension"
+    ],
+    "allergies": [
+     "No known drug allergies"
+    ],
+    "meds": [
+     {
+      "id": "P12-M1",
+      "name": "Hydrochlorothiazide",
+      "dose": "25 mg",
+      "sig": "1 tablet by mouth every morning",
+      "active": true,
+      "last_fill": "2026-09-22"
+     }
+    ],
+    "visits": [
+     {
+      "date": "2026-07-08",
+      "type": "Blood pressure follow-up"
+     }
+    ]
+   }
+  }
+ },
+ "faults_left": [
+  {
+   "type": "silent_route_fail",
+   "message": "MSG12",
+   "times": 0
+  }
+ ]
+}

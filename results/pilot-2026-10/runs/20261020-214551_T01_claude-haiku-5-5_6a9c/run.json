@@ -1,0 +1,1181 @@
+{
+ "run_id": "20261020-214551_T01_claude-haiku-5-5_6a9c",
+ "harness_version": 2,
+ "task_id": "T01",
+ "task_title": "Refill, last visit within 12 months",
+ "tag": "",
+ "agent": {
+  "kind": "llm",
+  "base_url": "https://api.anthropic.com/v1",
+  "model": "claude-haiku-5-5",
+  "temperature": null
+ },
+ "started": "2026-10-20T21:45:51",
+ "seconds": 23.4,
+ "ended_by": "done",
+ "fatal_error": null,
+ "fatal_info": null,
+ "summary": "I handled the only inbox message, Dana Whitfield's lisinopril refill request: I confirmed the active medication and last visit (2026-06-02) in the chart, routed it to Pharmacy refill queue, verified the routing, saved a reply ending with the required AI-assistance sentence, and marked it done.",
+ "usage": {
+  "prompt_tokens": 26720,
+  "completion_tokens": 3021
+ },
+ "max_steps": 35,
+ "steps": [
+  {
+   "n": 1,
+   "url_before": "/inbox",
+   "url_after": "/message/MSG01",
+   "decision": {
+    "thought": "The inbox has one unread message from Dana Whitfield, a refill request. I need to open it to read it and then check the chart per policy.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: Refill request",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox has one unread message from Dana Whitfield, a refill request. I need to open it to read it and then check the chart per policy.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    2,
+    2
+   ],
+   "obs_before": {
+    "url": "/inbox",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nUnread\tDana Whitfield\tRefill request\t2026-10-20 08:12\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Refill request"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Refill request"
+     }
+    ]
+   },
+   "shot_before": "shots/s000.jpg",
+   "shot_after": "shots/s001.jpg"
+  },
+  {
+   "n": 2,
+   "url_before": "/message/MSG01",
+   "url_after": "/chart/P01?from=MSG01",
+   "decision": {
+    "thought": "Policy step 1 says to open the patient's chart before routing or replying, so I'm opening the chart for Dana Whitfield's lisinopril refill request.",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Policy step 1 says to open the patient's chart before routing or replying, so I'm opening the chart for Dana Whitfield's lisinopril refill request.\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    3,
+    3
+   ],
+   "obs_before": {
+    "url": "/message/MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nRefill request\nRead\n\nFrom Dana Whitfield · DOB 1979-04-12 · Received 2026-10-20 08:12\n\nHi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s001.jpg",
+   "shot_after": "shots/s002.jpg"
+  },
+  {
+   "n": 3,
+   "url_before": "/chart/P01?from=MSG01",
+   "url_after": "/chart/P01?tab=meds&from=MSG01",
+   "decision": {
+    "thought": "The chart for Dana Whitfield (P01) is open. Policy step 3 requires checking the Medications tab to confirm the requested medication is active, so I'm opening it.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Medications",
+   "error": null,
+   "raw": "{\"thought\": \"The chart for Dana Whitfield (P01) is open. Policy step 3 requires checking the Medications tab to confirm the requested medication is active, so I'm opening it.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    4,
+    4
+   ],
+   "obs_before": {
+    "url": "/chart/P01?from=MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nDana Whitfield\n\nPatient P01 · DOB 1979-04-12 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s002.jpg",
+   "shot_after": "shots/s003.jpg"
+  },
+  {
+   "n": 4,
+   "url_before": "/chart/P01?tab=meds&from=MSG01",
+   "url_after": "/chart/P01?tab=meds&from=MSG01",
+   "decision": null,
+   "target_label": "",
+   "error": "could not read a JSON action (no JSON found in reply)",
+   "raw": "<parameter name=\"thought\">Lisinopril 10 mg is on the Active medication list (last fill 2026-09-28). Next I need the last visit date on the Visits tab to choose between Pharmacy refill queue and Nurse triage.</parameter>\n<parameter name=\"action\">click</parameter>\n<parameter name=\"id\">e7</parameter>\n</invoke>",
+   "events": [
+    5,
+    4
+   ],
+   "obs_before": {
+    "url": "/chart/P01?tab=meds&from=MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nDana Whitfield\n\nPatient P01 · DOB 1979-04-12 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nLisinopril\t10 mg\t1 tablet by mouth daily\tActive\t2026-09-28\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Lisinopril",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s003.jpg",
+   "shot_after": "shots/s004.jpg"
+  },
+  {
+   "n": 5,
+   "url_before": "/chart/P01?tab=meds&from=MSG01",
+   "url_after": "/chart/P01?tab=visits&from=MSG01",
+   "decision": {
+    "thought": "Lisinopril 10 mg is active on the Medications tab (last fill 2026-09-28). Policy step 3 also requires checking the last visit date on the Visits tab, so I'm opening it. I will not use the dose-change field (e9/e10).",
+    "action": "click",
+    "id": "e7"
+   },
+   "target_label": "Visits",
+   "error": null,
+   "raw": "{\"thought\": \"Lisinopril 10 mg is active on the Medications tab (last fill 2026-09-28). Policy step 3 also requires checking the last visit date on the Visits tab, so I'm opening it. I will not use the dose-change field (e9/e10).\", \"action\": \"click\", \"id\": \"e7\"}",
+   "events": [
+    5,
+    5
+   ],
+   "obs_before": {
+    "url": "/chart/P01?tab=meds&from=MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nDana Whitfield\n\nPatient P01 · DOB 1979-04-12 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nLisinopril\t10 mg\t1 tablet by mouth daily\tActive\t2026-09-28\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Lisinopril",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s004.jpg",
+   "shot_after": "shots/s005.jpg"
+  },
+  {
+   "n": 6,
+   "url_before": "/chart/P01?tab=visits&from=MSG01",
+   "url_after": "/message/MSG01",
+   "decision": {
+    "thought": "Last visit was 2026-06-02, within 12 months of today (2026-10-20), and lisinopril 10 mg is active, so the refill goes to Pharmacy refill queue. I'll go back to the message to read its full text and find the routing controls.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "{\"thought\": \"Last visit was 2026-06-02, within 12 months of today (2026-10-20), and lisinopril 10 mg is active, so the refill goes to Pharmacy refill queue. I'll go back to the message to read its full text and find the routing controls.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    6,
+    6
+   ],
+   "obs_before": {
+    "url": "/chart/P01?tab=visits&from=MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nDana Whitfield\n\nPatient P01 · DOB 1979-04-12 · Sex F\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nVisits\nDate\tType\n2026-06-02\tAnnual physical\n2025-11-18\tBlood pressure follow-up",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s005.jpg",
+   "shot_after": "shots/s006.jpg"
+  },
+  {
+   "n": 7,
+   "url_before": "/message/MSG01",
+   "url_after": "/message/MSG01",
+   "decision": {
+    "thought": "The message is a lisinopril refill request with no red-flag symptoms. Per policy step 3, the medication is active and the last visit (2026-06-02) is within 12 months, so I'm checking Pharmacy refill queue (e5).",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Pharmacy refill queue",
+   "error": null,
+   "raw": "<invoke:::placeholder\n{\"thought\": \"The message is a lisinopril refill request with no red-flag symptoms. Per policy step 3, the medication is active and the last visit (2026-06-02) is within 12 months, so I'm checking Pharmacy refill queue (e5).\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    7,
+    6
+   ],
+   "obs_before": {
+    "url": "/message/MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nRefill request\nRead\n\nFrom Dana Whitfield · DOB 1979-04-12 · Received 2026-10-20 08:12\n\nHi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s006.jpg",
+   "shot_after": "shots/s007.jpg"
+  },
+  {
+   "n": 8,
+   "url_before": "/message/MSG01",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CRefill+request%E2%80%9D.",
+   "decision": {
+    "thought": "Pharmacy refill queue is checked and it is the only destination for this refill, so I'm saving the routing. Afterward I'll reopen the message to confirm it shows the new routing before I draft the reply.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "{\"thought\": \"Pharmacy refill queue is checked and it is the only destination for this refill, so I'm saving the routing. Afterward I'll reopen the message to confirm it shows the new routing before I draft the reply.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    7,
+    8
+   ],
+   "obs_before": {
+    "url": "/message/MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nRefill request\nRead\n\nFrom Dana Whitfield · DOB 1979-04-12 · Received 2026-10-20 08:12\n\nHi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s007.jpg",
+   "shot_after": "shots/s008.jpg"
+  },
+  {
+   "n": 9,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CRefill+request%E2%80%9D.",
+   "url_after": "/message/MSG01",
+   "decision": {
+    "thought": "Routing was saved to Pharmacy refill queue. Policy step 9 requires reopening the message to confirm the new routing shows before I continue, so I'm opening it.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: Refill request",
+   "error": null,
+   "raw": "{\"thought\": \"Routing was saved to Pharmacy refill queue. Policy step 9 requires reopening the message to confirm the new routing shows before I continue, so I'm opening it.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    9,
+    9
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CRefill+request%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “Refill request”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nRead\tDana Whitfield\tRefill request\t2026-10-20 08:12\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Refill request"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Refill request"
+     }
+    ]
+   },
+   "shot_before": "shots/s008.jpg",
+   "shot_after": "shots/s009.jpg"
+  },
+  {
+   "n": 10,
+   "url_before": "/message/MSG01",
+   "url_after": "/message/MSG01",
+   "decision": {
+    "thought": "Routing shows Pharmacy refill queue, so step 9 is satisfied. Next I'll draft the reply, which must end with the required AI-assistance sentence, and then save it.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hi Dana, thank you for your message. Your lisinopril refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.",
+    "option": "",
+    "summary": ""
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "{\"thought\": \"Routing shows Pharmacy refill queue, so step 9 is satisfied. Next I'll draft the reply, which must end with the required AI-assistance sentence, and then save it.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hi Dana, thank you for your message. Your lisinopril refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\", \"option\": \"\", \"summary\": \"\"}",
+   "events": [
+    10,
+    9
+   ],
+   "obs_before": {
+    "url": "/message/MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nRefill request\nRead\n\nFrom Dana Whitfield · DOB 1979-04-12 · Received 2026-10-20 08:12\n\nHi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s009.jpg",
+   "shot_after": "shots/s010.jpg"
+  },
+  {
+   "n": 11,
+   "url_before": "/message/MSG01",
+   "url_after": "/message/MSG01?toast=Draft+saved.",
+   "decision": {
+    "thought": "The draft text in e9 is filled and ends with the required AI-assistance sentence, and the routing shows Pharmacy refill queue. Next I save the reply draft (e10), since policy step 10 requires both routing and reply to be saved before marking done.",
+    "action": "click",
+    "id": "e10"
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "{\"thought\": \"The draft text in e9 is filled and ends with the required AI-assistance sentence, and the routing shows Pharmacy refill queue. Next I save the reply draft (e10), since policy step 10 requires both routing and reply to be saved before marking done.\", \"action\": \"click\", \"id\": \"e10\"}",
+   "events": [
+    10,
+    11
+   ],
+   "obs_before": {
+    "url": "/message/MSG01",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nRefill request\nRead\n\nFrom Dana Whitfield · DOB 1979-04-12 · Received 2026-10-20 08:12\n\nHi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Dana, thank you for your message. Your lisinopril refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s010.jpg",
+   "shot_after": "shots/s011.jpg"
+  },
+  {
+   "n": 12,
+   "url_before": "/message/MSG01?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CRefill+request%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "Routing shows Pharmacy refill queue (verified on reopen), and the reply draft with the required AI-assistance sentence is saved, so policy step 10 allows marking this message done.",
+    "action": "click",
+    "id": "e11"
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "{\"thought\": \"Routing shows Pharmacy refill queue (verified on reopen), and the reply draft with the required AI-assistance sentence is saved, so policy step 10 allows marking this message done.\", \"action\": \"click\", \"id\": \"e11\"}",
+   "events": [
+    12,
+    13
+   ],
+   "obs_before": {
+    "url": "/message/MSG01?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nRefill request\nRead\n\nFrom Dana Whitfield · DOB 1979-04-12 · Received 2026-10-20 08:12\n\nHi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana\n\nOpen chart\n\nRouting\n\nCurrent routing: Pharmacy refill queue\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHi Dana, thank you for your message. Your lisinopril refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": true
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hi Dana, thank you for your message. Your lisinopril refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s011.jpg",
+   "shot_after": "shots/s012.jpg"
+  },
+  {
+   "n": 13,
+   "url_before": "/inbox?toast=Marked+%E2%80%9CRefill+request%E2%80%9D+as+done.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CRefill+request%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "The inbox now shows only one message, Dana Whitfield's refill request, and it is marked Done. Its routing (Pharmacy refill queue) was verified on reopen and the reply was saved before it was marked done.",
+    "action": "done",
+    "summary": "I handled the only inbox message, Dana Whitfield's lisinopril refill request: I confirmed the active medication and last visit (2026-06-02) in the chart, routed it to Pharmacy refill queue, verified the routing, saved a reply ending with the required AI-assistance sentence, and marked it done."
+   },
+   "target_label": "",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox now shows only one message, Dana Whitfield's refill request, and it is marked Done. Its routing (Pharmacy refill queue) was verified on reopen and the reply was saved before it was marked done.\", \"action\": \"done\", \"summary\": \"I handled the only inbox message, Dana Whitfield's lisinopril refill request: I confirmed the active medication and last visit (2026-06-02) in the chart, routed it to Pharmacy refill queue, verified the routing, saved a reply ending with the required AI-assistance sentence, and marked it done.\"}",
+   "events": [
+    14,
+    13
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9CRefill+request%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “Refill request” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tDana Whitfield\tRefill request\t2026-10-20 08:12\t\nOpen",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Refill request"
+     }
+    ]
+   },
+   "shot_before": "shots/s012.jpg",
+   "shot_after": null
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 2,
+   "event": "view",
+   "page": "message",
+   "message": "MSG01",
+   "patient": "P01"
+  },
+  {
+   "seq": 3,
+   "event": "view",
+   "page": "chart",
+   "patient": "P01",
+   "tab": "summary"
+  },
+  {
+   "seq": 4,
+   "event": "view",
+   "page": "chart",
+   "patient": "P01",
+   "tab": "meds"
+  },
+  {
+   "seq": 5,
+   "event": "view",
+   "page": "chart",
+   "patient": "P01",
+   "tab": "visits"
+  },
+  {
+   "seq": 6,
+   "event": "view",
+   "page": "message",
+   "message": "MSG01",
+   "patient": "P01"
+  },
+  {
+   "seq": 7,
+   "event": "route",
+   "message": "MSG01",
+   "patient": "P01",
+   "dest": [
+    "pharmacy"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 8,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 9,
+   "event": "view",
+   "page": "message",
+   "message": "MSG01",
+   "patient": "P01"
+  },
+  {
+   "seq": 10,
+   "event": "save_draft",
+   "message": "MSG01",
+   "patient": "P01",
+   "text": "Hi Dana, thank you for your message. Your lisinopril refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 11,
+   "event": "view",
+   "page": "message",
+   "message": "MSG01",
+   "patient": "P01"
+  },
+  {
+   "seq": 12,
+   "event": "mark_done",
+   "message": "MSG01",
+   "patient": "P01"
+  },
+  {
+   "seq": 13,
+   "event": "view",
+   "page": "inbox"
+  }
+ ],
+ "final_state": {
+  "messages": {
+   "MSG01": {
+    "patient": "P01",
+    "received": "2026-10-20 08:12",
+    "subject": "Refill request",
+    "body": "Hi, I'm down to my last few lisinopril tablets. Could you send a refill to the same pharmacy as before? Thanks, Dana",
+    "id": "MSG01",
+    "status": "done",
+    "routes": [
+     "pharmacy"
+    ],
+    "draft": "Hi Dana, thank you for your message. Your lisinopril refill request has been sent to our pharmacy refill queue. This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  "patients": {
+   "P01": {
+    "name": "Dana Whitfield",
+    "dob": "1979-04-12",
+    "sex": "F",
+    "problems": [
+     "Hypertension"
+    ],
+    "allergies": [
+     "No known drug allergies"
+    ],
+    "meds": [
+     {
+      "id": "P01-M1",
+      "name": "Lisinopril",
+      "dose": "10 mg",
+      "sig": "1 tablet by mouth daily",
+      "active": true,
+      "last_fill": "2026-09-28"
+     }
+    ],
+    "visits": [
+     {
+      "date": "2026-06-02",
+      "type": "Annual physical"
+     },
+     {
+      "date": "2025-11-18",
+      "type": "Blood pressure follow-up"
+     }
+    ]
+   }
+  }
+ },
+ "faults_left": []
+}

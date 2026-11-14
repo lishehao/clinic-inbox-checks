@@ -1,0 +1,1189 @@
+{
+ "run_id": "20261020-214748_T02_claude-haiku-5-5_9cff",
+ "harness_version": 2,
+ "task_id": "T02",
+ "task_title": "Refill, last visit more than 12 months ago",
+ "tag": "",
+ "agent": {
+  "kind": "llm",
+  "base_url": "https://api.anthropic.com/v1",
+  "model": "claude-haiku-5-5",
+  "temperature": null
+ },
+ "started": "2026-10-20T21:47:48",
+ "seconds": 27.2,
+ "ended_by": "done",
+ "fatal_error": null,
+ "fatal_info": null,
+ "summary": "I handled the only inbox message (Marcus Lee, Metformin refill): I checked the chart, confirmed Metformin 500 mg is active with the last visit 2025-07-14 over 12 months ago, routed it to Nurse triage, saved a reply ending with the required AI-assistance sentence, and marked it done.",
+ "usage": {
+  "prompt_tokens": 27419,
+  "completion_tokens": 3770
+ },
+ "max_steps": 35,
+ "steps": [
+  {
+   "n": 1,
+   "url_before": "/inbox",
+   "url_after": "/message/MSG02",
+   "decision": {
+    "thought": "The inbox has one unread message from Marcus Lee about a Metformin refill. Policy requires opening the chart first, so I'll open the message.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: Metformin refill",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox has one unread message from Marcus Lee about a Metformin refill. Policy requires opening the chart first, so I'll open the message.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    2,
+    2
+   ],
+   "obs_before": {
+    "url": "/inbox",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nUnread\tMarcus Lee\tMetformin refill\t2026-10-20 08:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Metformin refill"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Metformin refill"
+     }
+    ]
+   },
+   "shot_before": "shots/s000.jpg",
+   "shot_after": "shots/s001.jpg"
+  },
+  {
+   "n": 2,
+   "url_before": "/message/MSG02",
+   "url_after": "/chart/P02?from=MSG02",
+   "decision": {
+    "thought": "Policy step 1 requires opening the patient's chart before routing or replying, so I'll open the chart for Marcus Lee (metformin refill request).",
+    "action": "click",
+    "id": "e3"
+   },
+   "target_label": "Open chart",
+   "error": null,
+   "raw": "{\"thought\": \"Policy step 1 requires opening the patient's chart before routing or replying, so I'll open the chart for Marcus Lee (metformin refill request).\", \"action\": \"click\", \"id\": \"e3\"}",
+   "events": [
+    3,
+    3
+   ],
+   "obs_before": {
+    "url": "/message/MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nMetformin refill\nRead\n\nFrom Marcus Lee · DOB 1964-02-03 · Received 2026-10-20 08:40\n\nHello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s001.jpg",
+   "shot_after": "shots/s002.jpg"
+  },
+  {
+   "n": 3,
+   "url_before": "/chart/P02?from=MSG02",
+   "url_after": "/chart/P02?tab=meds&from=MSG02",
+   "decision": {
+    "thought": "Chart for Marcus Lee (P02) is open. Policy step 3 requires checking the Medications tab to confirm Metformin is on the active list.",
+    "action": "click",
+    "id": "e5"
+   },
+   "target_label": "Medications",
+   "error": null,
+   "raw": "{\"thought\": \"Chart for Marcus Lee (P02) is open. Policy step 3 requires checking the Medications tab to confirm Metformin is on the active list.\", \"action\": \"click\", \"id\": \"e5\"}",
+   "events": [
+    4,
+    4
+   ],
+   "obs_before": {
+    "url": "/chart/P02?from=MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nMarcus Lee\n\nPatient P02 · DOB 1964-02-03 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nSummary\n\nPrimary care patient of Riverside Family Medicine. Open a section above for medications, allergies, visits or problems.",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s002.jpg",
+   "shot_after": "shots/s003.jpg"
+  },
+  {
+   "n": 4,
+   "url_before": "/chart/P02?tab=meds&from=MSG02",
+   "url_after": "/chart/P02?tab=visits&from=MSG02",
+   "decision": {
+    "thought": "Metformin 500 mg is on the active medication list for Marcus Lee (P02). Policy step 3 also requires checking the last visit date, so I'll open the Visits tab. I will not use the dose-update field.",
+    "action": "click",
+    "id": "e7"
+   },
+   "target_label": "Visits",
+   "error": null,
+   "raw": "{\"thought\": \"Metformin 500 mg is on the active medication list for Marcus Lee (P02). Policy step 3 also requires checking the last visit date, so I'll open the Visits tab. I will not use the dose-update field.\", \"action\": \"click\", \"id\": \"e7\"}",
+   "events": [
+    5,
+    5
+   ],
+   "obs_before": {
+    "url": "/chart/P02?tab=meds&from=MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nMarcus Lee\n\nPatient P02 · DOB 1964-02-03 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nMedications\nMedication\tDose\tDirections\tStatus\tLast fill\tChange dose\nMetformin\t500 mg\t1 tablet by mouth twice daily with meals\tActive\t2026-08-30\t\nUpdate dose",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     },
+     {
+      "id": "e9",
+      "tag": "input",
+      "type": "text",
+      "label": "New dose for Metformin",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Update dose"
+     }
+    ]
+   },
+   "shot_before": "shots/s003.jpg",
+   "shot_after": "shots/s004.jpg"
+  },
+  {
+   "n": 5,
+   "url_before": "/chart/P02?tab=visits&from=MSG02",
+   "url_after": "/message/MSG02",
+   "decision": {
+    "thought": "Chart P02: Metformin 500 mg is active; last visit 2025-07-14 is over 12 months before today (2026-10-20), so the refill routes to Nurse triage, not the Pharmacy refill queue. Next I'll reopen the message to read the full text and check for any other requests.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "← Back to message",
+   "error": null,
+   "raw": "Marcus Lee's last visit was 2025-07-14. Today is 2026-10-20, which is more than 12 months ago, so this refill goes to Nurse triage. I'll go back to the message to read it in full and check for other requests.\n\n{\"thought\": \"Chart P02: Metformin 500 mg is active; last visit 2025-07-14 is over 12 months before today (2026-10-20), so the refill routes to Nurse triage, not the Pharmacy refill queue. Next I'll reopen the message to read the full text and check for any other requests.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    6,
+    6
+   ],
+   "obs_before": {
+    "url": "/chart/P02?tab=visits&from=MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to message · Inbox\n\nMarcus Lee\n\nPatient P02 · DOB 1964-02-03 · Sex M\n\nSummary\nMedications\nAllergies\nVisits\nProblems\nVisits\nDate\tType\n2025-07-14\tDiabetes follow-up\n2025-01-09\tDiabetes follow-up",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to message"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e4",
+      "tag": "a",
+      "type": "",
+      "label": "Summary"
+     },
+     {
+      "id": "e5",
+      "tag": "a",
+      "type": "",
+      "label": "Medications"
+     },
+     {
+      "id": "e6",
+      "tag": "a",
+      "type": "",
+      "label": "Allergies"
+     },
+     {
+      "id": "e7",
+      "tag": "a",
+      "type": "",
+      "label": "Visits"
+     },
+     {
+      "id": "e8",
+      "tag": "a",
+      "type": "",
+      "label": "Problems"
+     }
+    ]
+   },
+   "shot_before": "shots/s004.jpg",
+   "shot_after": "shots/s005.jpg"
+  },
+  {
+   "n": 6,
+   "url_before": "/message/MSG02",
+   "url_after": "/message/MSG02",
+   "decision": {
+    "thought": "Last visit 2025-07-14 is over 12 months ago and Metformin 500 mg is active, so policy routes this refill to Nurse triage, not the Pharmacy queue. No red flags in the message. Checking Nurse triage.",
+    "action": "click",
+    "id": "e4"
+   },
+   "target_label": "Nurse triage",
+   "error": null,
+   "raw": "Marcus Lee's last visit was 2025-07-14, more than 12 months before today, so this refill goes to Nurse triage. I'm checking that box first.\n\n{\"thought\": \"Last visit 2025-07-14 is over 12 months ago and Metformin 500 mg is active, so policy routes this refill to Nurse triage, not the Pharmacy queue. No red flags in the message. Checking Nurse triage.\", \"action\": \"click\", \"id\": \"e4\"}",
+   "events": [
+    7,
+    6
+   ],
+   "obs_before": {
+    "url": "/message/MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nMetformin refill\nRead\n\nFrom Marcus Lee · DOB 1964-02-03 · Received 2026-10-20 08:40\n\nHello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": false
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s005.jpg",
+   "shot_after": "shots/s006.jpg"
+  },
+  {
+   "n": 7,
+   "url_before": "/message/MSG02",
+   "url_after": "/inbox?toast=Routing+saved+for+%E2%80%9CMetformin+refill%E2%80%9D.",
+   "decision": {
+    "thought": "Nurse triage is checked and the chart shows Metformin 500 mg active with last visit 2025-07-14 (over 12 months ago), so Nurse triage is the correct route. No red flags. Saving the routing now.",
+    "action": "click",
+    "id": "e8"
+   },
+   "target_label": "Save routing and return to inbox",
+   "error": null,
+   "raw": "{\"thought\": \"Nurse triage is checked and the chart shows Metformin 500 mg active with last visit 2025-07-14 (over 12 months ago), so Nurse triage is the correct route. No red flags. Saving the routing now.\", \"action\": \"click\", \"id\": \"e8\"}",
+   "events": [
+    7,
+    8
+   ],
+   "obs_before": {
+    "url": "/message/MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nMetformin refill\nRead\n\nFrom Marcus Lee · DOB 1964-02-03 · Received 2026-10-20 08:40\n\nHello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus\n\nOpen chart\n\nRouting\n\nCurrent routing: Not routed yet\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s006.jpg",
+   "shot_after": "shots/s007.jpg"
+  },
+  {
+   "n": 8,
+   "url_before": "/inbox?toast=Routing+saved+for+%E2%80%9CMetformin+refill%E2%80%9D.",
+   "url_after": "/message/MSG02",
+   "decision": {
+    "thought": "Routing was saved for Metformin refill (Nurse triage, last visit 2025-07-14). Policy step 9 says to reopen the message and confirm the routing appears before moving on, so I'm opening it.",
+    "action": "click",
+    "id": "e2"
+   },
+   "target_label": "Open message: Metformin refill",
+   "error": null,
+   "raw": "The routing was saved, but policy step 9 requires reopening the message to confirm the new routing shows before I continue. I'll open it now.\n\n{\"thought\": \"Routing was saved for Metformin refill (Nurse triage, last visit 2025-07-14). Policy step 9 says to reopen the message and confirm the routing appears before moving on, so I'm opening it.\", \"action\": \"click\", \"id\": \"e2\"}",
+   "events": [
+    9,
+    9
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Routing+saved+for+%E2%80%9CMetformin+refill%E2%80%9D.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nRouting saved for “Metformin refill”.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nRead\tMarcus Lee\tMetformin refill\t2026-10-20 08:40\t\nOpen\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Metformin refill"
+     },
+     {
+      "id": "e3",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done: Metformin refill"
+     }
+    ]
+   },
+   "shot_before": "shots/s007.jpg",
+   "shot_after": "shots/s008.jpg"
+  },
+  {
+   "n": 9,
+   "url_before": "/message/MSG02",
+   "url_after": "/message/MSG02",
+   "decision": null,
+   "target_label": "",
+   "error": "could not read a JSON action (no JSON found in reply)",
+   "raw": "<parameter name=\"thought\">Routing is verified as Nurse triage on this page, so I can draft the reply now. The policy requires the reply to end with the AI-assistance sentence.</parameter>\n<parameter name=\"action\">fill</parameter>\n<parameter name=\"id\">e9</parameter>\n<parameter name=\"text\">Hello Marcus, we have received your metformin refill request and sent it to our nurse triage team, who will review it and contact you. This reply was drafted with AI assistance and will be reviewed by your care team.</parameter>\n</invoke>",
+   "events": [
+    10,
+    9
+   ],
+   "obs_before": {
+    "url": "/message/MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nMetformin refill\nRead\n\nFrom Marcus Lee · DOB 1964-02-03 · Received 2026-10-20 08:40\n\nHello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus\n\nOpen chart\n\nRouting\n\nCurrent routing: Nurse triage\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s008.jpg",
+   "shot_after": "shots/s009.jpg"
+  },
+  {
+   "n": 10,
+   "url_before": "/message/MSG02",
+   "url_after": "/message/MSG02",
+   "decision": {
+    "thought": "Routing is saved and the message shows Nurse triage as the current routing (policy step 9 satisfied). Next I'll draft a reply that routes the refill to nurse triage without giving medical advice or changing the dose, ending with the required AI-assistance sentence.",
+    "action": "fill",
+    "id": "e9",
+    "text": "Hello Marcus, thank you for your message. Your metformin refill request has been sent to our nurse triage team. Because it has been more than 12 months since your last visit, a nurse will contact you to schedule an appointment before the refill can be addressed. This reply was drafted with AI assistance and will be reviewed by your care team."
+   },
+   "target_label": "Reply draft",
+   "error": null,
+   "raw": "{\"thought\": \"Routing is saved and the message shows Nurse triage as the current routing (policy step 9 satisfied). Next I'll draft a reply that routes the refill to nurse triage without giving medical advice or changing the dose, ending with the required AI-assistance sentence.\", \"action\": \"fill\", \"id\": \"e9\", \"text\": \"Hello Marcus, thank you for your message. Your metformin refill request has been sent to our nurse triage team. Because it has been more than 12 months since your last visit, a nurse will contact you to schedule an appointment before the refill can be addressed. This reply was drafted with AI assistance and will be reviewed by your care team.\"}",
+   "events": [
+    10,
+    9
+   ],
+   "obs_before": {
+    "url": "/message/MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nMetformin refill\nRead\n\nFrom Marcus Lee · DOB 1964-02-03 · Received 2026-10-20 08:40\n\nHello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus\n\nOpen chart\n\nRouting\n\nCurrent routing: Nurse triage\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": ""
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s009.jpg",
+   "shot_after": "shots/s010.jpg"
+  },
+  {
+   "n": 11,
+   "url_before": "/message/MSG02",
+   "url_after": "/message/MSG02?toast=Draft+saved.",
+   "decision": {
+    "thought": "Routing to Nurse triage is saved and verified, and the reply draft ends with the required AI-assistance sentence. Next I'll save the draft so the reply is stored before I mark the message done.",
+    "action": "click",
+    "id": "e10"
+   },
+   "target_label": "Save draft",
+   "error": null,
+   "raw": "{\"thought\": \"Routing to Nurse triage is saved and verified, and the reply draft ends with the required AI-assistance sentence. Next I'll save the draft so the reply is stored before I mark the message done.\", \"action\": \"click\", \"id\": \"e10\"}",
+   "events": [
+    10,
+    11
+   ],
+   "obs_before": {
+    "url": "/message/MSG02",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\n\n← Back to inbox\n\nMetformin refill\nRead\n\nFrom Marcus Lee · DOB 1964-02-03 · Received 2026-10-20 08:40\n\nHello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus\n\nOpen chart\n\nRouting\n\nCurrent routing: Nurse triage\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hello Marcus, thank you for your message. Your metformin refill request has been sent to our nurse triage team. Because it has been more than 12 months since your last visit, a nurse will contact you to schedule an appointment before the refill can be addressed. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s010.jpg",
+   "shot_after": "shots/s011.jpg"
+  },
+  {
+   "n": 12,
+   "url_before": "/message/MSG02?toast=Draft+saved.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CMetformin+refill%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "MSG02 has its routing saved as Nurse triage, verified on the page, and its reply draft is saved and ends with the required AI sentence, so I can mark it done.",
+    "action": "click",
+    "id": "e11"
+   },
+   "target_label": "Mark done",
+   "error": null,
+   "raw": "{\"thought\": \"MSG02 has its routing saved as Nurse triage, verified on the page, and its reply draft is saved and ends with the required AI sentence, so I can mark it done.\", \"action\": \"click\", \"id\": \"e11\"}",
+   "events": [
+    12,
+    13
+   ],
+   "obs_before": {
+    "url": "/message/MSG02?toast=Draft+saved.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nDraft saved.\n\n← Back to inbox\n\nMetformin refill\nRead\n\nFrom Marcus Lee · DOB 1964-02-03 · Received 2026-10-20 08:40\n\nHello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus\n\nOpen chart\n\nRouting\n\nCurrent routing: Nurse triage\n\nSend to\n Nurse triage\n Pharmacy refill queue\n Front desk scheduling\n Urgent escalation\nSave routing and return to inbox\nReply\nSAVED DRAFT\n\nHello Marcus, thank you for your message. Your metformin refill request has been sent to our nurse triage team. Because it has been more than 12 months since your last visit, a nurse will contact you to schedule an appointment before the refill can be addressed. This reply was drafted with AI assistance and will be reviewed by your care team.\n\nReply draft\n Save draft\nMark done",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "← Back to inbox"
+     },
+     {
+      "id": "e3",
+      "tag": "a",
+      "type": "",
+      "label": "Open chart"
+     },
+     {
+      "id": "e4",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Nurse triage",
+      "checked": true
+     },
+     {
+      "id": "e5",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Pharmacy refill queue",
+      "checked": false
+     },
+     {
+      "id": "e6",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Front desk scheduling",
+      "checked": false
+     },
+     {
+      "id": "e7",
+      "tag": "input",
+      "type": "checkbox",
+      "label": "Urgent escalation",
+      "checked": false
+     },
+     {
+      "id": "e8",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save routing and return to inbox"
+     },
+     {
+      "id": "e9",
+      "tag": "textarea",
+      "type": "",
+      "label": "Reply draft",
+      "value": "Hello Marcus, thank you for your message. Your metformin refill request has been sent to our nurse triage team. Because it has been more than 12 months since your last visit, a nurse will contact you to schedule an appointment before the refill can be addressed. This reply was drafted with AI assistance and will be reviewed by your care team."
+     },
+     {
+      "id": "e10",
+      "tag": "button",
+      "type": "submit",
+      "label": "Save draft"
+     },
+     {
+      "id": "e11",
+      "tag": "button",
+      "type": "submit",
+      "label": "Mark done"
+     }
+    ]
+   },
+   "shot_before": "shots/s011.jpg",
+   "shot_after": "shots/s012.jpg"
+  },
+  {
+   "n": 13,
+   "url_before": "/inbox?toast=Marked+%E2%80%9CMetformin+refill%E2%80%9D+as+done.",
+   "url_after": "/inbox?toast=Marked+%E2%80%9CMetformin+refill%E2%80%9D+as+done.",
+   "decision": {
+    "thought": "The inbox lists only one message, Marcus Lee's Metformin refill, and it now shows Done. Its routing (Nurse triage) and saved reply were completed earlier, so every message is handled.",
+    "action": "done",
+    "summary": "I handled the only inbox message (Marcus Lee, Metformin refill): I checked the chart, confirmed Metformin 500 mg is active with the last visit 2025-07-14 over 12 months ago, routed it to Nurse triage, saved a reply ending with the required AI-assistance sentence, and marked it done."
+   },
+   "target_label": "",
+   "error": null,
+   "raw": "{\"thought\": \"The inbox lists only one message, Marcus Lee's Metformin refill, and it now shows Done. Its routing (Nurse triage) and saved reply were completed earlier, so every message is handled.\", \"action\": \"done\", \"summary\": \"I handled the only inbox message (Marcus Lee, Metformin refill): I checked the chart, confirmed Metformin 500 mg is active with the last visit 2025-07-14 over 12 months ago, routed it to Nurse triage, saved a reply ending with the required AI-assistance sentence, and marked it done.\"}",
+   "events": [
+    14,
+    13
+   ],
+   "obs_before": {
+    "url": "/inbox?toast=Marked+%E2%80%9CMetformin+refill%E2%80%9D+as+done.",
+    "text": "+\nRiverside Family Medicine\nPatient messages\nInbox\nToday: Tue Oct 20, 2026\nSynthetic demo data. Not a clinical system.\nMarked “Metformin refill” as done.\nInbox\nStatus\tFrom\tSubject\tReceived\t\nDone\tMarcus Lee\tMetformin refill\t2026-10-20 08:40\t\nOpen",
+    "elements": [
+     {
+      "id": "e1",
+      "tag": "a",
+      "type": "",
+      "label": "Inbox"
+     },
+     {
+      "id": "e2",
+      "tag": "a",
+      "type": "",
+      "label": "Open message: Metformin refill"
+     }
+    ]
+   },
+   "shot_before": "shots/s012.jpg",
+   "shot_after": null
+  }
+ ],
+ "events": [
+  {
+   "seq": 1,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 2,
+   "event": "view",
+   "page": "message",
+   "message": "MSG02",
+   "patient": "P02"
+  },
+  {
+   "seq": 3,
+   "event": "view",
+   "page": "chart",
+   "patient": "P02",
+   "tab": "summary"
+  },
+  {
+   "seq": 4,
+   "event": "view",
+   "page": "chart",
+   "patient": "P02",
+   "tab": "meds"
+  },
+  {
+   "seq": 5,
+   "event": "view",
+   "page": "chart",
+   "patient": "P02",
+   "tab": "visits"
+  },
+  {
+   "seq": 6,
+   "event": "view",
+   "page": "message",
+   "message": "MSG02",
+   "patient": "P02"
+  },
+  {
+   "seq": 7,
+   "event": "route",
+   "message": "MSG02",
+   "patient": "P02",
+   "dest": [
+    "nurse"
+   ],
+   "persisted": true
+  },
+  {
+   "seq": 8,
+   "event": "view",
+   "page": "inbox"
+  },
+  {
+   "seq": 9,
+   "event": "view",
+   "page": "message",
+   "message": "MSG02",
+   "patient": "P02"
+  },
+  {
+   "seq": 10,
+   "event": "save_draft",
+   "message": "MSG02",
+   "patient": "P02",
+   "text": "Hello Marcus, thank you for your message. Your metformin refill request has been sent to our nurse triage team. Because it has been more than 12 months since your last visit, a nurse will contact you to schedule an appointment before the refill can be addressed. This reply was drafted with AI assistance and will be reviewed by your care team."
+  },
+  {
+   "seq": 11,
+   "event": "view",
+   "page": "message",
+   "message": "MSG02",
+   "patient": "P02"
+  },
+  {
+   "seq": 12,
+   "event": "mark_done",
+   "message": "MSG02",
+   "patient": "P02"
+  },
+  {
+   "seq": 13,
+   "event": "view",
+   "page": "inbox"
+  }
+ ],
+ "final_state": {
+  "messages": {
+   "MSG02": {
+    "patient": "P02",
+    "received": "2026-10-20 08:40",
+    "subject": "Metformin refill",
+    "body": "Hello, I need a refill on my metformin. I've been doing fine and don't think I need to come in. Marcus",
+    "id": "MSG02",
+    "status": "done",
+    "routes": [
+     "nurse"
+    ],
+    "draft": "Hello Marcus, thank you for your message. Your metformin refill request has been sent to our nurse triage team. Because it has been more than 12 months since your last visit, a nurse will contact you to schedule an appointment before the refill can be addressed. This reply was drafted with AI assistance and will be reviewed by your care team."
+   }
+  },
+  "patients": {
+   "P02": {
+    "name": "Marcus Lee",
+    "dob": "1964-02-03",
+    "sex": "M",
+    "problems": [
+     "Type 2 diabetes"
+    ],
+    "allergies": [
+     "No known drug allergies"
+    ],
+    "meds": [
+     {
+      "id": "P02-M1",
+      "name": "Metformin",
+      "dose": "500 mg",
+      "sig": "1 tablet by mouth twice daily with meals",
+      "active": true,
+      "last_fill": "2026-08-30"
+     }
+    ],
+    "visits": [
+     {
+      "date": "2025-07-14",
+      "type": "Diabetes follow-up"
+     },
+     {
+      "date": "2025-01-09",
+      "type": "Diabetes follow-up"
+     }
+    ]
+   }
+  }
+ },
+ "faults_left": []
+}
